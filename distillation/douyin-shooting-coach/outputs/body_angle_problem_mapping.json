@@ -1,0 +1,708 @@
+{
+  "schema_version": "body_angle_problem_mapping.v1",
+  "version": "0.1.0",
+  "updated_at": "2026-06-19",
+  "source_contract": "body_angle_curve_to_observation_to_problem_candidate_to_knowledge_retrieval",
+  "policy": {
+    "no_universal_ideal_angle": true,
+    "no_single_angle_diagnosis": true,
+    "no_final_total_score": true,
+    "missing_evidence_is_not_negative": true,
+    "minimum_evidence_families_for_candidate": 2,
+    "paper_values_are_context_priors_not_error_thresholds": true,
+    "preferred_baseline_order": [
+      "same_player_same_shot_context",
+      "local_peer_group_same_context",
+      "peer_reviewed_paper_same_context",
+      "engineering_provisional"
+    ]
+  },
+  "baseline_contract": {
+    "baseline_key_fields": [
+      "player_id",
+      "shot_type",
+      "distance_band",
+      "camera_view",
+      "fps_band",
+      "dominant_hand"
+    ],
+    "statistics": ["median", "mad", "p10", "p90", "valid_attempt_count"],
+    "sample_status": {
+      "0-4": "paper_prior_and_within_attempt_relations_only",
+      "5-9": "provisional_personal_baseline",
+      "10-19": "usable_personal_baseline",
+      "20+": "stable_personal_baseline_candidate"
+    },
+    "provisional_deviation_policy": {
+      "formula": "robust_z = abs(value - median) / (1.4826 * MAD)",
+      "observed_when": "robust_z >= 2",
+      "strong_when": "robust_z >= 3",
+      "status": "engineering_provisional_not_research_validated",
+      "warning": "Do not treat these statistical boundaries as universal basketball technique standards."
+    },
+    "curve_comparison": {
+      "phase_normalization": "normalize preparation_start_to_release to 0..100 percent",
+      "features": [
+        "minimum_angle",
+        "range_of_motion",
+        "extension_onset_percent",
+        "peak_angular_velocity",
+        "peak_velocity_percent",
+        "extension_progress_at_release",
+        "pause_or_reversal_count",
+        "curve_distance_to_personal_median"
+      ]
+    }
+  },
+  "research_sources": [
+    {
+      "source_id": "cabarkapa_2026_three_point_markerless",
+      "title": "Biomechanical determinants of proficient 3-point shooters: markerless motion capture analysis",
+      "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1732293/full",
+      "supports": [
+        "preparatory hip knee ankle angles",
+        "joint range of motion",
+        "hip angular velocity",
+        "center of mass change",
+        "shot-context-specific interpretation"
+      ],
+      "does_not_support": "A universal pass/fail angle for all shooters or shot types."
+    },
+    {
+      "source_id": "nakano_2018_basketball_energy_flow",
+      "title": "The effect of increased shooting distance on energy flow in basketball jump shot",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30001184/",
+      "supports": [
+        "distance changes lower-limb work demand",
+        "lower-limb to shooting-arm energy transfer as a useful mechanism"
+      ],
+      "does_not_support": "Inferring joint work or energy transfer from a single 2D angle alone."
+    },
+    {
+      "source_id": "okazaki_2012_distance_kinematics",
+      "title": "Increased distance of shooting on basketball jump shot",
+      "url": "https://www.jssm.org/volume11/iss2/cap/jssm-11-231.pdf",
+      "supports": [
+        "distance-specific joint angular displacement",
+        "distance-specific joint angular velocity",
+        "release context"
+      ],
+      "does_not_support": "Reusing one distance's angle values for every shot distance."
+    },
+    {
+      "source_id": "kipp_2012_weightlifting_synergies",
+      "title": "Kinematic and Kinetic Synergies of the Lower Extremities During the Pull in Olympic Weightlifting",
+      "url": "https://doi.org/10.1123/jab.28.3.271",
+      "supports": [
+        "whole-curve multijoint analysis",
+        "hip knee ankle synergy as a dynamic pattern"
+      ],
+      "does_not_support": "Copying clean triple-extension angles into basketball shooting."
+    },
+    {
+      "source_id": "chen_2019_snatch_vector_coding",
+      "title": "Weightlifting load effect on intra-limb coordination of lower extremity during pull phase in snatch: Vector coding approach",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31221023/",
+      "supports": [
+        "angle-angle plots",
+        "vector-coding coordination",
+        "task and load dependent coupling"
+      ],
+      "does_not_support": "A fixed universal proximal-to-distal timing threshold for shooting."
+    },
+    {
+      "source_id": "mullineaux_2010_elbow_wrist_variability",
+      "title": "Coordination-variability and kinematics of misses versus swishes of basketball free throws",
+      "url": "https://doi.org/10.1080/02640414.2010.487872",
+      "supports": ["elbow-wrist angle-angle coordination variability near release"],
+      "does_not_support": "Reliable late-release diagnosis from ordinary 30 fps video."
+    }
+  ],
+  "angle_definitions": [
+    {
+      "angle_id": "body.hip_flexion_extension",
+      "name": "髋关节屈伸角",
+      "vertex": "hip",
+      "points": ["shoulder", "hip", "knee"],
+      "required_view": ["side"],
+      "required_landmarks": ["shoulder", "hip", "knee"],
+      "interpretation": "躯干与大腿之间的内角，用于观察屈髋加载和伸髋过程。"
+    },
+    {
+      "angle_id": "body.knee_flexion_extension",
+      "name": "膝关节屈伸角",
+      "vertex": "knee",
+      "points": ["hip", "knee", "ankle"],
+      "required_view": ["side"],
+      "required_landmarks": ["hip", "knee", "ankle"],
+      "interpretation": "大腿与小腿之间的内角，用于观察屈膝加载和伸膝过程。"
+    },
+    {
+      "angle_id": "body.ankle_dorsi_plantar_flexion",
+      "name": "踝关节屈伸角",
+      "vertex": "ankle",
+      "points": ["knee", "ankle", "forefoot"],
+      "required_view": ["side"],
+      "required_landmarks": ["knee", "ankle", "heel", "forefoot"],
+      "interpretation": "小腿与足部之间的角度；没有脚跟和前脚掌时不可判断。"
+    },
+    {
+      "angle_id": "body.trunk_lean_from_vertical",
+      "name": "躯干相对垂直角",
+      "vertex": "hip_midpoint",
+      "points": ["shoulder_midpoint", "hip_midpoint", "vertical_reference"],
+      "required_view": ["side"],
+      "required_landmarks": ["left_shoulder", "right_shoulder", "left_hip", "right_hip"],
+      "interpretation": "整体躯干倾斜代理，不等同于直接测量腰椎角。"
+    },
+    {
+      "angle_id": "body.upper_arm_to_trunk",
+      "name": "大臂与躯干夹角",
+      "vertex": "shoulder",
+      "points": ["elbow", "shoulder", "hip"],
+      "required_view": ["side"],
+      "required_landmarks": ["elbow", "shoulder", "hip"],
+      "interpretation": "用于观察大臂抬起和释放空间，不能脱离肘高与出手高度解释。"
+    },
+    {
+      "angle_id": "body.elbow_flexion_extension",
+      "name": "肘关节屈伸角",
+      "vertex": "elbow",
+      "points": ["shoulder", "elbow", "wrist"],
+      "required_view": ["side", "front"],
+      "required_landmarks": ["shoulder", "elbow", "wrist"],
+      "interpretation": "大臂与前臂之间的内角，用于观察折叠、伸肘时机和速度。"
+    },
+    {
+      "angle_id": "body.forearm_from_vertical",
+      "name": "前臂相对垂直角",
+      "vertex": "elbow",
+      "points": ["elbow", "wrist", "vertical_reference"],
+      "required_view": ["front", "side"],
+      "required_landmarks": ["elbow", "wrist"],
+      "interpretation": "前臂方向代理；正面视角优先用于横向偏差。"
+    },
+    {
+      "angle_id": "body.wrist_flexion_extension",
+      "name": "手腕屈伸角",
+      "vertex": "wrist",
+      "points": ["elbow", "wrist", "middle_finger_mcp"],
+      "required_view": ["side", "front"],
+      "required_landmarks": ["elbow", "wrist", "middle_finger_mcp"],
+      "interpretation": "需要手部关键点；只有腕点时不可判断压腕角。"
+    }
+  ],
+  "observation_definitions": [
+    {
+      "observation_id": "lower_body.flexion_rom_low",
+      "name": "下肢准备屈曲范围相对偏小",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "personal_or_peer_curve_baseline",
+      "required_metrics": ["hip_rom_deg", "knee_rom_deg", "ankle_rom_deg"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "lower_body.flexion_rom_high",
+      "name": "下肢准备屈曲范围相对偏大",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension"],
+      "evaluation_mode": "personal_or_peer_curve_baseline",
+      "required_metrics": ["hip_rom_deg", "knee_rom_deg"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "lower_body.extension_output_present",
+      "name": "下肢存在连续伸展输出",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "within_attempt_relation",
+      "required_metrics": ["hip_rom_deg", "knee_rom_deg", "ankle_rom_deg", "lower_body_extension_duration_ms"],
+      "direction": "all_joints_extend_without_reversal",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "knee.extension_dominance",
+      "name": "伸展过程呈膝主导",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "within_attempt_joint_share_then_personal_baseline",
+      "required_metrics": ["knee_rom_share", "knee_extension_duration_share", "knee_peak_velocity_share"],
+      "direction": "knee_share_above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "hip.extension_contribution_low",
+      "name": "髋伸展参与相对不足",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.hip_flexion_extension"],
+      "evaluation_mode": "personal_or_peer_curve_baseline",
+      "required_metrics": ["hip_rom_deg", "hip_peak_angular_velocity_deg_s"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "ankle.terminal_extension_low",
+      "name": "踝关节末端伸展参与相对不足",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "personal_or_peer_curve_baseline",
+      "required_metrics": ["ankle_rom_deg", "ankle_peak_angular_velocity_deg_s", "heel_rise_ratio"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "triple_extension.pause_or_reversal",
+      "name": "三关节伸展出现停顿或反向",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "within_attempt_curve_shape",
+      "required_metrics": ["lower_body_pause_count", "lower_body_reversal_count"],
+      "direction": "pause_or_reversal_present",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "triple_extension.peak_timing_dispersion",
+      "name": "三关节峰值速度时序分散",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "personal_or_peer_timing_baseline",
+      "required_metrics": ["hip_peak_velocity_time_ms", "knee_peak_velocity_time_ms", "ankle_peak_velocity_time_ms"],
+      "direction": "dispersion_above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "timing.ball_lift_precedes_lower_body",
+      "name": "起球早于下肢有效伸展",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "signed_event_order",
+      "required_metrics": ["ball_lift_minus_lower_body_onset_ms"],
+      "direction": "negative",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "timing.ball_lift_lags_lower_body",
+      "name": "起球明显晚于下肢有效伸展",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.hip_flexion_extension", "body.knee_flexion_extension", "body.ankle_dorsi_plantar_flexion"],
+      "evaluation_mode": "personal_or_peer_timing_baseline",
+      "required_metrics": ["ball_lift_minus_lower_body_onset_ms"],
+      "direction": "positive_above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "output.com_vertical_rise_low",
+      "name": "重心垂直上升输出相对不足",
+      "evidence_family": "output",
+      "angle_ids": [],
+      "evaluation_mode": "personal_or_peer_output_baseline",
+      "required_metrics": ["com_vertical_rise_ratio", "com_peak_vertical_velocity"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "output.release_height_low",
+      "name": "释放高度相对偏低",
+      "evidence_family": "output",
+      "angle_ids": ["body.upper_arm_to_trunk", "body.elbow_flexion_extension"],
+      "evaluation_mode": "same_player_same_shot_context",
+      "required_metrics": ["release_height_ratio"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "trunk.forward_lean_increase",
+      "name": "出手阶段躯干前倾增加",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.trunk_lean_from_vertical"],
+      "evaluation_mode": "curve_delta_then_personal_baseline",
+      "required_metrics": ["trunk_lean_change_deg", "trunk_lean_release_deg"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "trunk.forward_drift",
+      "name": "髋部或重心水平前移增加",
+      "evidence_family": "output",
+      "angle_ids": ["body.trunk_lean_from_vertical"],
+      "evaluation_mode": "same_player_same_shot_context",
+      "required_metrics": ["center_of_mass_forward_drift_cm"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "upper_arm.preparation_height_low",
+      "name": "准备阶段大臂抬起和肘高相对偏低",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.upper_arm_to_trunk"],
+      "evaluation_mode": "same_player_same_shot_context",
+      "required_metrics": ["upper_arm_to_trunk_deg", "elbow_height_ratio"],
+      "direction": "below_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "elbow.extension_onset_early",
+      "name": "肘部伸展相对起球或下肢提前",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.elbow_flexion_extension"],
+      "evaluation_mode": "signed_event_order",
+      "required_metrics": ["elbow_extension_minus_ball_lift_ms", "elbow_extension_minus_lower_body_onset_ms"],
+      "direction": "negative_outside_context_band",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "forearm.lateral_deviation",
+      "name": "前臂方向出现横向偏差",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.forearm_from_vertical"],
+      "evaluation_mode": "front_view_personal_or_peer_baseline",
+      "required_metrics": ["forearm_from_vertical_deg"],
+      "direction": "absolute_deviation_above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "upper_body.front_line_deviation",
+      "name": "正面肩肘腕力线偏差",
+      "evidence_family": "geometry",
+      "angle_ids": ["body.forearm_from_vertical", "body.elbow_flexion_extension"],
+      "evaluation_mode": "front_view_line_geometry",
+      "required_metrics": ["shoulder_elbow_wrist_lateral_error_ratio"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "wrist.late_lateral_correction",
+      "name": "出手末段手腕出现横向修正",
+      "evidence_family": "coordination",
+      "angle_ids": ["body.wrist_flexion_extension"],
+      "evaluation_mode": "late_release_curve_shape",
+      "required_metrics": ["wrist_lateral_velocity_peak", "wrist_correction_onset_ms"],
+      "direction": "late_lateral_spike_present",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "output.ball_path_lateral_deviation",
+      "name": "球路出现横向偏移",
+      "evidence_family": "output",
+      "angle_ids": [],
+      "evaluation_mode": "ball_tracking_context",
+      "required_metrics": ["ball_path_lateral_deviation"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "release.elbow_wrist_variability_high",
+      "name": "肘腕释放协同波动偏高",
+      "evidence_family": "repeatability",
+      "angle_ids": ["body.elbow_flexion_extension", "body.wrist_flexion_extension"],
+      "evaluation_mode": "multi_attempt_vector_coding",
+      "required_metrics": ["elbow_wrist_coordination_variability"],
+      "direction": "above_personal_or_peer_reference",
+      "standalone_diagnosis_allowed": false
+    },
+    {
+      "observation_id": "release.late_upper_body_velocity_spike",
+      "name": "释放末段上肢角速度突然升高",
+      "evidence_family": "output",
+      "angle_ids": ["body.elbow_flexion_extension", "body.wrist_flexion_extension"],
+      "evaluation_mode": "late_release_curve_shape",
+      "required_metrics": ["elbow_late_velocity_ratio", "wrist_late_velocity_ratio"],
+      "direction": "above_context_reference",
+      "standalone_diagnosis_allowed": false
+    }
+  ],
+  "problem_mappings": [
+    {
+      "problem_id": "problem.lower_body_load_insufficient",
+      "name": "下肢准备负荷不足候选",
+      "body_chain_segment": "lower_body_loading",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["lower_body.flexion_rom_low"],
+        ["output.com_vertical_rise_low", "output.release_height_low"]
+      ],
+      "supporting_observations": ["timing.ball_lift_precedes_lower_body"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "下肢准备屈曲和垂直输出同时不足时，才检索下肢加载不足问题；浅屈曲本身不判错。",
+      "knowledge_query": {
+        "tags": ["lower_body_power", "hip", "knee", "ankle/foot", "power_chain"],
+        "terms": ["下肢发力不足", "屈髋", "屈膝", "蓄力不足", "远投力量不足"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["近距离投篮可能不需要明显下沉。", "个人一段式动作可能使用较小屈曲但仍保持有效输出。"]
+    },
+    {
+      "problem_id": "problem.excessive_slow_loading",
+      "name": "下肢加载过深且转化偏慢候选",
+      "body_chain_segment": "lower_body_loading",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["lower_body.flexion_rom_high"],
+        ["triple_extension.pause_or_reversal", "triple_extension.peak_timing_dispersion"],
+        ["timing.ball_lift_lags_lower_body", "output.com_vertical_rise_low"]
+      ],
+      "supporting_observations": ["knee.extension_dominance"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "深屈曲必须同时伴随停顿、时序分散或输出不足，才检索空蹲和二次蓄力问题。",
+      "knowledge_query": {
+        "tags": ["lower_body_power", "knee", "hip", "timing", "power_chain"],
+        "terms": ["过度屈膝", "二次蓄力", "空蹲", "起跳慢", "下肢发力节奏"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["三分球可能需要更大的准备屈曲。", "只有深度而没有慢速或停顿时不得判定低效。"]
+    },
+    {
+      "problem_id": "problem.knee_dominant_extension",
+      "name": "膝主导三关节伸展候选",
+      "body_chain_segment": "triple_extension",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["knee.extension_dominance"],
+        ["hip.extension_contribution_low", "ankle.terminal_extension_low"],
+        ["output.com_vertical_rise_low", "timing.ball_lift_precedes_lower_body", "triple_extension.pause_or_reversal"]
+      ],
+      "supporting_observations": ["lower_body.flexion_rom_high"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "膝的相对贡献偏高、髋或踝参与偏低，并伴随输出或时序异常时，检索膝主导和力量卡在膝部的问题。",
+      "knowledge_query": {
+        "tags": ["knee", "hip", "ankle/foot", "lower_body_power", "power_chain"],
+        "terms": ["膝盖发力", "膝主导", "过度屈膝", "髋关节", "脚踝"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["2D角度不能直接等同于关节力矩或肌肉贡献。", "疲劳、疼痛和投篮距离会改变关节贡献。"]
+    },
+    {
+      "problem_id": "problem.hip_extension_contribution_low",
+      "name": "髋伸展参与不足候选",
+      "body_chain_segment": "triple_extension",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["hip.extension_contribution_low"],
+        ["output.com_vertical_rise_low", "output.release_height_low", "knee.extension_dominance"]
+      ],
+      "supporting_observations": ["timing.ball_lift_precedes_lower_body"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "髋ROM和速度相对不足必须伴随重心、释放或膝主导证据，才检索伸髋不足问题。",
+      "knowledge_query": {
+        "tags": ["hip", "lower_body_power", "power_chain", "timing"],
+        "terms": ["伸髋不足", "屈髋主导", "臀部发力", "髋关节", "伸髋起球"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["视频只能推断髋部运动模式，不能直接检测臀肌发力。", "较小髋ROM可能是近距离投篮策略。"]
+    },
+    {
+      "problem_id": "problem.ankle_terminal_output_low",
+      "name": "踝部末端输出不足候选",
+      "body_chain_segment": "triple_extension",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["ankle.terminal_extension_low"],
+        ["output.com_vertical_rise_low", "timing.ball_lift_lags_lower_body", "triple_extension.peak_timing_dispersion"]
+      ],
+      "supporting_observations": ["lower_body.extension_output_present"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "踝ROM、速度或脚跟抬升不足并伴随输出/时序异常时，检索前脚掌和足踝末端输出问题。",
+      "knowledge_query": {
+        "tags": ["ankle/foot", "lower_body_power", "power_chain", "timing"],
+        "terms": ["前脚掌", "脚跟离地", "脚踝", "足弓", "蹬地不积极"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["缺脚尖或脚跟关键点时不可判断。", "鞋和画面裁切会影响足踝测量。"]
+    },
+    {
+      "problem_id": "problem.triple_extension_discontinuity",
+      "name": "三关节伸展连续性不足候选",
+      "body_chain_segment": "triple_extension",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["triple_extension.pause_or_reversal"],
+        ["triple_extension.peak_timing_dispersion", "timing.ball_lift_precedes_lower_body", "timing.ball_lift_lags_lower_body"]
+      ],
+      "supporting_observations": ["output.com_vertical_rise_low", "release.late_upper_body_velocity_spike"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "曲线停顿/反向与时序分散同时出现时，检索发力链卡顿和上下肢脱节问题。",
+      "knowledge_query": {
+        "tags": ["power_chain", "lower_body_power", "timing", "hip", "knee", "ankle/foot"],
+        "terms": ["发力链", "动作卡顿", "上下肢脱节", "髋膝踝", "发力不流畅"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["单次关键点抖动可能制造假停顿。", "高翻的固定三重伸展顺序不能直接套用到投篮。"]
+    },
+    {
+      "problem_id": "problem.upper_body_rush_early_lift",
+      "name": "上肢抢跑、起球过早候选",
+      "body_chain_segment": "lower_to_upper_timing",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["timing.ball_lift_precedes_lower_body"],
+        ["elbow.extension_onset_early", "output.release_height_low", "triple_extension.peak_timing_dispersion"]
+      ],
+      "supporting_observations": ["release.late_upper_body_velocity_spike"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "球先于下肢有效伸展，且肘部提前或释放结果受影响时，检索手快脚慢和起球过早问题。",
+      "knowledge_query": {
+        "tags": ["timing", "power_chain", "ball_pickup", "lower_body_power"],
+        "terms": ["手快脚慢", "起球过早", "球先架起来", "上下肢脱节", "蹬地同时起球"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["急停、接球和后撤步需要独立时序基线。", "必须使用真实篮球起球事件，不能只用手腕上升代理强判。"]
+    },
+    {
+      "problem_id": "problem.lower_body_ball_transfer_disconnect",
+      "name": "下肢输出与起球连接脱节候选",
+      "body_chain_segment": "lower_to_upper_timing",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["lower_body.extension_output_present"],
+        ["timing.ball_lift_lags_lower_body"],
+        ["release.late_upper_body_velocity_spike", "output.release_height_low"]
+      ],
+      "supporting_observations": ["triple_extension.peak_timing_dispersion"],
+      "minimum_evidence_families": 3,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "下肢已有连续伸展，但球明显滞后并出现上肢末段补偿时，检索下肢力量未顺畅传到球的问题。",
+      "knowledge_query": {
+        "tags": ["power_chain", "timing", "lower_body_power", "ball_pickup", "elbow", "wrist"],
+        "terms": ["发力脱节", "下肢力量未被利用", "先跳后投", "蹬地起球不同步", "上肢代偿"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["不能从2D角度直接声称测得能量传递。", "跳到最高点附近出手的动作需要按个人和动作类型复核。"]
+    },
+    {
+      "problem_id": "problem.forward_trunk_drift_low_release",
+      "name": "身体前扑并压缩释放空间候选",
+      "body_chain_segment": "trunk_transfer",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["trunk.forward_lean_increase"],
+        ["trunk.forward_drift", "output.release_height_low"]
+      ],
+      "supporting_observations": ["output.com_vertical_rise_low"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "躯干前倾增加必须与前移或低释放同时出现，才检索身体前扑和重心前冲问题。",
+      "knowledge_query": {
+        "tags": ["hip", "shoulder", "power_chain", "shot_diagnosis"],
+        "terms": ["躯干前倾", "身体前扑", "重心前倾", "重心前冲", "出手点过低"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["急停、后撤步和对抗投篮可能自然出现前倾。", "摄像机倾斜会污染相对垂直角。"]
+    },
+    {
+      "problem_id": "problem.upper_arm_low_release_space",
+      "name": "大臂抬起不足、释放空间偏低候选",
+      "body_chain_segment": "upper_body_preparation",
+      "required_views": ["side"],
+      "required_observation_groups": [
+        ["upper_arm.preparation_height_low"],
+        ["output.release_height_low"]
+      ],
+      "supporting_observations": ["trunk.forward_lean_increase", "elbow.extension_onset_early"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "大臂角和肘高偏低并伴随低释放时，检索低肘、低出手点和释放空间不足。",
+      "knowledge_query": {
+        "tags": ["shoulder", "elbow", "ball path", "shot_diagnosis"],
+        "terms": ["低肘", "肘部低于肩部", "出手点过低", "大臂", "释放高度"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["身高、臂展和投篮距离会影响绝对肘高。", "肘角不能替代大臂与躯干夹角。"]
+    },
+    {
+      "problem_id": "problem.elbow_forearm_line_deviation",
+      "name": "肘前臂释放力线偏移候选",
+      "body_chain_segment": "upper_body_release_line",
+      "required_views": ["front"],
+      "required_observation_groups": [
+        ["forearm.lateral_deviation", "upper_body.front_line_deviation"],
+        ["output.ball_path_lateral_deviation"]
+      ],
+      "supporting_observations": ["wrist.late_lateral_correction"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "正面前臂/肩肘腕力线偏差与球路侧偏同时出现时，检索手肘外翻和上肢力线问题。",
+      "knowledge_query": {
+        "tags": ["elbow", "wrist", "shoulder", "ball path", "shot_diagnosis"],
+        "terms": ["手肘外翻", "肩肘腕", "上肢力线", "小臂", "球路偏左", "球路偏右"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["只有侧面视角时不能强判左右力线。", "身体旋转可能在2D正面形成假外翻。"]
+    },
+    {
+      "problem_id": "problem.late_wrist_lateral_compensation",
+      "name": "出手末段手腕横向补偿候选",
+      "body_chain_segment": "upper_body_release",
+      "required_views": ["front"],
+      "required_observation_groups": [
+        ["wrist.late_lateral_correction"],
+        ["output.ball_path_lateral_deviation", "release.elbow_wrist_variability_high"]
+      ],
+      "supporting_observations": ["upper_body.front_line_deviation"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "手腕末段横向速度峰值与球路偏移或肘腕波动同时出现时，检索横拨、压腕和晚期修正问题。",
+      "knowledge_query": {
+        "tags": ["wrist", "elbow", "ball path", "timing", "shot_diagnosis"],
+        "terms": ["手腕横拨", "压腕", "手腕扭曲", "球路偏歪", "肘腕协同"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["缺手部关键点时不可判断手腕角。", "普通30fps视频不能可靠分析释放末段速度峰值。"]
+    },
+    {
+      "problem_id": "problem.release_coordination_instability",
+      "name": "肘腕释放协同稳定性不足候选",
+      "body_chain_segment": "upper_body_release",
+      "required_views": ["side", "front"],
+      "required_observation_groups": [
+        ["release.elbow_wrist_variability_high"],
+        ["wrist.late_lateral_correction", "release.late_upper_body_velocity_spike", "output.ball_path_lateral_deviation"]
+      ],
+      "supporting_observations": ["upper_body.front_line_deviation"],
+      "minimum_evidence_families": 2,
+      "supported_repeatability_ratio": 0.6,
+      "inference": "多次投篮的肘腕协同波动与末段补偿或球路波动同时出现时，检索释放一致性问题。",
+      "knowledge_query": {
+        "tags": ["elbow", "wrist", "timing", "ball path", "shot_diagnosis"],
+        "terms": ["肘腕协同", "出手不稳定", "手腕摇摆", "释放稳定", "球路不稳定"],
+        "app_modules": ["shot_diagnosis", "training_repair"],
+        "minimum_term_matches": 1,
+        "top_k": 5
+      },
+      "false_positive_checks": ["需要多次投篮，单次不能判断协调波动。", "低帧率和手腕关键点抖动会放大变异。"]
+    }
+  ]
+}

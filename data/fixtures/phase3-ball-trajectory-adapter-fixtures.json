@@ -1,0 +1,311 @@
+{
+  "schema_version": "phase3_ball_trajectory_adapter_fixtures.v1",
+  "source_contract": "synthetic_adapter_output_replay_no_real_video",
+  "default_video": {
+    "shot_type": "synthetic_ball_trajectory_contract",
+    "camera_view": "side_back_candidate",
+    "fps": 60,
+    "video_duration_ms": 1600
+  },
+  "scenarios": [
+    {
+      "name": "adapter_not_configured",
+      "object_detection": {
+        "status": "adapter_not_configured"
+      },
+      "expect": {
+        "status": "not_available",
+        "reasons": ["adapter_not_configured", "ball_not_detected", "rim_not_detected"]
+      }
+    },
+    {
+      "name": "adapter_error",
+      "object_detection": {
+        "status": "adapter_error",
+        "error": "synthetic yolo failure"
+      },
+      "expect": {
+        "status": "not_available",
+        "reasons": ["adapter_error", "ball_not_detected", "rim_not_detected"]
+      }
+    },
+    {
+      "name": "ball_missing",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.72 }
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.2 }
+      },
+      "expect": {
+        "status": "insufficient_evidence",
+        "reasons": ["ball_not_detected"]
+      }
+    },
+    {
+      "name": "rim_missing",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.8 },
+            { "frame": 11, "time_ms": 183, "x": 215, "y": 330, "confidence": 0.8 },
+            { "frame": 12, "time_ms": 200, "x": 235, "y": 300, "confidence": 0.8 }
+          ],
+          "rim_reference": null
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.35 }
+      },
+      "expect": {
+        "status": "insufficient_evidence",
+        "reasons": ["rim_not_detected"]
+      }
+    },
+    {
+      "name": "sparse_candidate",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.8 },
+            { "frame": 12, "time_ms": 200, "x": 235, "y": 300, "confidence": 0.8 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.72 }
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.35 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["not_enough_consecutive_frames"]
+      }
+    },
+    {
+      "name": "camera_view_not_suitable",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.74 },
+            { "frame": 11, "time_ms": 183, "x": 216, "y": 345, "confidence": 0.72 },
+            { "frame": 12, "time_ms": 200, "x": 230, "y": 332, "confidence": 0.7 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.7 },
+          "failure_reasons": [
+            {
+              "reason": "camera_view_not_suitable",
+              "message": "Front-like view cannot support reliable depth trajectory."
+            }
+          ]
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.38 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["camera_view_not_suitable"]
+      }
+    },
+    {
+      "name": "low_resolution_or_motion_blur",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.31 },
+            { "frame": 12, "time_ms": 200, "x": 238, "y": 310, "confidence": 0.29 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.62 },
+          "failure_reasons": ["low_resolution_or_motion_blur"]
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.26 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["low_resolution_or_motion_blur", "not_enough_consecutive_frames"]
+      }
+    },
+    {
+      "name": "ball_occluded_by_body",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 210, "y": 356, "confidence": 0.48 },
+            { "frame": 11, "time_ms": 183, "x": 220, "y": 332, "confidence": 0.44 },
+            { "frame": 12, "time_ms": 200, "x": 231, "y": 310, "confidence": 0.4 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.7 },
+          "failure_reasons": ["ball_occluded_by_body"]
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.34 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["ball_occluded_by_body"]
+      }
+    },
+    {
+      "name": "rim_out_of_frame",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 210, "y": 356, "confidence": 0.72 },
+            { "frame": 11, "time_ms": 183, "x": 238, "y": 318, "confidence": 0.7 },
+            { "frame": 12, "time_ms": 200, "x": 270, "y": 286, "confidence": 0.68 }
+          ],
+          "rim_reference": null,
+          "failure_reasons": ["rim_out_of_frame"]
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.32 }
+      },
+      "expect": {
+        "status": "insufficient_evidence",
+        "reasons": ["rim_not_detected", "rim_out_of_frame"]
+      }
+    },
+    {
+      "name": "multiple_ball_candidates",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 205, "y": 355, "confidence": 0.58 },
+            { "frame": 11, "time_ms": 183, "x": 226, "y": 324, "confidence": 0.55 },
+            { "frame": 12, "time_ms": 200, "x": 251, "y": 296, "confidence": 0.52 },
+            { "frame": 13, "time_ms": 217, "x": 286, "y": 270, "confidence": 0.5 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.69 },
+          "failure_reasons": ["multiple_ball_candidates"]
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.45 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["multiple_ball_candidates"]
+      }
+    },
+    {
+      "name": "invalid_ball_points_filtered",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 205, "y": 355, "confidence": 0.58 },
+            { "frame": "bad", "time_ms": 183, "x": 226, "y": 324, "confidence": 0.55 },
+            { "frame": 12, "time_ms": 200, "x": "bad", "y": 296, "confidence": 0.52 },
+            { "frame": 13, "time_ms": 217, "x": 286, "y": 270, "confidence": 0.5 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.69 }
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.45 }
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": ["invalid_ball_points", "not_enough_consecutive_frames"],
+        "valid_ball_points": 2,
+        "invalid_ball_points": 2
+      }
+    },
+    {
+      "name": "invalid_rim_reference_filtered",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 205, "y": 355, "confidence": 0.58 },
+            { "frame": 11, "time_ms": 183, "x": 226, "y": 324, "confidence": 0.55 },
+            { "frame": 12, "time_ms": 200, "x": 251, "y": 296, "confidence": 0.52 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, "bad", 980, 315], "confidence": 0.69 }
+        },
+        "shot_summary": { "status": "insufficient_evidence", "confidence": 0.45 }
+      },
+      "expect": {
+        "status": "insufficient_evidence",
+        "reasons": ["invalid_rim_reference", "rim_not_detected"],
+        "valid_ball_points": 3,
+        "invalid_ball_points": 0,
+        "rim_detected": false
+      }
+    },
+    {
+      "name": "tracked_candidate_make",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.88 },
+            { "frame": 11, "time_ms": 183, "x": 215, "y": 330, "confidence": 0.86 },
+            { "frame": 12, "time_ms": 200, "x": 235, "y": 300, "confidence": 0.84 },
+            { "frame": 13, "time_ms": 217, "x": 260, "y": 275, "confidence": 0.82 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.72 }
+        },
+        "shot_summary": {
+          "status": "provided_by_yolo_heuristics",
+          "attempts": 1,
+          "made": 1,
+          "missed": 0,
+          "confidence": 0.68
+        },
+        "shot_events": [
+          {
+            "event_id": "shot_candidate_1",
+            "release_frame": 10,
+            "rim_cross_frame": 20,
+            "release_angle_deg": 46,
+            "ball_path_offset_cm": 8,
+            "judgement": "made",
+            "confidence": 0.68,
+            "basis": "synthetic contract fixture"
+          }
+        ]
+      },
+      "expect": {
+        "status": "tracked",
+        "reasons": [],
+        "event_status": "candidate",
+        "judgement": "candidate_made"
+      }
+    },
+    {
+      "name": "low_confidence_event_candidate",
+      "object_detection": {
+        "status": "provided_by_adapter",
+        "trajectory": {
+          "ball_points": [
+            { "frame": 10, "time_ms": 167, "x": 200, "y": 360, "confidence": 0.55 },
+            { "frame": 11, "time_ms": 183, "x": 215, "y": 330, "confidence": 0.53 },
+            { "frame": 12, "time_ms": 200, "x": 235, "y": 300, "confidence": 0.52 }
+          ],
+          "rim_reference": { "frame": 20, "box": [900, 250, 980, 315], "confidence": 0.6 }
+        },
+        "shot_summary": {
+          "status": "provided_by_yolo_heuristics",
+          "attempts": 1,
+          "made": 0,
+          "missed": 1,
+          "confidence": 0.42
+        },
+        "shot_events": [
+          {
+            "event_id": "shot_candidate_2",
+            "release_frame": 10,
+            "rim_cross_frame": 20,
+            "judgement": "missed",
+            "confidence": 0.42,
+            "basis": "synthetic low-confidence fixture"
+          }
+        ]
+      },
+      "expect": {
+        "status": "candidate",
+        "reasons": [],
+        "event_status": "low_confidence_candidate",
+        "judgement": "candidate_missed"
+      }
+    }
+  ]
+}

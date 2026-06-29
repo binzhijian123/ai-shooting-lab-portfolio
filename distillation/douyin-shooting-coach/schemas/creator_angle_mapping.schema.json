@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CreatorAngleMapping",
+  "type": "object",
+  "required": ["schema_version", "version", "source_contract", "policy", "mappings"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "creator_angle_mapping.v1" },
+    "version": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_contract": { "type": "string" },
+    "source_documents": { "type": "array", "items": { "type": "string" } },
+    "policy": {
+      "type": "object",
+      "required": ["purpose", "no_final_total_score", "no_practice_game_score_in_v1", "missing_evidence_policy", "root_cause_policy", "manual_first_policy"],
+      "properties": {
+        "purpose": { "type": "string" },
+        "no_final_total_score": { "type": "boolean", "const": true },
+        "no_practice_game_score_in_v1": { "type": "boolean", "const": true },
+        "missing_evidence_policy": { "type": "string" },
+        "root_cause_policy": { "type": "string" },
+        "manual_first_policy": { "type": "string" }
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "creator_angle_id",
+          "creator_language",
+          "aliases",
+          "mapping_type",
+          "mapping_status",
+          "primary_dimension_id",
+          "maps_to_dimension_ids",
+          "maps_to_problem",
+          "why_this_mapping_is_valid",
+          "inference_path",
+          "required_signal_ids",
+          "supporting_signal_ids",
+          "supporting_metric_ids",
+          "required_views",
+          "knowledge_concept_ids",
+          "repair_target_ids",
+          "tutorial_ids",
+          "confidence_policy",
+          "false_positive_checks"
+        ],
+        "properties": {
+          "creator_angle_id": { "type": "string", "pattern": "^angle\\.[a-z][a-z0-9_]*$" },
+          "creator_language": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string" } },
+          "mapping_type": {
+            "type": "string",
+            "enum": ["direct", "direct_with_context", "direct_with_power_chain_effect", "direct_with_view_limit", "composite", "manual_first", "result_indicator", "excluded_v1"]
+          },
+          "mapping_status": { "type": "string", "enum": ["active", "review_only", "deferred"] },
+          "primary_dimension_id": { "type": ["string", "null"] },
+          "maps_to_dimension_ids": { "type": "array", "items": { "type": "string" } },
+          "maps_to_problem": { "type": "string" },
+          "why_this_mapping_is_valid": { "type": "string" },
+          "inference_path": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "required_signal_ids": { "type": "array", "items": { "type": "string" } },
+          "supporting_signal_ids": { "type": "array", "items": { "type": "string" } },
+          "planned_signal_ids": { "type": "array", "items": { "type": "string" } },
+          "supporting_metric_ids": { "type": "array", "items": { "type": "string" } },
+          "required_views": { "type": "array", "items": { "type": "string" } },
+          "knowledge_concept_ids": { "type": "array", "items": { "type": "string" } },
+          "repair_target_ids": { "type": "array", "items": { "type": "string" } },
+          "tutorial_ids": { "type": "array", "items": { "type": "string" } },
+          "confidence_policy": { "type": "string" },
+          "false_positive_checks": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

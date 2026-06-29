@@ -1,0 +1,10 @@
+# Transcript: douyin_7372937628032748835
+
+- URL: https://www.douyin.com/video/7372937628032748835
+- Title: 5043 丁超/优质投篮模型 丁超的投射在本场比赛中独一档，最终也获得2024年CUBAL全明星赛MVP！ #cubal #丁超 #waveball
+- Published at: 2024-05-25 22:03:33+0800
+- Generated at: 2026-06-12T17:38:30.722006+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 请不吝点赞 订阅 转发 打赏支持明镜与点点栏目

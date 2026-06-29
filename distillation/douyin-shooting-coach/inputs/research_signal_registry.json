@@ -1,0 +1,410 @@
+{
+  "version": "0.1.0",
+  "source": "Curated from basketball shooting biomechanics literature; thresholds are soft decision aids, not universal injury or technique diagnoses.",
+  "policy": {
+    "diagnostic_use": "Use research-backed signals as evidence candidates. Do not convert one metric into a strong diagnosis without linked signals, camera-view sufficiency, and confidence checks.",
+    "threshold_types": {
+      "comparative": "Derived from reported group differences or descriptive statistics in a study population.",
+      "model_based": "Derived from projectile or biomechanical modeling rather than direct coaching diagnosis.",
+      "heuristic": "Practical system threshold derived from literature direction plus coach/system needs; requires local calibration.",
+      "user_baseline": "Compare against the same user's historical sessions rather than a population norm."
+    }
+  },
+  "signals": [
+    {
+      "signal_id": "posture.forward_trunk_lean_at_release",
+      "name": "出手瞬间躯干前倾",
+      "category": "posture",
+      "required_view": ["side"],
+      "required_metrics": ["trunk_lean_release_deg", "release_height_ratio", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "watch",
+          "condition": "trunk_lean_release_deg > 2",
+          "threshold_type": "comparative"
+        },
+        {
+          "label": "strong_candidate",
+          "condition": "trunk_lean_release_deg > 5",
+          "threshold_type": "heuristic"
+        }
+      ],
+      "must_combine_with": ["release_height_low", "forward_drift", "ball_short_or_flat", "pose_confidence"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Candidate signal for low release height, forward drift, or unstable force transfer. Ask for side-view evidence if missing.",
+      "false_positive_checks": [
+        "急停、后撤步、对抗投篮可能自然产生更大躯干前倾。",
+        "个体投篮风格稳定且球路稳定时，不应仅凭前倾角下强诊断。",
+        "单摄像头 2D 姿态估计可能把身体旋转误投影成前倾。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Cabarkapa_2023_free_throw_markerless",
+          "title": "Biomechanical characteristics of proficient free-throw shooters-markerless motion capture analysis",
+          "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2023.1208915/full",
+          "doi": "10.3389/fspor.2023.1208915",
+          "population_context": "34 recreationally active males with basketball experience; free throws; 3D markerless motion capture.",
+          "finding": "Proficient shooters had less forward trunk lean at ball release than non-proficient shooters; reported trunk lean was 1.87 +/- 3.28 deg for non-proficient and -1.11 +/- 3.49 deg for proficient, p = 0.016.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high_for_signal_medium_for_threshold"
+        },
+        {
+          "citation_key": "Knudson_1993_jump_shot_teaching",
+          "title": "Biomechanics of the Basketball Jump Shot-Six Key Teaching Points",
+          "url": "https://www.researchgate.net/publication/240177823_Biomechanics_of_the_Basketball_Jump_Shot-Six_Key_Teaching_Points",
+          "doi": "10.1080/07303084.1993.10606710",
+          "population_context": "Biomechanics-informed teaching points for mid- to long-range jump shots.",
+          "finding": "Skilled shooting is commonly framed around minimizing horizontal body movement and maintaining near-vertical trunk alignment.",
+          "evidence_level": "peer_reviewed_teaching_review",
+          "confidence_level": "medium"
+        }
+      ],
+      "linked_knowledge_tags": ["shoulder", "hip", "power_chain", "shot_diagnosis", "training_repair"]
+    },
+    {
+      "signal_id": "release.low_release_height",
+      "name": "出手高度偏低",
+      "category": "release",
+      "required_view": ["side", "front"],
+      "required_metrics": ["release_height_ratio", "user_height", "hand_release_y", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "compare_population",
+          "condition": "release_height_ratio < 1.12",
+          "threshold_type": "comparative"
+        },
+        {
+          "label": "user_decline",
+          "condition": "release_height_ratio decreases from user's rolling baseline",
+          "threshold_type": "user_baseline"
+        }
+      ],
+      "must_combine_with": ["trunk_lean_release_deg", "ball_short_or_blocked", "shot_distance"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Candidate signal for low release, insufficient extension, or excessive forward lean. Use with shot type and distance.",
+      "false_positive_checks": [
+        "不同身高、臂展、投篮距离、是否有防守都会改变合理出手高度。",
+        "熟练罚球者内部命中/未命中差异很小，不能把高出手点绝对化。",
+        "过度追求出手高度可能反而破坏节奏。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Cabarkapa_2023_free_throw_markerless",
+          "title": "Biomechanical characteristics of proficient free-throw shooters-markerless motion capture analysis",
+          "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2023.1208915/full",
+          "doi": "10.3389/fspor.2023.1208915",
+          "population_context": "Free throws; recreationally active males; release height adjusted by body height.",
+          "finding": "Proficient shooters had greater release height ratio than non-proficient shooters at release (1.17 vs 1.12, p = 0.010), but within proficient shooters made shots had slightly lower release and COM heights than missed shots.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high_for_signal_medium_for_threshold"
+        }
+      ],
+      "linked_knowledge_tags": ["ball path", "shoulder", "elbow", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "lower_body.preparatory_flexion_pattern",
+      "name": "准备阶段下肢屈曲模式",
+      "category": "lower_body",
+      "required_view": ["side"],
+      "required_metrics": ["knee_angle_pp_deg", "hip_angle_pp_deg", "ankle_angle_pp_deg", "shot_distance", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "three_point_reference",
+          "condition": "knee_angle_pp_deg near 94 and hip_angle_pp_deg near 143 for proficient 3-point reference",
+          "threshold_type": "comparative"
+        },
+        {
+          "label": "do_not_flag_knee_deep_alone",
+          "condition": "knee_angle_pp_deg <= 95 is not automatically negative",
+          "threshold_type": "comparative"
+        }
+      ],
+      "must_combine_with": ["ball_lift_timing", "ankle_or_knee_velocity", "release_height_ratio", "shot_distance"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Use to contextualize lower-body loading. Deep knee flexion can be adaptive for 3-point force production; diagnose only when timing or output is poor.",
+      "false_positive_checks": [
+        "三分球需要更大力量输出，较深的下肢屈曲不应自动判错。",
+        "罚球、中距离、三分不能共用同一个膝角阈值。",
+        "膝角需要结合脚踝速度、起球时序和出手结果。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Cabarkapa_2026_three_point_markerless",
+          "title": "Biomechanical determinants of proficient 3-point shooters: markerless motion capture analysis",
+          "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1732293/full",
+          "doi": "10.3389/fspor.2026.1732293",
+          "population_context": "Male 3-point shooters; markerless motion capture; proficient defined by shooting percentage.",
+          "finding": "Proficient 3-point shooters displayed greater hip, knee, and ankle flexion during the preparatory phase than non-proficient shooters.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high_for_direction_medium_for_threshold"
+        }
+      ],
+      "linked_knowledge_tags": ["knee", "hip", "ankle/foot", "lower_body_power", "power_chain"]
+    },
+    {
+      "signal_id": "upper_body.elbow_height_and_flexion_preparatory",
+      "name": "准备阶段肘部高度与屈曲",
+      "category": "upper_body",
+      "required_view": ["side", "front"],
+      "required_metrics": ["elbow_angle_pp_deg", "elbow_height_ratio", "ball_height_pp", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "compare_user_and_shot_type",
+          "condition": "Use population references only within same shot type; compare trend against user's own baseline",
+          "threshold_type": "user_baseline"
+        }
+      ],
+      "must_combine_with": ["release_angle", "release_height_ratio", "forearm_angle_from_vertical", "ball_path"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Candidate signal for shot-pocket quality, elbow setup, and release mechanics.",
+      "false_positive_checks": [
+        "不同投篮距离对肘部高度和屈曲要求不同。",
+        "肘部位置不能脱离肩、腕、球路和出手角独立诊断。",
+        "正面视角更适合看侧向偏移，侧面视角更适合看高度和屈伸。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Cabarkapa_2021_two_three_point",
+          "title": "Kinetic and Kinematic Characteristics of Proficient and Non-Proficient 2-Point and 3-Point Basketball Shooters",
+          "url": "https://www.researchgate.net/publication/357276342_Kinetic_and_Kinematic_Characteristics_of_Proficient_and_Non-Proficient_2-Point_and_3-Point_Basketball_Shooters",
+          "doi": "10.3390/sports10010002",
+          "population_context": "29 recreationally active college-aged males; 2-point and 3-point shots; 1740 shots; force plate and two HD cameras.",
+          "finding": "For 2-point shots, elbow angle, elbow height, and release angle discriminated proficient from non-proficient shooters; for 3-point shots, hip angle, heel height, and elbow angle were key variables.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high_for_signal_medium_for_threshold"
+        },
+        {
+          "citation_key": "Cabarkapa_2021_free_throw_components",
+          "title": "Key Kinematic Components for Optimal Basketball Free Throw Shooting Performance",
+          "url": "https://www.researchgate.net/publication/357307984_Key_Kinematic_Components_for_Optimal_Basketball_Free_Throw_Shooting_Performance",
+          "doi": "10.18276/cej.2021.4-01",
+          "population_context": "17 male basketball players; free throws; 3D motion tracking sensors.",
+          "finding": "Internal knee and elbow angles, elbow height, forearm angle from vertical, and shoulder flexion angle were examined as key variables; forearm angle distinguished made from missed shots within proficient shooters.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "medium_high"
+        }
+      ],
+      "linked_knowledge_tags": ["elbow", "shoulder", "wrist", "ball_pickup", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "upper_body.forearm_angle_from_vertical",
+      "name": "前臂相对垂直角度",
+      "category": "upper_body",
+      "required_view": ["front", "side"],
+      "required_metrics": ["forearm_angle_pp_deg", "forearm_angle_release_deg", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "near_vertical_reference",
+          "condition": "forearm_angle closer to vertical is generally favorable in free-throw research context",
+          "threshold_type": "comparative"
+        }
+      ],
+      "must_combine_with": ["elbow_height_ratio", "elbow_wrist_alignment", "ball_path_lateral_deviation"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Candidate signal for forearm alignment and elbow-wrist direction control.",
+      "false_positive_checks": [
+        "2D 单视角可能无法区分前臂真实倾斜与身体旋转。",
+        "手型、肩部旋转和出手点会影响前臂角解释。",
+        "不同球员可能使用稳定但非完全垂直的个性化出手路径。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Cabarkapa_2021_free_throw_components",
+          "title": "Key Kinematic Components for Optimal Basketball Free Throw Shooting Performance",
+          "url": "https://www.researchgate.net/publication/357307984_Key_Kinematic_Components_for_Optimal_Basketball_Free_Throw_Shooting_Performance",
+          "doi": "10.18276/cej.2021.4-01",
+          "population_context": "Free throw shooting; male basketball players; 3D motion tracking.",
+          "finding": "Forearm angle from vertical was highlighted as the key variable distinguishing made and missed shots within proficient free-throw shooters.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "medium_high"
+        }
+      ],
+      "linked_knowledge_tags": ["elbow", "wrist", "ball path", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "release.release_angle_context",
+      "name": "出手角度场景化参考",
+      "category": "release",
+      "required_view": ["side"],
+      "required_metrics": ["ball_release_angle_deg", "shot_type", "shot_distance", "release_speed", "ball_spin"],
+      "soft_thresholds": [
+        {
+          "label": "free_throw_model_reference",
+          "condition": "free_throw_release_angle near 52 deg in model context",
+          "threshold_type": "model_based"
+        },
+        {
+          "label": "jump_shot_distance_effect",
+          "condition": "longer jump-shot distance often lowers release angle and height while increasing release velocity",
+          "threshold_type": "comparative"
+        }
+      ],
+      "must_combine_with": ["shot_type", "shot_distance", "release_height_ratio", "release_speed", "ball_spin"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Use release angle as a shot-context feature, not a universal correctness threshold.",
+      "false_positive_checks": [
+        "罚球理论模型不能直接套用到三分、急停、后仰和对抗跳投。",
+        "出手角必须和速度、出手高度、旋转、距离一起解释。",
+        "不同投篮风格可通过不同角度-速度组合命中。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Tran_Silverberg_2008_free_throw",
+          "title": "Optimal release conditions for the free throw in men's basketball",
+          "url": "https://www.semanticscholar.org/paper/Optimal-release-conditions-for-the-free-throw-in-Tran-Silverberg/6fceaca67aad7f745c301c0ae45d5b11c531350b",
+          "doi": "10.1080/02640410802004948",
+          "population_context": "Men's free throw projectile model; release angle, speed, spin, aiming point.",
+          "finding": "The model suggests an approximately 52 deg launch angle with up to 3 Hz backspin for men's free throws.",
+          "evidence_level": "peer_reviewed_model_based",
+          "confidence_level": "high_for_free_throw_model_low_for_other_shots"
+        },
+        {
+          "citation_key": "Okazaki_Rodacki_2012_distance",
+          "title": "Increased Distance of Shooting on Basketball Jump Shot",
+          "url": "https://www.jssm.org/jssm-11-231.xml%3EFulltext",
+          "doi": "",
+          "population_context": "Ten male expert basketball players; jump shots from 2.8, 4.6, and 6.4 m.",
+          "finding": "With increased distance, release height and release angle decreased while release velocity increased.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high"
+        }
+      ],
+      "linked_knowledge_tags": ["ball path", "timing", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "coordination.elbow_wrist_release_variability",
+      "name": "出手前肘腕协同波动",
+      "category": "coordination",
+      "required_view": ["side", "front"],
+      "required_metrics": ["elbow_angle_series", "wrist_angle_series", "release_frame", "frame_rate"],
+      "soft_thresholds": [
+        {
+          "label": "late_release_window",
+          "condition": "inspect elbow-wrist coordination variability in final 0.016s before release when frame rate supports it",
+          "threshold_type": "comparative"
+        }
+      ],
+      "must_combine_with": ["frame_rate", "pose_confidence", "ball_release_speed", "wrist_follow_through"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Advanced signal for unstable late correction or inconsistent release coordination.",
+      "false_positive_checks": [
+        "普通 30fps 手机视频无法稳定观察 0.016s 窗口。",
+        "单次投篮不适合判断个体协调波动，需要多次出手比较。",
+        "手腕点位估计误差会显著影响该指标。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Mullineaux_Uhl_2010_coordination",
+          "title": "Coordination-variability and kinematics of misses versus swishes of basketball free throws",
+          "url": "https://scholars.uky.edu/es/publications/coordination-variability-and-kinematics-of-misses-versus-swishes-/",
+          "doi": "10.1080/02640414.2010.487872",
+          "population_context": "Collegiate basketball players; free throws; missed vs swished attempts.",
+          "finding": "Misses showed increased elbow-wrist angle-angle coordination variability during the last 0.016 s before ball release.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high_for_advanced_high_fps_analysis"
+        }
+      ],
+      "linked_knowledge_tags": ["elbow", "wrist", "timing", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "coordination.ball_lift_lower_body_timing",
+      "name": "起球-下肢启动时序差",
+      "category": "coordination",
+      "required_view": ["side"],
+      "required_metrics": ["ball_lift_knee_delta_ms", "knee_angle_series", "ball_height_series", "pose_confidence"],
+      "soft_thresholds": [
+        {
+          "label": "watch",
+          "condition": "ball_lift_knee_delta_ms > 80",
+          "threshold_type": "heuristic"
+        },
+        {
+          "label": "strong_candidate",
+          "condition": "ball_lift_knee_delta_ms > 120",
+          "threshold_type": "heuristic"
+        },
+        {
+          "label": "user_baseline_regression",
+          "condition": "ball_lift_knee_delta_ms worsens versus user's rolling baseline",
+          "threshold_type": "user_baseline"
+        }
+      ],
+      "must_combine_with": ["lower_body.preparatory_flexion_pattern", "release.low_release_height", "shot_distance", "pose_confidence"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Candidate signal for hand-fast-leg-slow timing. Use only when side-view frame timing is reliable and lower-body loading or release-output signals also support it.",
+      "false_positive_checks": [
+        "一段式投篮可能自然更早起球，不能单凭时序差下结论。",
+        "视频帧率低于 60fps 或球被身体遮挡时，起球时间点误差会放大。",
+        "急停、接球投和后撤步需要按 shot_type 分开建基线。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Knudson_1993_jump_shot_teaching",
+          "title": "Biomechanics of the Basketball Jump Shot-Six Key Teaching Points",
+          "url": "https://www.researchgate.net/publication/240177823_Biomechanics_of_the_Basketball_Jump_Shot-Six_Key_Teaching_Points",
+          "doi": "10.1080/07303084.1993.10606710",
+          "population_context": "Biomechanics-informed teaching points for mid- to long-range jump shots.",
+          "finding": "Jump-shot teaching commonly emphasizes coordinated lower-body force transfer and controlled vertical body movement before release.",
+          "evidence_level": "peer_reviewed_teaching_review",
+          "confidence_level": "medium_for_signal_low_for_threshold"
+        },
+        {
+          "citation_key": "Cabarkapa_2026_three_point_markerless",
+          "title": "Biomechanical determinants of proficient 3-point shooters: markerless motion capture analysis",
+          "url": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2026.1732293/full",
+          "doi": "10.3389/fspor.2026.1732293",
+          "population_context": "Male 3-point shooters; markerless motion capture; proficient defined by shooting percentage.",
+          "finding": "Proficient 3-point shooters displayed greater lower-body flexion during the preparatory phase, supporting the need to interpret ball-lift timing together with lower-body loading rather than as a standalone threshold.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "medium"
+        }
+      ],
+      "linked_knowledge_tags": ["timing", "knee", "lower_body_power", "power_chain", "shot_diagnosis"]
+    },
+    {
+      "signal_id": "context.shot_distance_changes_mechanics",
+      "name": "投篮距离改变动作参数",
+      "category": "context",
+      "required_view": ["side"],
+      "required_metrics": ["shot_distance", "release_height_ratio", "ball_release_angle_deg", "release_speed"],
+      "soft_thresholds": [
+        {
+          "label": "distance_context_required",
+          "condition": "Do not apply a shared angle or release-height threshold across free throw, mid-range, and 3-point shots",
+          "threshold_type": "comparative"
+        }
+      ],
+      "must_combine_with": ["shot_type", "shot_distance", "user_baseline"],
+      "not_a_diagnosis_by_itself": true,
+      "diagnostic_use": "Context gate for all release and lower-body signals. Normalize or branch rules by shot distance.",
+      "false_positive_checks": [
+        "远距离投篮释放速度上升、释放角和高度下降可能是任务需求，不一定是技术退步。",
+        "短距离、中距离、三分的指标不能直接横向比较。",
+        "训练计划应按 shot_type 分开跟踪。"
+      ],
+      "research_basis": [
+        {
+          "citation_key": "Miller_Bartlett_1996_distance_position",
+          "title": "The relationship between basketball shooting kinematics, distance and playing position",
+          "url": "https://www.researchgate.net/profile/Stuart-Miller-7/publication/14394730_The_relationship_between_basketball_shooting_kinematics_distance_and_playing_position/links/02bfe5100152e5b379000000/The-relationship-between-basketball-shooting-kinematics-distance-and-playing-position.pdf",
+          "doi": "10.1080/02640419608727708",
+          "population_context": "15 players by position; jump shots from 2.74, 4.57, and 6.40 m; 3D cinematography.",
+          "finding": "Release speed increased with distance; release angles were higher at shorter distances and lower at the longest distance.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high"
+        },
+        {
+          "citation_key": "Okazaki_Rodacki_2012_distance",
+          "title": "Increased Distance of Shooting on Basketball Jump Shot",
+          "url": "https://www.jssm.org/jssm-11-231.xml%3EFulltext",
+          "doi": "",
+          "population_context": "Ten male expert players; jump shots from three distances.",
+          "finding": "Shot accuracy, release height, release angle, and release velocity changed as shooting distance increased.",
+          "evidence_level": "peer_reviewed_comparative",
+          "confidence_level": "high"
+        }
+      ],
+      "linked_knowledge_tags": ["ball path", "lower_body_power", "timing", "progress_review"]
+    }
+  ]
+}

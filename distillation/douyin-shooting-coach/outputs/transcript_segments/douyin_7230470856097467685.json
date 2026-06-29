@@ -1,0 +1,54 @@
+{
+  "source_id": "douyin_7230470856097467685",
+  "source_url": "https://www.douyin.com/video/7230470856097467685",
+  "model": "mlx-community/whisper-large-v3-mlx",
+  "language": "zh",
+  "duration": null,
+  "text": "中文字幕提供中文字幕提供",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 29.98,
+      "text": "中文字幕提供",
+      "tokens": [
+        50365,
+        5975,
+        17174,
+        22381,
+        40211,
+        20949,
+        3254,
+        249,
+        51864
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.5354308605194091,
+      "compression_ratio": 0.6206896551724138,
+      "no_speech_prob": 0.21110960841178894
+    },
+    {
+      "id": 1,
+      "seek": 3000,
+      "start": 30.0,
+      "end": 59.980000000000004,
+      "text": "中文字幕提供",
+      "tokens": [
+        50365,
+        5975,
+        17174,
+        22381,
+        40211,
+        20949,
+        3254,
+        249,
+        51864
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.11019283533096313,
+      "compression_ratio": 0.6206896551724138,
+      "no_speech_prob": 0.42564651370048523
+    }
+  ]
+}

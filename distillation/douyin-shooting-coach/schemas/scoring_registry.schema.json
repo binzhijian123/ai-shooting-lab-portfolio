@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShootingScoringRegistry",
+  "type": "object",
+  "required": ["schema_version", "version", "source_contract", "policy", "status_scale", "dimensions"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "scoring_registry.v1" },
+    "version": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "source_contract": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "required": ["no_final_total_score", "no_practice_game_score_in_v1", "score_output_mode", "missing_evidence_policy", "diagnosis_policy", "user_translation_policy"],
+      "properties": {
+        "no_final_total_score": { "type": "boolean", "const": true },
+        "no_practice_game_score_in_v1": { "type": "boolean", "const": true },
+        "score_output_mode": { "type": "string" },
+        "missing_evidence_policy": { "type": "string" },
+        "diagnosis_policy": { "type": "string" },
+        "user_translation_policy": { "type": "string" }
+      }
+    },
+    "status_scale": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["status", "meaning"],
+        "properties": {
+          "status": { "type": "string" },
+          "meaning": { "type": "string" }
+        }
+      }
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "dimension_id",
+          "name",
+          "automation_status",
+          "professional_definition",
+          "user_explanation",
+          "evaluation_goal",
+          "required_views",
+          "required_metrics",
+          "linked_signal_ids",
+          "planned_signal_ids",
+          "knowledge_links",
+          "body_chain",
+          "observable_evidence",
+          "decision_policy",
+          "false_positive_checks",
+          "tutorial_routes"
+        ],
+        "properties": {
+          "dimension_id": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "name": { "type": "string" },
+          "automation_status": { "type": "string", "enum": ["current", "partial", "manual_first", "planned"] },
+          "professional_definition": { "type": "string" },
+          "user_explanation": { "type": "string" },
+          "evaluation_goal": { "type": "string" },
+          "required_views": { "type": "array", "items": { "type": "string" } },
+          "required_metrics": { "type": "array", "items": { "type": "string" } },
+          "linked_signal_ids": { "type": "array", "items": { "type": "string" } },
+          "planned_signal_ids": { "type": "array", "items": { "type": "string" } },
+          "knowledge_links": {
+            "type": "object",
+            "required": ["linked_knowledge_tags", "concept_ids", "repair_target_ids"],
+            "properties": {
+              "linked_knowledge_tags": { "type": "array", "items": { "type": "string" } },
+              "concept_ids": { "type": "array", "items": { "type": "string" } },
+              "repair_target_ids": { "type": "array", "items": { "type": "string" } }
+            }
+          },
+          "body_chain": { "type": "array", "items": { "type": "string" } },
+          "observable_evidence": { "type": "array", "items": { "type": "string" } },
+          "decision_policy": {
+            "type": "object",
+            "required": ["candidate_when", "review_when", "insufficient_when"],
+            "properties": {
+              "candidate_when": { "type": "string" },
+              "review_when": { "type": "string" },
+              "insufficient_when": { "type": "string" }
+            }
+          },
+          "false_positive_checks": { "type": "array", "items": { "type": "string" } },
+          "tutorial_routes": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["tutorial_id", "title", "repair_target_id"],
+              "properties": {
+                "tutorial_id": { "type": "string" },
+                "title": { "type": "string" },
+                "repair_target_id": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

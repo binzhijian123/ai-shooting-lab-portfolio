@@ -1,0 +1,9 @@
+{
+  "written": [
+    "outputs/methodology/overall_methodology.md",
+    "outputs/methodology/shooting_quality_rules.md",
+    "outputs/methodology/repair_playbook.md",
+    "outputs/methodology/source_coverage.md"
+  ],
+  "source_count": 18
+}

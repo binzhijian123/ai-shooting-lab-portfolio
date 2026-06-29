@@ -1,0 +1,121 @@
+{
+  "schema_version": "authorized_sample_readiness_fixtures.v1",
+  "source_contract": "metadata_only_no_real_video_file_access",
+  "valid_manifest": {
+    "schema_version": "sample_manifest.v1",
+    "privacy_boundary": {
+      "contains_real_school_team_video": true,
+      "default_allowed_uses": [
+        "local_analysis",
+        "local_acceptance_test"
+      ],
+      "default_forbidden_uses": [
+        "public_showcase",
+        "external_distribution",
+        "cloud_storage",
+        "model_training"
+      ]
+    },
+    "samples": [
+      {
+        "id": "authorized_representative_side_001",
+        "title": "Authorized representative side-view sample placeholder",
+        "file_path": "data/authorized-samples/authorized_representative_side_001.mp4",
+        "source_type": "representative_authorized",
+        "shot_type": "catch_and_shoot",
+        "camera_view": "side",
+        "fps": 60,
+        "duration_ms": 4200,
+        "dimensions": {
+          "width": 1920,
+          "height": 1080
+        },
+        "authorization": {
+          "status": "authorized",
+          "provider": "sample_owner_or_coach",
+          "scope": [
+            "local_analysis",
+            "local_acceptance_test"
+          ],
+          "subject_authorization": {
+            "status": "documented",
+            "authority": "player_or_guardian_or_school",
+            "recorded_at": "2026-06-15"
+          },
+          "retention": {
+            "storage": "local_only",
+            "delete_raw_video_after_days": 30,
+            "review_by": "2026-07-15"
+          },
+          "notes": "Authorized representative sample metadata fixture; no real video file is included."
+        },
+        "privacy": {
+          "allow_public_showcase": false,
+          "allow_external_distribution": false,
+          "allow_cloud_storage": false,
+          "allow_model_training": false
+        },
+        "expected_use": {
+          "primary": "local representative acceptance validation",
+          "diagnosis_confidence": "representative_validation_only",
+          "known_limits": [
+            "not for public use",
+            "representative validation only, not stable player diagnosis",
+            "requires human review before player-facing diagnosis"
+          ]
+        }
+      }
+    ]
+  },
+  "invalid_cases": [
+    {
+      "id": "missing_subject_authorization",
+      "mutations": {
+        "authorization.subject_authorization.status": "missing"
+      },
+      "expected_error_codes": [
+        "subject_authorization_not_documented"
+      ]
+    },
+    {
+      "id": "forbidden_cloud_storage_scope",
+      "mutations": {
+        "authorization.scope": [
+          "local_analysis",
+          "local_acceptance_test",
+          "cloud_storage"
+        ]
+      },
+      "expected_error_codes": [
+        "forbidden_scope_cloud_storage"
+      ]
+    },
+    {
+      "id": "missing_retention_review",
+      "mutations": {
+        "authorization.retention.review_by": ""
+      },
+      "expected_error_codes": [
+        "missing_retention_review_by"
+      ]
+    },
+    {
+      "id": "public_showcase_allowed",
+      "mutations": {
+        "privacy.allow_public_showcase": true
+      },
+      "expected_error_codes": [
+        "privacy_allows_public_showcase"
+      ]
+    },
+    {
+      "id": "diagnosis_confidence_too_strong",
+      "mutations": {
+        "expected_use.diagnosis_confidence": "stable_player_diagnosis"
+      },
+      "expected_error_codes": [
+        "diagnosis_confidence_not_readiness_safe"
+      ]
+    }
+  ]
+}

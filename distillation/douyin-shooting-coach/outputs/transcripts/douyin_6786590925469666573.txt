@@ -1,0 +1,10 @@
+# Transcript: douyin_6786590925469666573
+
+- URL: https://www.douyin.com/video/6786590925469666573
+- Title: 113.2万 #科比 #Gigi 快回来吧，瓦妮莎和Koko还在等你们！
+- Published at: 2020-01-27 19:58:53+0800
+- Generated at: 2026-06-12T18:16:14.143601+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:20.440] 感谢观看,下次见!

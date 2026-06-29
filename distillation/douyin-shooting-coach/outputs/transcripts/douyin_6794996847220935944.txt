@@ -1,0 +1,10 @@
+# Transcript: douyin_6794996847220935944
+
+- URL: https://www.douyin.com/video/6794996847220935944
+- Title: 3.6万 #阿隆戈登 你还记得儿时的梦想吗？
+- Published at: 2020-02-19 11:38:09+0800
+- Generated at: 2026-06-12T18:16:12.009692+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:05.120] 你还记得小时候的梦想吗?

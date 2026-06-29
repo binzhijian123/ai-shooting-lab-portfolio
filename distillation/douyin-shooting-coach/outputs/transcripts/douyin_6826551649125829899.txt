@@ -1,0 +1,10 @@
+# Transcript: douyin_6826551649125829899
+
+- URL: https://www.douyin.com/video/6826551649125829899
+- Title: 3.6万 #营养干货 3个细节提高你的投篮稳定性🎒
+- Published at: 2020-05-14 12:26:54+0800
+- Generated at: 2026-06-12T18:16:07.066966+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 请不吝点赞 订阅 转发 打赏支持明镜与点点栏目

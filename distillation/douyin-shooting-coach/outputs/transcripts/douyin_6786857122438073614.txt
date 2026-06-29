@@ -1,0 +1,10 @@
+# Transcript: douyin_6786857122438073614
+
+- URL: https://www.douyin.com/video/6786857122438073614
+- Title: 121.6万 #科比 #gigi 科比带着他的“小情人”私奔了，开启了他们新的篮球之旅，大家放心吧！🌞
+- Published at: 2020-01-28 13:11:52+0800
+- Generated at: 2026-06-12T18:16:13.834787+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 感谢观看

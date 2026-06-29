@@ -1,0 +1,28 @@
+# Transcript: douyin_7317503826691444005
+
+- URL: https://www.douyin.com/video/7317503826691444005
+- Title: 3199 如何矫正下肢力线！民间顶级射手的投篮发力问题 #投篮教学 #投篮矫正 #waveball
+- Published at: 2023-12-28 12:52:05+0800
+- Generated at: 2026-06-12T17:43:32.133422+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:16.660] 近日民间顶级射手、前CBA球员、庄战在投篮实验室进行了1000颗三分的投篮挑战,最终命中率达到了可观的85%。
+[00:00:16.660 --> 00:00:21.880] 但网友们一直好奇的是,为何庄战在投篮发力中会出现右腿频繁晃动的情况?
+[00:00:22.240 --> 00:00:26.140] 此问题在本人所做的线下矫正案例中是比较常见的。
+[00:00:26.420 --> 00:00:29.540] 本期视频就针对此问题进行解读并提供优化建议。
+[00:00:29.540 --> 00:00:35.740] 我们先观察庄战的投篮发力,在发力阶段他的右脚,更多偏向大脚只求单点支撑。
+[00:00:36.120 --> 00:00:40.440] 脚下蹬地时足弓塌陷,难以利用到足弓的支撑与快速的弹性。
+[00:00:40.480 --> 00:00:47.680] 他用膝关节的大幅度内扣来借力带长,相当于进行了二次蓄力,下肢发力的形成变得更长,速度也更慢。
+[00:00:47.840 --> 00:00:54.580] 更重要的是膝关节与脚尖发力不同向,膝关节承受较大的减切力,长期来看会埋下一些伤病隐患。
+[00:00:54.940 --> 00:00:57.780] 我们再例举两个优质案例,波克与库里。
+[00:00:57.780 --> 00:01:01.140] 他们在蓄力时都用到了下肢的整体内收,内旋。
+[00:01:01.580 --> 00:01:08.240] 在发力阶段,我们重点观察他们的右脚,右脚的大脚只求与小脚只求两点支撑,脚跟上台。
+[00:01:08.700 --> 00:01:14.900] 实现了足弓的稳定支撑,怀膝宽同向登身,保持了正直的下肢力线,下肢的发力快速稳定。
+[00:01:15.320 --> 00:01:19.600] 那么该如何矫正庄战这类的下肢力线,做到膝脚同向发力呢?
+[00:01:19.940 --> 00:01:24.180] 这里给出一些优化建议,例如在他惯用的一二步中,右脚伤不实。
+[00:01:24.400 --> 00:01:27.760] 需要右脚小脚只求一次来找地面,保证下肢冲动。
+[00:01:27.780 --> 00:01:57.780] 这样的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin的 gettin
+[00:01:57.780 --> 00:01:58.740] 左侧足弓支撑
+[00:01:58.740 --> 00:01:59.900] 怀息宽队伟
+[00:01:59.900 --> 00:02:01.820] 下肢立线相对正直的模式

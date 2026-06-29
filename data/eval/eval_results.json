@@ -1,0 +1,288 @@
+{
+  "schema_version": "rag_lora_eval_results.v1",
+  "generated_at": "2026-06-29T00:15:19.918Z",
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "rate": 1
+  },
+  "categories": {
+    "in_domain": {
+      "total": 14,
+      "passed": 14,
+      "rate": 1
+    },
+    "personal_diagnosis": {
+      "total": 3,
+      "passed": 3,
+      "rate": 1
+    },
+    "out_of_domain": {
+      "total": 3,
+      "passed": 3,
+      "rate": 1
+    }
+  },
+  "results": [
+    {
+      "id": "eval-01",
+      "question": "低位到高位起球怎么做？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7485587485167226151"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-02",
+      "question": "投篮时手肘外翻怎么矫正？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_6884442051119729927",
+        "kb-douyin_7251790210093157689",
+        "kb-douyin_7328648156739063091"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-03",
+      "question": "一段式投篮和二段式投篮有什么区别？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "low",
+      "cited_slugs": [
+        "kb-douyin_7210004973231377722",
+        "kb-douyin_7492347327257070857",
+        "kb-douyin_7229316606793469240"
+      ],
+      "model_source": "lora_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-04",
+      "question": "辅助手在投篮中起什么作用？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7013312431833238797",
+        "kb-douyin_6834814705744350468",
+        "kb-douyin_7014311118449528071"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-05",
+      "question": "如何提高投篮弧度？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7233595443328896314"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-06",
+      "question": "沉球动作的要领是什么？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7360524758594653503",
+        "kb-douyin_7148733210447400199",
+        "kb-douyin_7370034447661534473"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-07",
+      "question": "投篮时重心前倾怎么纠正？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7340232402591157541"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-08",
+      "question": "屈髋在投篮发力中的作用是什么？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7249302169273240888"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-09",
+      "question": "投篮时手腕压腕的技巧有哪些？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7006519669330955557"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-10",
+      "question": "三分球发力不够远怎么办？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "low",
+      "cited_slugs": [
+        "kb-douyin_7483369907036376370",
+        "kb-douyin_7218037631957929220",
+        "kb-douyin_7356445386128575770"
+      ],
+      "model_source": "lora_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-11",
+      "question": "跳投时身体前跳过多怎么改？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7340232402591157541"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-12",
+      "question": "出手点太高或太低会有什么影响？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7218037631957929220"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-13",
+      "question": "投篮时力线对齐怎么做？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7186546993223781643",
+        "kb-douyin_7199190394737839364",
+        "kb-douyin_7317503826691444005"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-14",
+      "question": "髋膝踝联动在投篮中的作用是什么？",
+      "category": "in_domain",
+      "boundary": "general_training_only",
+      "confidence": "high",
+      "cited_slugs": [
+        "kb-douyin_7249302169273240888"
+      ],
+      "model_source": "lora",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-15",
+      "question": "你帮我看看我的投篮视频，我是不是发力脱节了？",
+      "category": "personal_diagnosis",
+      "boundary": "personal_diagnosis_refusal",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-16",
+      "question": "你觉得我适合一段式还是二段式投篮？",
+      "category": "personal_diagnosis",
+      "boundary": "personal_diagnosis_refusal",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-17",
+      "question": "帮我分析一下我的投篮问题在哪里？",
+      "category": "personal_diagnosis",
+      "boundary": "personal_diagnosis_refusal",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-18",
+      "question": "今天天气怎么样？",
+      "category": "out_of_domain",
+      "boundary": "knowledge_insufficient",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-19",
+      "question": "怎么用Python写一个爬虫？",
+      "category": "out_of_domain",
+      "boundary": "knowledge_insufficient",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "id": "eval-20",
+      "question": "推荐几个好吃的餐厅？",
+      "category": "out_of_domain",
+      "boundary": "knowledge_insufficient",
+      "confidence": "low",
+      "cited_slugs": [],
+      "model_source": "heuristic_fallback",
+      "ok": true,
+      "failures": []
+    }
+  ]
+}

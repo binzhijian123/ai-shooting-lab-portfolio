@@ -1,0 +1,52 @@
+{"batch_note_ready": 1, "batch_count": 43}
+{"batch_note_ready": 2, "batch_count": 43}
+{"batch_note_ready": 3, "batch_count": 43}
+{"batch_note_ready": 4, "batch_count": 43}
+{"batch_note_ready": 5, "batch_count": 43}
+{"batch_note_ready": 6, "batch_count": 43}
+{"batch_note_ready": 7, "batch_count": 43}
+{"batch_note_ready": 8, "batch_count": 43}
+{"batch_note_ready": 9, "batch_count": 43}
+{"batch_note_ready": 10, "batch_count": 43}
+{"batch_note_ready": 11, "batch_count": 43}
+{"batch_note_ready": 12, "batch_count": 43}
+{"batch_note_ready": 13, "batch_count": 43}
+{"batch_note_ready": 14, "batch_count": 43}
+{"batch_note_ready": 15, "batch_count": 43}
+{"batch_note_ready": 16, "batch_count": 43}
+{"batch_note_ready": 17, "batch_count": 43}
+{"batch_note_ready": 18, "batch_count": 43}
+{"batch_note_ready": 19, "batch_count": 43}
+{"batch_note_ready": 20, "batch_count": 43}
+{"batch_note_ready": 21, "batch_count": 43}
+{"batch_note_ready": 22, "batch_count": 43}
+{"batch_note_ready": 23, "batch_count": 43}
+{"batch_note_ready": 24, "batch_count": 43}
+{"batch_note_ready": 25, "batch_count": 43}
+{"batch_note_ready": 26, "batch_count": 43}
+{"batch_note_ready": 27, "batch_count": 43}
+{"batch_note_ready": 28, "batch_count": 43}
+{"batch_note_ready": 29, "batch_count": 43}
+{"batch_note_ready": 30, "batch_count": 43}
+{"batch_note_ready": 31, "batch_count": 43}
+{"batch_note_ready": 32, "batch_count": 43}
+{"batch_note_ready": 33, "batch_count": 43}
+{"batch_note_ready": 34, "batch_count": 43}
+{"batch_note_ready": 35, "batch_count": 43}
+{"batch_note_ready": 36, "batch_count": 43}
+{"batch_note_ready": 37, "batch_count": 43}
+{"batch_note_ready": 38, "batch_count": 43}
+{"batch_note_ready": 39, "batch_count": 43}
+{"batch_note_ready": 40, "batch_count": 43}
+{"batch_note_ready": 41, "batch_count": 43}
+{"batch_note_ready": 42, "batch_count": 43}
+{"batch_note_ready": 43, "batch_count": 43}
+{
+  "written": [
+    "outputs/methodology/overall_methodology.md",
+    "outputs/methodology/shooting_quality_rules.md",
+    "outputs/methodology/repair_playbook.md",
+    "outputs/methodology/source_coverage.md"
+  ],
+  "source_count": 203
+}

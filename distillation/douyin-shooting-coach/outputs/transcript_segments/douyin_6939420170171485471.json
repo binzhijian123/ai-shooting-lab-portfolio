@@ -1,0 +1,48 @@
+{
+  "source_id": "douyin_6939420170171485471",
+  "source_url": "https://www.douyin.com/video/6939420170171485471",
+  "model": "mlx-community/whisper-large-v3-mlx",
+  "language": "zh",
+  "duration": null,
+  "text": "感谢观看感谢观看",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 29.98,
+      "text": "感谢观看",
+      "tokens": [
+        50365,
+        9709,
+        11340,
+        42350,
+        4200,
+        51864
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.42304141180855886,
+      "compression_ratio": 0.5714285714285714,
+      "no_speech_prob": 0.4330250024795532
+    },
+    {
+      "id": 1,
+      "seek": 3000,
+      "start": 30.0,
+      "end": 55.6,
+      "text": "感谢观看",
+      "tokens": [
+        50365,
+        9709,
+        11340,
+        42350,
+        4200,
+        51645
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.40002945491245817,
+      "compression_ratio": 0.5714285714285714,
+      "no_speech_prob": 0.4326135218143463
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "source_id": "douyin_6794996847220935944",
+  "source_url": "https://www.douyin.com/video/6794996847220935944",
+  "model": "mlx-community/whisper-large-v3-mlx",
+  "language": "zh",
+  "duration": null,
+  "text": "你还记得小时候的梦想吗?",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 5.12,
+      "text": "你还记得小时候的梦想吗?",
+      "tokens": [
+        50365,
+        2166,
+        14852,
+        34756,
+        5916,
+        7322,
+        29111,
+        1546,
+        19017,
+        99,
+        7093,
+        14769,
+        30,
+        50621
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3613149642944336,
+      "compression_ratio": 0.7555555555555555,
+      "no_speech_prob": 0.043237295001745224
+    }
+  ]
+}

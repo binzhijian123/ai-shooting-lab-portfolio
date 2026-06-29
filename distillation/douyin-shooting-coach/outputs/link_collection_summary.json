@@ -1,0 +1,13 @@
+{
+  "creator": "篮球WaveBall",
+  "platform": "douyin",
+  "homepage_url": "https://www.douyin.com/user/MS4wLjABAAAAt5TumWfhHwGqpg6Cg73S_wnlmFtgK3k40iz5G2SucQ0?from_tab_name=main",
+  "collected_at": "2026-06-12",
+  "collection_method": "Chrome DevTools DOM extraction from already-loaded public homepage",
+  "homepage_visible_work_count": 237,
+  "collected_link_count": 159,
+  "unique_link_count": 159,
+  "input_file": "inputs/video_urls.txt",
+  "scope_note": "Only links exposed in the loaded public DOM and matching the creator link text filter were collected. This is not a full private or API crawl.",
+  "next_step": "Fetch or manually collect transcripts for the 159 collected URLs before methodology distillation."
+}

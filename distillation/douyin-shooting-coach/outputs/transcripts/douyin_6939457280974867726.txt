@@ -1,0 +1,10 @@
+# Transcript: douyin_6939457280974867726
+
+- URL: https://www.douyin.com/video/6939457280974867726
+- Title: 3208 #cuba全明星 不输今年NBA扣篮大赛！来自郑州大学的杨浩在CUBA全明星扣篮大赛轻松夺冠！
+- Published at: 2021-03-14 18:38:25+0800
+- Generated at: 2026-06-12T18:15:18.469041+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:26.020] 一段中文篮球投篮教学,投篮动作分析,发力矫正和训练视频。

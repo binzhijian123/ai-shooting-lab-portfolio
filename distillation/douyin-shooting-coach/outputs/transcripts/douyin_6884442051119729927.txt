@@ -1,0 +1,20 @@
+# Transcript: douyin_6884442051119729927
+
+- URL: https://www.douyin.com/video/6884442051119729927
+- Title: 1.9万 #篮球干货 #库里 #克莱汤普森 #哈登 #利拉德 如何改善投篮手手肘外翻？
+- Published at: 2020-10-17 12:31:13+0800
+- Generated at: 2026-06-12T18:15:43.773054+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.460 --> 00:00:02.400] 如何改善投篮手手肘外翻
+[00:00:02.400 --> 00:00:08.200] 方法一,内旋双脚
+[00:00:08.200 --> 00:00:16.780] 当我们投篮时,若双脚脚尖正对篮筐,身体结构在自然状态下,举球时投篮手手肘将会外翻。
+[00:00:17.460 --> 00:00:23.520] 如果我们将双脚适度内旋形成身体向内侧,手肘外翻现象会得到明显改善。
+[00:00:24.680 --> 00:00:28.560] 在汤普森、哈登、利拉德的投篮中都能看到此细节。
+[00:00:30.000 --> 00:00:41.360] 方法二,侧移投篮手
+[00:00:41.360 --> 00:00:45.540] 很多人举球时会将投篮手置于球的正下方。
+[00:00:46.440 --> 00:00:48.360] 这也导致了手肘的自然外翻。
+[00:00:49.800 --> 00:00:54.800] 我们可以将投篮手调整到球的侧下方,这样举球时手肘可轻松打直。
+[00:00:59.280 --> 00:00:59.980] 此细节成为投篮手手肘的最大改善。
+[00:00:59.980 --> 00:01:29.070] 这other good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good good

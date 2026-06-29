@@ -1,0 +1,10 @@
+# Transcript: douyin_6939381870614433031
+
+- URL: https://www.douyin.com/video/6939381870614433031
+- Title: 1810 #cuba全明星 昨晚扣篮大赛，来自吉林大学的实力扣将——唐浩博
+- Published at: 2021-03-14 13:45:47+0800
+- Generated at: 2026-06-12T18:15:19.600098+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 请不吝点赞 订阅 转发 打赏支持明镜与点点栏目

@@ -1,0 +1,224 @@
+{
+  "schema_version": "shooting_lab_rag_eval_questions.v1",
+  "source_contract": "human_reviewable_retrieval_quality_seed_set",
+  "review_status": "draft_for_user_review",
+  "notes": [
+    "每个问题的 expected_terms 是人工复核用的期望命中词，不是最终标准答案。",
+    "好的 RAG 结果应在 top3/top5 中命中至少一个 expected_terms 或 expected_tags 相关知识卡。",
+    "用户复核后，可把不准确的 expected_terms 改成更贴近教练语义的词。"
+  ],
+  "questions": [
+    {
+      "id": "rag_eval_001",
+      "question": "低位到高位起球怎么做？",
+      "expected_topics": ["起球线路", "沉球", "收球", "低手位", "自下而上发力"],
+      "expected_terms": ["起球", "沉球", "收球", "低手位", "自下而上", "ball_pickup"],
+      "expected_tags": ["ball_pickup", "timing", "power_chain"]
+    },
+    {
+      "id": "rag_eval_002",
+      "question": "投篮手肘外翻会影响什么？",
+      "expected_topics": ["手肘外翻", "投篮力线", "出手稳定"],
+      "expected_terms": ["肘外翻", "手肘", "elbow", "力线", "出手线"],
+      "expected_tags": ["elbow", "shot_diagnosis", "ball path"]
+    },
+    {
+      "id": "rag_eval_003",
+      "question": "辅助手发力太多应该怎么改？",
+      "expected_topics": ["辅助手干扰", "护球手", "拨球", "出手方向"],
+      "expected_terms": ["辅助手", "护球手", "扶球手", "guide_hand", "拨球"],
+      "expected_tags": ["wrist", "elbow", "ball path"]
+    },
+    {
+      "id": "rag_eval_004",
+      "question": "为什么投篮会左右偏？",
+      "expected_topics": ["球路左右偏", "力线", "手腕主导", "肩肘腕对齐"],
+      "expected_terms": ["左右偏", "球路", "力线", "手腕", "肩肘腕"],
+      "expected_tags": ["ball path", "wrist", "shoulder"]
+    },
+    {
+      "id": "rag_eval_005",
+      "question": "投篮弧线太低怎么训练？",
+      "expected_topics": ["弧度", "出手角", "下肢发力", "出手高度"],
+      "expected_terms": ["弧度", "弧线低", "出手角", "出手高度", "arc"],
+      "expected_tags": ["ball path", "lower_body_power"]
+    },
+    {
+      "id": "rag_eval_006",
+      "question": "出手点太低是什么原因？",
+      "expected_topics": ["出手高度", "释放点", "起球", "肩肘上抬"],
+      "expected_terms": ["出手点", "出手高度", "释放点", "release", "肩部", "肘部"],
+      "expected_tags": ["release_height", "shoulder", "elbow"]
+    },
+    {
+      "id": "rag_eval_007",
+      "question": "手快脚慢的投篮节奏怎么修？",
+      "expected_topics": ["上下肢时序", "手脚节奏", "发力链"],
+      "expected_terms": ["手快脚慢", "时序", "节奏", "上下肢", "timing"],
+      "expected_tags": ["timing", "lower_body_power", "power_chain"]
+    },
+    {
+      "id": "rag_eval_008",
+      "question": "下肢发力不足会导致什么问题？",
+      "expected_topics": ["下肢发力", "髋膝踝联动", "动力链", "弧度低"],
+      "expected_terms": ["下肢发力", "髋膝踝", "动力链", "发力链", "lower_body_power"],
+      "expected_tags": ["lower_body_power", "knee", "hip", "ankle/foot"]
+    },
+    {
+      "id": "rag_eval_009",
+      "question": "投篮时身体前倾太多怎么办？",
+      "expected_topics": ["躯干前倾", "重心前倾", "核心稳定", "向上发力"],
+      "expected_terms": ["前倾", "躯干", "重心前倾", "核心稳定", "trunk"],
+      "expected_tags": ["hip", "lower_body_power", "power_chain"]
+    },
+    {
+      "id": "rag_eval_010",
+      "question": "怎么用侧面视频观察投篮问题？",
+      "expected_topics": ["侧面视角", "起球时序", "膝角", "躯干前倾", "出手高度"],
+      "expected_terms": ["侧面", "side", "起球", "膝角", "出手高度"],
+      "expected_tags": ["timing", "knee", "hip"]
+    },
+    {
+      "id": "rag_eval_011",
+      "question": "正面视角主要看什么？",
+      "expected_topics": ["正面视角", "手肘外翻", "球路左右偏", "肩肘腕力线"],
+      "expected_terms": ["正面", "front", "手肘外翻", "左右偏", "肩肘腕"],
+      "expected_tags": ["elbow", "ball path", "shoulder"]
+    },
+    {
+      "id": "rag_eval_012",
+      "question": "主视眼和起球线路有什么关系？",
+      "expected_topics": ["主视眼", "瞄准", "起球线路", "三点一线"],
+      "expected_terms": ["主视眼", "瞄准", "三点一线", "起球线路", "dominant_eye"],
+      "expected_tags": ["dominant_eye", "ball_pickup", "ball path"]
+    },
+    {
+      "id": "rag_eval_013",
+      "question": "投篮时手腕应该怎么发力？",
+      "expected_topics": ["手腕拨球", "压腕", "出手控制", "球路"],
+      "expected_terms": ["手腕", "压腕", "拨球", "wrist", "出手"],
+      "expected_tags": ["wrist", "ball path"]
+    },
+    {
+      "id": "rag_eval_014",
+      "question": "膝盖弯太多会不会影响投篮？",
+      "expected_topics": ["屈膝幅度", "膝角", "下肢节奏", "弹速"],
+      "expected_terms": ["膝盖", "屈膝", "膝角", "弹速", "knee"],
+      "expected_tags": ["knee", "lower_body_power", "timing"]
+    },
+    {
+      "id": "rag_eval_015",
+      "question": "脚踝蹬伸在投篮里有什么作用？",
+      "expected_topics": ["脚踝蹬伸", "下肢爆发", "向上发力"],
+      "expected_terms": ["脚踝", "蹬伸", "踮脚", "ankle", "向上发力"],
+      "expected_tags": ["ankle/foot", "lower_body_power"]
+    },
+    {
+      "id": "rag_eval_016",
+      "question": "怎么判断投篮是不是一段式还是二段式？",
+      "expected_topics": ["一段式", "二段式", "停顿", "连贯发力"],
+      "expected_terms": ["一段式", "二段式", "停顿", "连贯", "one_motion", "two_motion"],
+      "expected_tags": ["timing", "power_chain"]
+    },
+    {
+      "id": "rag_eval_017",
+      "question": "跳投重心前跳太多怎么修？",
+      "expected_topics": ["前跳", "重心前倾", "下肢发力", "髋膝踝"],
+      "expected_terms": ["前跳", "重心前倾", "下肢发力", "髋膝踝", "向上发力"],
+      "expected_tags": ["lower_body_power", "hip", "knee"]
+    },
+    {
+      "id": "rag_eval_018",
+      "question": "投篮发力断裂是什么感觉？",
+      "expected_topics": ["发力断裂", "上下肢协同", "手脚时序", "动力链"],
+      "expected_terms": ["发力断裂", "上下肢", "协同", "动力链", "时序"],
+      "expected_tags": ["power_chain", "timing", "lower_body_power"]
+    },
+    {
+      "id": "rag_eval_019",
+      "question": "怎么训练球从身体中线起？",
+      "expected_topics": ["中路起球", "主视眼", "起球线路", "三点一线"],
+      "expected_terms": ["中路起球", "起球线路", "主视眼", "三点一线", "两眼之间"],
+      "expected_tags": ["ball_pickup", "dominant_eye", "ball path"]
+    },
+    {
+      "id": "rag_eval_020",
+      "question": "投篮肩膀和手肘要怎么对齐？",
+      "expected_topics": ["肩肘腕力线", "手肘位置", "肩部稳定"],
+      "expected_terms": ["肩肘腕", "肩膀", "手肘", "对齐", "力线"],
+      "expected_tags": ["shoulder", "elbow", "wrist"]
+    },
+    {
+      "id": "rag_eval_021",
+      "question": "为什么我不能只看一个角度就下结论？",
+      "expected_topics": ["多角度证据", "侧面", "正面", "人工复核", "证据不足"],
+      "expected_terms": ["多角度", "单角度", "证据", "复核", "侧面", "正面"],
+      "expected_tags": ["shot_diagnosis"]
+    },
+    {
+      "id": "rag_eval_022",
+      "question": "怎么拍侧面投篮视频才有用？",
+      "expected_topics": ["侧面拍摄", "全身入镜", "起球和出手", "视角要求"],
+      "expected_terms": ["侧面", "拍摄", "side", "全身", "出手", "起球"],
+      "expected_tags": ["timing", "knee", "hip"]
+    },
+    {
+      "id": "rag_eval_023",
+      "question": "怎么拍正面投篮视频才有用？",
+      "expected_topics": ["正面拍摄", "手肘外翻", "球路左右偏", "辅助手"],
+      "expected_terms": ["正面", "拍摄", "front", "手肘", "左右偏", "辅助手"],
+      "expected_tags": ["elbow", "ball path", "wrist"]
+    },
+    {
+      "id": "rag_eval_024",
+      "question": "投篮稳定性和髋部有什么关系？",
+      "expected_topics": ["髋部", "曲髋", "降重心", "发力链"],
+      "expected_terms": ["髋", "曲髋", "降重心", "发力链", "hip"],
+      "expected_tags": ["hip", "lower_body_power", "power_chain"]
+    },
+    {
+      "id": "rag_eval_025",
+      "question": "近筐投篮节奏和远投节奏有什么差别？",
+      "expected_topics": ["距离", "节奏", "发力", "出手控制"],
+      "expected_terms": ["近筐", "远投", "节奏", "发力", "出手"],
+      "expected_tags": ["timing", "lower_body_power"]
+    },
+    {
+      "id": "rag_eval_026",
+      "question": "什么情况下应该说知识库依据不足？",
+      "expected_topics": ["证据不足", "拒答", "非个人诊断", "知识边界"],
+      "expected_terms": ["依据不足", "证据不足", "拒答", "诊断", "边界"],
+      "expected_tags": ["shot_diagnosis"],
+      "expected_behavior": "should_not_retrieve_confident_training_answer"
+    },
+    {
+      "id": "rag_eval_027",
+      "question": "投篮球路为什么会偏左或偏右？",
+      "expected_topics": ["球路方向", "手腕", "辅助手", "肩肘腕力线"],
+      "expected_terms": ["偏左", "偏右", "球路", "手腕", "辅助手", "力线"],
+      "expected_tags": ["ball path", "wrist", "elbow"]
+    },
+    {
+      "id": "rag_eval_028",
+      "question": "如何训练投篮时上下肢更连贯？",
+      "expected_topics": ["上下肢协同", "节奏", "动力链", "髋膝踝"],
+      "expected_terms": ["上下肢", "连贯", "协同", "髋膝踝", "节奏"],
+      "expected_tags": ["power_chain", "timing", "lower_body_power"]
+    },
+    {
+      "id": "rag_eval_029",
+      "question": "投篮时球应该放在身体哪条线上？",
+      "expected_topics": ["起球线路", "主视眼", "手腕篮筐对齐", "中线"],
+      "expected_terms": ["起球线路", "主视眼", "中线", "三点一线", "篮筐"],
+      "expected_tags": ["dominant_eye", "ball_pickup", "ball path"]
+    },
+    {
+      "id": "rag_eval_030",
+      "question": "我问量子力学，投篮知识库应该怎么回答？",
+      "expected_topics": ["知识库无关问题", "依据不足", "拒答"],
+      "expected_terms": ["依据不足", "无关", "知识库", "拒答"],
+      "expected_tags": [],
+      "expected_behavior": "should_not_retrieve_confident_training_answer"
+    }
+  ]
+}

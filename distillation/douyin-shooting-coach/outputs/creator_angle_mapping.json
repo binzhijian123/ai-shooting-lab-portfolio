@@ -1,0 +1,375 @@
+{
+  "schema_version": "creator_angle_mapping.v1",
+  "version": "0.1.0",
+  "updated_at": "2026-06-19",
+  "source_contract": "creator_language_to_scoring_dimension_to_signal_to_knowledge_to_tutorial",
+  "source_documents": [
+    "distillation/douyin-shooting-coach/outputs/methodology/scoring_system_2024_now.md",
+    "distillation/douyin-shooting-coach/outputs/scoring_registry.json",
+    "distillation/douyin-shooting-coach/outputs/knowledge_base.json"
+  ],
+  "policy": {
+    "purpose": "Translate the creator's coaching language into stable scoring dimensions without copying a private or unverified total-score formula.",
+    "no_final_total_score": true,
+    "no_practice_game_score_in_v1": true,
+    "missing_evidence_policy": "Missing evidence does not become a technical deduction.",
+    "root_cause_policy": "Result indicators such as flat arc, slow release, or unstable ball path must route back to upstream dimensions before recommending drills.",
+    "manual_first_policy": "Guide-hand and vision mappings remain manual/review-first until hand tracking, ball-hand contact, or dominant-eye inputs are available."
+  },
+  "mappings": [
+    {
+      "creator_angle_id": "angle.hand_waits_for_feet",
+      "creator_language": "手等脚、脚带手、手慢一点",
+      "aliases": ["脚下先快", "上肢不要抢", "感受到脚下力量后再起球", "蹬地后顺势起球"],
+      "mapping_type": "direct",
+      "mapping_status": "active",
+      "primary_dimension_id": "timing_sync",
+      "maps_to_dimension_ids": ["timing_sync"],
+      "maps_to_problem": "上肢抢节奏、起球过早、手快脚慢",
+      "why_this_mapping_is_valid": "这个角度讨论的是起球和下肢启动之间的先后关系。上肢先把球架起时，下肢无法顺势把球送上去，后续容易变成手臂补力，所以应映射到时序同步。",
+      "inference_path": [
+        "creator observes whether the hand moves before the feet",
+        "early hand lift separates ball rise from lower-body push",
+        "separated timing creates upper-body compensation",
+        "system evaluates timing_sync through ball-lift and lower-body timing evidence"
+      ],
+      "required_signal_ids": ["coordination.ball_lift_lower_body_timing"],
+      "supporting_signal_ids": ["lower_body.preparatory_flexion_pattern"],
+      "supporting_metric_ids": ["ball_lift_knee_delta_ms", "knee_angle_series", "ball_height_series", "pose_confidence"],
+      "required_views": ["side"],
+      "knowledge_concept_ids": ["concept.hand_waits_for_feet", "concept.lower_body_drives_ball_lift"],
+      "repair_target_ids": ["repair.sync_ball_lift_with_push", "repair.reduce_upper_body_rush"],
+      "tutorial_ids": [
+        "tutorial.no_ball_vertical_jump_sequence",
+        "tutorial.close_range_sync_ball_lift",
+        "tutorial.rhythm_shooting_count"
+      ],
+      "confidence_policy": "Current automatic candidate when side-view timing signal is available; degrade to review on low fps or missing ball/lower-body reference.",
+      "false_positive_checks": [
+        "接球投篮、急停和后撤步会改变起球节奏，不能套用定点节奏强判。",
+        "低帧率或球被遮挡时，起球时间可能误差过大。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.upper_body_rush_early_lift",
+      "creator_language": "上肢先动、起球早、球先架起来",
+      "aliases": ["手先架", "起球太早", "球到肩头附近停住", "手快脚慢"],
+      "mapping_type": "direct_with_power_chain_effect",
+      "mapping_status": "active",
+      "primary_dimension_id": "timing_sync",
+      "maps_to_dimension_ids": ["timing_sync", "power_chain_integrity"],
+      "maps_to_problem": "起球早导致上下肢脱节，并进一步影响发力链完整性",
+      "why_this_mapping_is_valid": "起球早本身是时序问题，但它会让下肢发力和球的上升脱开，导致发力链后段只能靠上肢补偿。因此主映射到 timing_sync，次级影响 power_chain_integrity。",
+      "inference_path": [
+        "creator labels the motion as upper body moving first",
+        "early ball lift removes the ball from the lower-body push window",
+        "force transfer becomes segmented instead of continuous",
+        "system should mark timing first and use it as evidence for power-chain review"
+      ],
+      "required_signal_ids": ["coordination.ball_lift_lower_body_timing"],
+      "supporting_signal_ids": ["release.low_release_height", "posture.forward_trunk_lean_at_release"],
+      "supporting_metric_ids": ["ball_lift_knee_delta_ms", "release_height_ratio", "trunk_lean_release_deg"],
+      "required_views": ["side"],
+      "knowledge_concept_ids": ["concept.upper_body_compensation", "concept.whole_body_power_chain"],
+      "repair_target_ids": ["repair.reduce_upper_body_rush", "repair.rebuild_lower_to_upper_sequence"],
+      "tutorial_ids": [
+        "tutorial.rhythm_shooting_count",
+        "tutorial.lower_body_to_ball_lift_sequence"
+      ],
+      "confidence_policy": "Treat as timing candidate first. Promote power-chain concern only when another downstream signal such as low release or trunk lean supports the same chain break.",
+      "false_positive_checks": [
+        "个别高水平球员可能有稳定的早起球风格，必须结合出手质量和重复性。",
+        "只看到出手后半段时不能判断起球是否真的早。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.power_chain_continuity",
+      "creator_language": "动力链打通、力量连续传递",
+      "aliases": ["脚踝-膝-髋-躯干-肩肘腕连续", "整条链顺", "不是分段卡顿", "不是靠手硬扔"],
+      "mapping_type": "composite",
+      "mapping_status": "active",
+      "primary_dimension_id": "power_chain_integrity",
+      "maps_to_dimension_ids": [
+        "power_chain_integrity",
+        "timing_sync",
+        "lower_body_efficiency",
+        "trunk_center_stability",
+        "upper_body_release_line",
+        "release_quality"
+      ],
+      "maps_to_problem": "发力链断裂、上肢代偿、力量卡在膝/腰/肩/手",
+      "why_this_mapping_is_valid": "发力链完整性是博主评分系统的最高优先级，但它不是单一视觉点。它需要由时序、下肢、躯干、上肢和释放质量共同支持，属于上层组合维度。",
+      "inference_path": [
+        "creator scores whether lower body, trunk, and upper body form one continuous chain",
+        "no single metric can prove the whole chain",
+        "multiple lower-level dimensions expose chain breaks from different parts",
+        "system aggregates supporting signals into power_chain_integrity as the top-level concern"
+      ],
+      "required_signal_ids": [
+        "coordination.ball_lift_lower_body_timing",
+        "lower_body.preparatory_flexion_pattern",
+        "posture.forward_trunk_lean_at_release",
+        "release.low_release_height"
+      ],
+      "supporting_signal_ids": [
+        "upper_body.elbow_height_and_flexion_preparatory",
+        "coordination.elbow_wrist_release_variability",
+        "release.release_angle_context"
+      ],
+      "supporting_metric_ids": [
+        "ball_lift_knee_delta_ms",
+        "knee_angle_min_deg",
+        "trunk_lean_release_deg",
+        "release_height_ratio",
+        "elbow_angle_release_deg"
+      ],
+      "required_views": ["side", "front"],
+      "knowledge_concept_ids": ["concept.whole_body_power_chain", "concept.lower_body_not_empty_squat"],
+      "repair_target_ids": ["repair.rebuild_lower_to_upper_sequence", "repair.convert_leg_drive_to_release"],
+      "tutorial_ids": [
+        "tutorial.lower_body_to_ball_lift_sequence",
+        "tutorial.ankle_snap_release_rhythm"
+      ],
+      "confidence_policy": "Composite dimension. Current v1 should return candidate/review based on multiple supporting dimensions, not a high-confidence complete power-chain diagnosis.",
+      "false_positive_checks": [
+        "单个指标异常不能证明整条发力链断裂。",
+        "伤病、疲劳、距离变化和个人风格会改变链条表现。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.knee_load_slow_feet",
+      "creator_language": "力量压到膝盖、脚下不快、慢出现在膝盖",
+      "aliases": ["膝盖耗时", "脚踝速度不足", "蹲了但没弹起来", "触地慢"],
+      "mapping_type": "direct_with_context",
+      "mapping_status": "active",
+      "primary_dimension_id": "lower_body_efficiency",
+      "maps_to_dimension_ids": ["lower_body_efficiency", "power_chain_integrity"],
+      "maps_to_problem": "下肢效率不足、空蹲、脚踝/髋膝没有把力量快速向上转化",
+      "why_this_mapping_is_valid": "这个角度不是单纯批评屈膝，而是在判断下肢屈曲是否转化成向上速度。力量停在膝盖会拖慢起跳和起球，所以映射到下肢效率，并作为发力链问题的上游证据。",
+      "inference_path": [
+        "creator identifies slow or knee-heavy lower-body loading",
+        "knee-heavy loading suggests force is not quickly converted through ankle/hip extension",
+        "inefficient lower-body output weakens the whole chain",
+        "system evaluates lower_body_efficiency with flexion pattern and shot-distance context"
+      ],
+      "required_signal_ids": ["lower_body.preparatory_flexion_pattern"],
+      "supporting_signal_ids": ["context.shot_distance_changes_mechanics", "coordination.ball_lift_lower_body_timing"],
+      "supporting_metric_ids": ["knee_angle_min_deg", "knee_angle_series", "shot_distance", "ball_lift_knee_delta_ms"],
+      "required_views": ["side"],
+      "knowledge_concept_ids": ["concept.deep_squat_is_not_equal_to_power", "concept.fast_ankle_drive"],
+      "repair_target_ids": ["repair.make_lower_body_quicker", "repair.match_lower_body_to_distance"],
+      "tutorial_ids": [
+        "tutorial.quick_ankle_push",
+        "tutorial.distance_progression_lower_body"
+      ],
+      "confidence_policy": "Do not flag deep knee flexion alone. Require timing, distance, or release-quality context before making it a lower-body efficiency problem.",
+      "false_positive_checks": [
+        "三分球可能需要更深下肢蓄力。",
+        "当前系统脚踝速度仍是 planned signal，不能伪装成已完全识别。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.trunk_forward_drift_low_release",
+      "creator_language": "身体前趴、前冲、重心没有回正",
+      "aliases": ["躯干前倾", "塌腰", "身体往前找防守人", "出手点被压低"],
+      "mapping_type": "direct",
+      "mapping_status": "active",
+      "primary_dimension_id": "trunk_center_stability",
+      "maps_to_dimension_ids": ["trunk_center_stability", "release_quality"],
+      "maps_to_problem": "重心与躯干不稳定，释放空间被压缩，出手点偏低",
+      "why_this_mapping_is_valid": "前趴会让身体向前而不是向上送球，容易压低释放高度并改变出手角度，因此主映射到重心与躯干稳定，结果层影响出手质量。",
+      "inference_path": [
+        "creator observes forward body drift or trunk lean",
+        "forward drift reduces vertical release space",
+        "lower release can flatten or rush the shot",
+        "system links trunk_center_stability to release_quality when low release is also present"
+      ],
+      "required_signal_ids": ["posture.forward_trunk_lean_at_release"],
+      "supporting_signal_ids": ["release.low_release_height"],
+      "supporting_metric_ids": ["trunk_lean_release_deg", "center_of_mass_forward_drift_cm", "release_height_ratio"],
+      "required_views": ["side"],
+      "knowledge_concept_ids": ["concept.trunk_forward_lean_lowers_release", "concept.center_stability_supports_release"],
+      "repair_target_ids": ["repair.reduce_forward_drift", "repair.hold_vertical_release_space"],
+      "tutorial_ids": [
+        "tutorial.freeze_vertical_release",
+        "tutorial.no_forward_drift_close_shot"
+      ],
+      "confidence_policy": "Candidate when side-view trunk lean combines with low release or forward drift. Trunk lean alone remains review.",
+      "false_positive_checks": [
+        "急停、对抗或后撤步投篮可能自然产生前倾。",
+        "单视角 2D 可能把身体旋转误投影成前倾。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.upper_body_line_release",
+      "creator_language": "肩肘腕同向、顶肘压腕自然、手型不摇",
+      "aliases": ["肘腕同向", "前臂方向", "手型摇摆", "直腕", "甩狙", "横拨"],
+      "mapping_type": "direct_with_view_limit",
+      "mapping_status": "active",
+      "primary_dimension_id": "upper_body_release_line",
+      "maps_to_dimension_ids": ["upper_body_release_line", "release_quality"],
+      "maps_to_problem": "上肢力线不顺、肘腕晚期补偿、球路方向被手腕或前臂带偏",
+      "why_this_mapping_is_valid": "这个角度评价的是肩肘腕和球的释放方向是否一致。力线不顺会导致晚期靠手腕补偿，进而影响释放稳定性，所以映射到上肢力线与释放链。",
+      "inference_path": [
+        "creator observes elbow/wrist direction and release smoothness",
+        "misaligned upper-body chain creates late correction or lateral force",
+        "late correction reduces repeatable release quality",
+        "system links upper_body_release_line to release_quality when release evidence is present"
+      ],
+      "required_signal_ids": [
+        "upper_body.elbow_height_and_flexion_preparatory",
+        "upper_body.forearm_angle_from_vertical"
+      ],
+      "supporting_signal_ids": ["coordination.elbow_wrist_release_variability", "release.low_release_height"],
+      "supporting_metric_ids": ["elbow_angle_release_deg", "shoulder_elbow_wrist_alignment_error_deg", "release_height_ratio"],
+      "required_views": ["front", "side"],
+      "knowledge_concept_ids": ["concept.elbow_wrist_chain", "concept.release_line_direction"],
+      "repair_target_ids": ["repair.clean_release_path", "repair.reduce_lateral_wrist_correction"],
+      "tutorial_ids": [
+        "tutorial.one_hand_release_line",
+        "tutorial.elbow_wrist_freeze_check"
+      ],
+      "confidence_policy": "Side view can support height and flexion; front view is required for stronger lateral line diagnosis.",
+      "false_positive_checks": [
+        "只有侧面时不能强判左右力线。",
+        "稳定个人出手路径不一定完全垂直。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.guide_hand_interference",
+      "creator_language": "辅助手托球但不压球、不推球、不横向干扰",
+      "aliases": ["辅助手压球", "拇指拨球", "辅助手撤得晚", "双手一起推出去"],
+      "mapping_type": "manual_first",
+      "mapping_status": "review_only",
+      "primary_dimension_id": "guide_hand_control",
+      "maps_to_dimension_ids": ["guide_hand_control"],
+      "maps_to_problem": "辅助手主动发力或撤离时机不对，造成球路横向偏移",
+      "why_this_mapping_is_valid": "辅助手问题直接影响球离手瞬间的方向控制。但当前自动识别缺少可靠手部关键点和球手接触，所以映射有效，自动判定必须保持人工/复核优先。",
+      "inference_path": [
+        "creator observes off-hand behavior at release",
+        "off-hand pressure adds lateral force to the ball",
+        "lateral force can change ball path without changing lower-body mechanics",
+        "system stores this as guide_hand_control but marks it review-only until hand tracking exists"
+      ],
+      "required_signal_ids": [],
+      "supporting_signal_ids": [],
+      "planned_signal_ids": [
+        "guide_hand.late_separation",
+        "guide_hand.thumb_push",
+        "guide_hand.lateral_ball_pressure"
+      ],
+      "supporting_metric_ids": ["hand_landmarks", "ball_hand_contact", "ball_path_lateral_deviation"],
+      "required_views": ["front", "front_oblique"],
+      "knowledge_concept_ids": ["concept.guide_hand_should_not_push", "concept.clean_hand_separation"],
+      "repair_target_ids": ["repair.remove_guide_hand_interference"],
+      "tutorial_ids": [
+        "tutorial.one_hand_close_range",
+        "tutorial.guide_hand_release_gate"
+      ],
+      "confidence_policy": "Review-only in v1 unless a human annotation or future hand-tracking signal confirms the issue.",
+      "false_positive_checks": [
+        "球路偏左/偏右不能单独反推辅助手。",
+        "手或球被遮挡时只能要求补拍。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.vision_dominant_eye_alignment",
+      "creator_language": "主视眼、头、手和起球路径匹配",
+      "aliases": ["主视眼带偏手臂", "头偏", "视线破坏力线", "球挡视线", "起球绕主视眼"],
+      "mapping_type": "manual_first",
+      "mapping_status": "review_only",
+      "primary_dimension_id": "vision_alignment",
+      "maps_to_dimension_ids": ["vision_alignment"],
+      "maps_to_problem": "视觉瞄准结构和起球路径冲突，导致身体或上肢横向代偿",
+      "why_this_mapping_is_valid": "主视眼和起球路径会影响球员如何把球放到瞄准线附近。冲突时球员可能用头、肩或手臂旋转补偿，所以映射到视觉结构；但普通视频无法稳定自动识别主视眼，必须人工/问答优先。",
+      "inference_path": [
+        "creator links dominant-eye context to ball-lift path and body direction",
+        "visual conflict can create lateral compensation",
+        "lateral compensation affects release line and ball path",
+        "system keeps the angle as vision_alignment with manual input required"
+      ],
+      "required_signal_ids": [],
+      "supporting_signal_ids": [],
+      "planned_signal_ids": [
+        "vision.dominant_eye_ball_path_conflict",
+        "vision.head_yaw_aim_line_conflict"
+      ],
+      "supporting_metric_ids": ["dominant_eye_input", "head_yaw", "ball_lift_path_lateral_deviation"],
+      "required_views": ["front", "front_oblique"],
+      "knowledge_concept_ids": ["concept.dominant_eye_context", "concept.ball_lift_middle_path"],
+      "repair_target_ids": ["repair.align_ball_lift_with_vision"],
+      "tutorial_ids": [
+        "tutorial.dominant_eye_context_check",
+        "tutorial.middle_lift_path_front_view"
+      ],
+      "confidence_policy": "Manual/review-first in v1. Automatic report should ask for dominant-eye input or front-view retake.",
+      "false_positive_checks": [
+        "主视眼不是错误本身，只是解释起球路径的上下文。",
+        "不能把个人稳定瞄准习惯强行改成模板。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.release_fast_high_stable",
+      "creator_language": "出手快、弧度高、球路稳定",
+      "aliases": ["出手速度快", "高弧度", "释放稳定", "球路不飘", "抗干扰的释放"],
+      "mapping_type": "result_indicator",
+      "mapping_status": "active",
+      "primary_dimension_id": "release_quality",
+      "maps_to_dimension_ids": ["release_quality"],
+      "maps_to_problem": "释放质量受影响；根因需要回查时序、下肢、躯干和上肢",
+      "why_this_mapping_is_valid": "快、高、稳是博主用来观察优化结果的释放表现。它能说明出手质量，但不是根因本身，所以映射到 release_quality，并要求回查上游维度。",
+      "inference_path": [
+        "creator uses release speed, arc, and stability as outcome evidence",
+        "outcome evidence indicates whether the chain produced a usable release",
+        "poor outcome alone cannot identify root cause",
+        "system routes release_quality back to upstream dimensions before recommending repairs"
+      ],
+      "required_signal_ids": ["release.low_release_height", "release.release_angle_context"],
+      "supporting_signal_ids": [
+        "coordination.elbow_wrist_release_variability",
+        "context.shot_distance_changes_mechanics"
+      ],
+      "supporting_metric_ids": ["release_height_ratio", "ball_release_angle_deg", "shot_distance", "ball_tracking_confidence"],
+      "required_views": ["side"],
+      "knowledge_concept_ids": ["concept.release_height_angle_context", "concept.make_miss_not_action_quality"],
+      "repair_target_ids": ["repair.raise_release_without_rushing", "repair.stabilize_late_release"],
+      "tutorial_ids": [
+        "tutorial.high_release_close_range",
+        "tutorial.late_release_freeze"
+      ],
+      "confidence_policy": "Treat as result indicator. Never recommend a root-cause drill from release quality alone unless upstream dimensions support it.",
+      "false_positive_checks": [
+        "当前球轨迹仍是启发式，不代表稳定命中判断。",
+        "远距离投篮自然会改变释放角、高度和速度。"
+      ]
+    },
+    {
+      "creator_angle_id": "angle.practice_transfer",
+      "creator_language": "实战抗干扰、强度下复现",
+      "aliases": ["动态防守下仍快稳", "训练准实战乱", "强对抗下出手", "空位不敢出手"],
+      "mapping_type": "excluded_v1",
+      "mapping_status": "deferred",
+      "primary_dimension_id": null,
+      "maps_to_dimension_ids": [],
+      "maps_to_problem": "实战迁移能力暂不进入 v1 评分",
+      "why_this_mapping_is_valid": "这是博主评分体系里的重要结果维度，但用户已明确当前先不做实战分。它应作为后续动态投篮/趋势模块边界保留，不进入当前自动评分。",
+      "inference_path": [
+        "creator uses game-pressure transfer as an outcome target",
+        "v1 scope intentionally excludes practice-game score",
+        "system records the angle as deferred to avoid false product claims"
+      ],
+      "required_signal_ids": [],
+      "supporting_signal_ids": [],
+      "supporting_metric_ids": [],
+      "required_views": [],
+      "knowledge_concept_ids": ["concept.practice_transfer_deferred_v1"],
+      "repair_target_ids": [],
+      "tutorial_ids": [],
+      "confidence_policy": "Excluded from v1 scoring. May inform future trend or dynamic-shot module only after separate evidence contract exists.",
+      "false_positive_checks": [
+        "训练环境视频不能直接证明实战迁移。",
+        "没有防守强度、脚步、接球/运球上下文时不得下实战结论。"
+      ]
+    }
+  ]
+}

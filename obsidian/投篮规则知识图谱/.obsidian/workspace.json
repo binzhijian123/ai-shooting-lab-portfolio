@@ -1,0 +1,199 @@
+{
+  "main": {
+    "id": "731716bcc442abd7",
+    "type": "split",
+    "children": [
+      {
+        "id": "b34b664613303375",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41ac157a7dbbc6f5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "肌群/肱三头肌.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "肱三头肌"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "461207d8a0fe8eff",
+    "type": "split",
+    "children": [
+      {
+        "id": "8782791069ab4606",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66a6244560991a0d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "cda7f1b0fa553aa2",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "5c3f92688983b3cc",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ee7384ef3b5562ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "086c6a8ad518974e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e78b97d94dfe1779",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "肌群/肱三头肌.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "肱三头肌 的反向链接列表"
+            }
+          },
+          {
+            "id": "38a917f49f172d6c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "肌群/肱三头肌.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "肱三头肌 的出链列表"
+            }
+          },
+          {
+            "id": "970239f2a1e21ae9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "7d0e9c0f6a2025df",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "19b345617df1e8e9",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "肌群/肱三头肌.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "肱三头肌 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "41ac157a7dbbc6f5",
+  "lastOpenFiles": [
+    "肌群/腓肠肌.md",
+    "发力链/足踝压弹链.md",
+    "发力链/肘腕释放链.md",
+    "发力链/核心抗前冲.md",
+    "发力链/筋膜弹性与牵张反射.md",
+    "肌群/三角肌前束.md",
+    "肌群索引.md",
+    "问题/上下肢脱节.md",
+    "问题索引.md",
+    "00 首页.md"
+  ]
+}

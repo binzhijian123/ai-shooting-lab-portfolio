@@ -1,0 +1,12 @@
+# Transcript: douyin_7431791686927404297
+
+- URL: https://www.douyin.com/video/7431791686927404297
+- Title: 1846 听说男生用左手扔东西会很娘！ IPT训练师们的弱侧手投篮什么水平？ @安丁GhostBaller @训练师-星 @Skill Trainer 六号体育 陆 #ipt #waveball
+- Published at: 2024-10-31 12:27:21+0800
+- Generated at: 2026-06-12T17:36:59.520291+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:03.220] 听说男生用左手扔东西会很娘。
+[00:00:30.000 --> 00:00:59.980] 观看下期视频,请点赞,订阅,转发,打赏支持明镜与点点栏目
+[00:01:00.000 --> 00:01:29.980] 感谢观看

@@ -1,0 +1,53 @@
+{
+  "schema_version": "sample_manifest.v1",
+  "updated_at": "2026-06-14",
+  "purpose": "Phase 1 local acceptance baseline for upload, analysis, report, and memory checks.",
+  "privacy_boundary": {
+    "contains_real_school_team_video": false,
+    "default_allowed_uses": [
+      "local_analysis",
+      "local_acceptance_test"
+    ],
+    "default_forbidden_uses": [
+      "public_showcase",
+      "external_distribution",
+      "cloud_storage",
+      "model_training"
+    ]
+  },
+  "samples": [
+    {
+      "id": "synthetic_ball",
+      "title": "Synthetic ball tracking smoke sample",
+      "file_path": "data/synthetic_ball.mp4",
+      "source_type": "synthetic",
+      "shot_type": "synthetic_ball_motion",
+      "camera_view": "side_back_candidate",
+      "fps": 30,
+      "duration_ms": 2400,
+      "dimensions": {
+        "width": 640,
+        "height": 360
+      },
+      "authorization": {
+        "status": "authorized",
+        "scope": [
+          "local_analysis",
+          "local_acceptance_test"
+        ],
+        "retention": "repo_local_sample",
+        "notes": "Synthetic sample; not a real school team video."
+      },
+      "expected_use": {
+        "primary": "adapter and upload smoke testing",
+        "diagnosis_confidence": "not_for_player_diagnosis",
+        "known_limits": [
+          "not a human shooting video",
+          "should not be used for pose diagnosis",
+          "ball or rim evidence may be incomplete",
+          "browser-playable synthetic sample for local UI acceptance only"
+        ]
+      }
+    }
+  ]
+}

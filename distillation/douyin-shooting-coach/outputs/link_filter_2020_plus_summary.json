@@ -1,0 +1,22 @@
+{
+  "source_raw": "/Users/bzj/Downloads/douyin_waveball_dom_links_scrollcontainer.json",
+  "copied_raw": "/Users/bzj/Documents/投篮实验室/distillation/douyin-shooting-coach/outputs/dom_links_scrollcontainer_second_round.json",
+  "source_meta": {
+    "collectedAt": "2026-06-12T14:48:43.875Z",
+    "count": 234,
+    "scrollTop": 32470,
+    "scrollHeight": 33219,
+    "clientHeight": 749,
+    "textHasNoMore": true
+  },
+  "homepage_visible_works_count": 237,
+  "second_round_total_dom_video_or_note_links": 234,
+  "main_creator_links_after_footer_filter": 226,
+  "footer_filter": "top < 33100 in second-round DOM snapshot; top >= 33100 were footer hot links",
+  "date_method": "Douyin aweme id timestamp decoded as int(id) >> 32, Asia/Shanghai/CST; spot-checked earlier against detail API within seconds",
+  "cutoff_inclusive": "2020-01-01 00:00:00 +0800",
+  "output_2020_plus_count": 208,
+  "earliest_2020_plus": "2020-01-27 19:58:53+0800",
+  "latest_2020_plus": "2026-04-16 18:41:08+0800",
+  "note": "User accepted the second-round crawl as sufficient. The page showed no-more text in source_meta.textHasNoMore=true."
+}

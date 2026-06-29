@@ -1,0 +1,10 @@
+# Transcript: douyin_7246037522545986876
+
+- URL: https://www.douyin.com/video/7246037522545986876
+- Title: 6407 一年过得真快，恭喜陈国豪，恭喜广东工业大学首夺CUBAL联赛冠军！ #cubal总决赛 #广东工业大学 #cubal
+- Published at: 2023-06-18 22:46:20+0800
+- Generated at: 2026-06-12T17:47:21.297999+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:22.000] 一段中文篮球投篮教学,投篮训练视频。

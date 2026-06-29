@@ -1,0 +1,11 @@
+# Transcript: douyin_7465662037994016009
+
+- URL: https://www.douyin.com/video/7465662037994016009
+- Title: 4069 如何消除重心前倾？解锁轻松远投 #waveball #投篮教学
+- Published at: 2025-01-30 19:01:37+0800
+- Generated at: 2026-06-12T17:35:10.100534+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 中文篮球投篮教学、投篮动作分析、发力矫正和训练视频。
+[00:00:30.000 --> 00:00:59.980] 中文篮球投篮教学、投篮动作分析、发力矫正和训练视频。

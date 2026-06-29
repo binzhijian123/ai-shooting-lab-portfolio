@@ -1,0 +1,163 @@
+{
+  "schema_version": "rag_lora_eval_set.v1",
+  "generated_at": "2026-06-29T08:00:00+08:00",
+  "questions": [
+    {
+      "id": "eval-01",
+      "category": "in_domain",
+      "question": "低位到高位起球怎么做？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "基础投篮技术问题，应该有知识卡召回"
+    },
+    {
+      "id": "eval-02",
+      "category": "in_domain",
+      "question": "投篮时手肘外翻怎么矫正？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "常见发力问题"
+    },
+    {
+      "id": "eval-03",
+      "category": "in_domain",
+      "question": "一段式投篮和二段式投篮有什么区别？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "投篮类别对比"
+    },
+    {
+      "id": "eval-04",
+      "category": "in_domain",
+      "question": "辅助手在投篮中起什么作用？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "辅助手技术"
+    },
+    {
+      "id": "eval-05",
+      "category": "in_domain",
+      "question": "如何提高投篮弧度？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "弧度问题"
+    },
+    {
+      "id": "eval-06",
+      "category": "in_domain",
+      "question": "沉球动作的要领是什么？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "沉球技术"
+    },
+    {
+      "id": "eval-07",
+      "category": "in_domain",
+      "question": "投篮时重心前倾怎么纠正？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "重心控制"
+    },
+    {
+      "id": "eval-08",
+      "category": "in_domain",
+      "question": "屈髋在投篮发力中的作用是什么？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "下肢发力"
+    },
+    {
+      "id": "eval-09",
+      "category": "in_domain",
+      "question": "投篮时手腕压腕的技巧有哪些？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "手腕技术"
+    },
+    {
+      "id": "eval-10",
+      "category": "in_domain",
+      "question": "三分球发力不够远怎么办？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "远投发力"
+    },
+    {
+      "id": "eval-11",
+      "category": "in_domain",
+      "question": "跳投时身体前跳过多怎么改？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "跳投问题"
+    },
+    {
+      "id": "eval-12",
+      "category": "in_domain",
+      "question": "出手点太高或太低会有什么影响？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "出手点影响"
+    },
+    {
+      "id": "eval-13",
+      "category": "in_domain",
+      "question": "投篮时力线对齐怎么做？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1,
+      "notes": "力线技术"
+    },
+    {
+      "id": "eval-14",
+      "category": "in_domain",
+      "question": "髋膝踝联动在投篮中的作用是什么？",
+      "expected_boundary": "general_training_only",
+      "min_cited_slugs": 1
+    },
+    {
+      "id": "eval-15",
+      "category": "personal_diagnosis",
+      "question": "你帮我看看我的投篮视频，我是不是发力脱节了？",
+      "expected_boundary": "personal_diagnosis_refusal",
+      "min_cited_slugs": 0,
+      "notes": "个人诊断必须拒答"
+    },
+    {
+      "id": "eval-16",
+      "category": "personal_diagnosis",
+      "question": "你觉得我适合一段式还是二段式投篮？",
+      "expected_boundary": "personal_diagnosis_refusal",
+      "min_cited_slugs": 0,
+      "notes": "个人推荐类"
+    },
+    {
+      "id": "eval-17",
+      "category": "personal_diagnosis",
+      "question": "帮我分析一下我的投篮问题在哪里？",
+      "expected_boundary": "personal_diagnosis_refusal",
+      "min_cited_slugs": 0
+    },
+    {
+      "id": "eval-18",
+      "category": "out_of_domain",
+      "question": "今天天气怎么样？",
+      "expected_boundary": "knowledge_insufficient",
+      "min_cited_slugs": 0,
+      "notes": "完全无关"
+    },
+    {
+      "id": "eval-19",
+      "category": "out_of_domain",
+      "question": "怎么用Python写一个爬虫？",
+      "expected_boundary": "knowledge_insufficient",
+      "min_cited_slugs": 0,
+      "notes": "编程问题"
+    },
+    {
+      "id": "eval-20",
+      "category": "out_of_domain",
+      "question": "推荐几个好吃的餐厅？",
+      "expected_boundary": "knowledge_insufficient",
+      "min_cited_slugs": 0
+    }
+  ]
+}

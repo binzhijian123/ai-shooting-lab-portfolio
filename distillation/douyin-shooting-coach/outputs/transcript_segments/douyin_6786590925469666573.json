@@ -1,0 +1,33 @@
+{
+  "source_id": "douyin_6786590925469666573",
+  "source_url": "https://www.douyin.com/video/6786590925469666573",
+  "model": "mlx-community/whisper-large-v3-mlx",
+  "language": "zh",
+  "duration": null,
+  "text": "感谢观看,下次见!",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 20.44,
+      "text": "感谢观看,下次见!",
+      "tokens": [
+        50365,
+        9709,
+        11340,
+        42350,
+        4200,
+        11,
+        35829,
+        23813,
+        0,
+        51387
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.7418826710094105,
+      "compression_ratio": 0.6764705882352942,
+      "no_speech_prob": 0.05311960354447365
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+# Transcript: douyin_6939372855595404580
+
+- URL: https://www.douyin.com/video/6939372855595404580
+- Title: 2.1万 #cuba全明星 昨晚来自清华大学的重庆崽儿邹阳（身高198/臂展213）打出血性，隔扣陈国豪！#热血高校
+- Published at: 2021-03-14 13:10:48+0800
+- Generated at: 2026-06-12T18:15:20.216519+00:00
+- ASR: mlx-whisper
+- Model: mlx-community/whisper-large-v3-mlx
+
+[00:00:00.000 --> 00:00:29.980] 广东人的训练教学、投篮动作分析、发力矫正和训练建议视频。

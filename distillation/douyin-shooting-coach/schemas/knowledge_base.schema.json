@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShootingCoachKnowledgeBase",
+  "type": "object",
+  "required": ["domain", "creator", "generated_at", "source_count", "cards", "methodology", "taxonomy", "signal_registry", "agent_rules", "smoke_tests"],
+  "properties": {
+    "domain": { "type": "string" },
+    "creator": { "type": "string" },
+    "version": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "source_count": { "type": "integer", "minimum": 0 },
+    "cards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+          "required": ["id", "title", "source_url", "source_type", "tags", "app_modules", "summary", "motion_focus", "observable_signals", "use_cases", "core_rules", "diagnosis_rules", "repair_actions", "false_positives", "source_card_path"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "source_url": { "type": "string" },
+          "source_type": { "type": "string" },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "app_modules": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["pose_analysis", "shot_diagnosis", "training_repair", "progress_review"]
+            }
+          },
+          "summary": { "type": "string" },
+          "motion_focus": { "type": "array", "items": { "type": "string" } },
+          "observable_signals": { "type": "array", "items": { "type": "string" } },
+          "use_cases": { "type": "array", "items": { "type": "string" } },
+          "core_rules": { "type": "array", "items": { "type": "string" } },
+          "diagnosis_rules": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["if", "then", "check", "repair", "confidence_basis"],
+              "properties": {
+                "if": { "type": "string" },
+                "then": { "type": "string" },
+                "check": { "type": "string" },
+                "repair": { "type": "string" },
+                "confidence_basis": { "type": "string" }
+              }
+            }
+          },
+          "repair_actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["drill", "dosage", "cue", "success_metric"],
+              "properties": {
+                "drill": { "type": "string" },
+                "dosage": { "type": "string" },
+                "cue": { "type": "string" },
+                "success_metric": { "type": "string" }
+              }
+            }
+          },
+          "false_positives": { "type": "array", "items": { "type": "string" } },
+          "source_card_path": { "type": "string" }
+        }
+      }
+    },
+    "methodology": { "type": "object" },
+    "taxonomy": { "type": "object" },
+    "signal_registry": {
+      "type": "object",
+      "required": ["version", "source", "policy", "signals"],
+      "properties": {
+        "version": { "type": "string" },
+        "source": { "type": "string" },
+        "policy": { "type": "object" },
+        "signals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["signal_id", "name", "category", "required_view", "required_metrics", "soft_thresholds", "must_combine_with", "not_a_diagnosis_by_itself", "diagnostic_use", "false_positive_checks", "research_basis", "linked_knowledge_tags"],
+            "properties": {
+              "signal_id": { "type": "string" },
+              "name": { "type": "string" },
+              "category": { "type": "string" },
+              "required_view": { "type": "array", "items": { "type": "string" } },
+              "required_metrics": { "type": "array", "items": { "type": "string" } },
+              "soft_thresholds": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["label", "condition", "threshold_type"],
+                  "properties": {
+                    "label": { "type": "string" },
+                    "condition": { "type": "string" },
+                    "threshold_type": { "type": "string" }
+                  }
+                }
+              },
+              "must_combine_with": { "type": "array", "items": { "type": "string" } },
+              "not_a_diagnosis_by_itself": { "type": "boolean" },
+              "diagnostic_use": { "type": "string" },
+              "false_positive_checks": { "type": "array", "items": { "type": "string" } },
+              "research_basis": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["citation_key", "title", "url", "population_context", "finding", "evidence_level", "confidence_level"],
+                  "properties": {
+                    "citation_key": { "type": "string" },
+                    "title": { "type": "string" },
+                    "url": { "type": "string" },
+                    "doi": { "type": "string" },
+                    "population_context": { "type": "string" },
+                    "finding": { "type": "string" },
+                    "evidence_level": { "type": "string" },
+                    "confidence_level": { "type": "string" }
+                  }
+                }
+              },
+              "linked_knowledge_tags": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        }
+      }
+    },
+    "agent_rules": { "type": "object" },
+    "smoke_tests": { "type": "array" }
+  }
+}

@@ -1,0 +1,1469 @@
+{
+  "source_id": "douyin_7230257362932616503",
+  "source_url": "https://www.douyin.com/video/7230257362932616503",
+  "model": "mlx-community/whisper-large-v3-mlx",
+  "language": "zh",
+  "duration": null,
+  "text": "1分2分4分5分6分7分8分9分10分11分12分13分14分3分5分6分7分8分9分10分11分12分13分14分13分14分15分16分17分18分13分13分14分13分14分13分14分13分14分13分13分13分13分13分13分13分13分13分13分13分13分13分13分13分13分好先响了响了这球是不能响就是两万有机会反锋出招打平了现在打平 gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good gettin good下一other",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 5.0,
+      "text": "1分",
+      "tokens": [
+        50365,
+        16,
+        6627,
+        50615
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 1,
+      "seek": 0,
+      "start": 5.0,
+      "end": 9.0,
+      "text": "2分",
+      "tokens": [
+        50615,
+        17,
+        6627,
+        50815
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 2,
+      "seek": 0,
+      "start": 9.0,
+      "end": 15.0,
+      "text": "4分",
+      "tokens": [
+        50815,
+        19,
+        6627,
+        51115
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 3,
+      "seek": 0,
+      "start": 15.0,
+      "end": 19.0,
+      "text": "5分",
+      "tokens": [
+        51115,
+        20,
+        6627,
+        51315
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 4,
+      "seek": 0,
+      "start": 19.0,
+      "end": 23.0,
+      "text": "6分",
+      "tokens": [
+        51315,
+        21,
+        6627,
+        51515
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 5,
+      "seek": 0,
+      "start": 23.0,
+      "end": 25.0,
+      "text": "7分",
+      "tokens": [
+        51515,
+        22,
+        6627,
+        51615
+      ],
+      "temperature": 0.2,
+      "avg_logprob": -0.6193178617037259,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.1198808029294014
+    },
+    {
+      "id": 6,
+      "seek": 2500,
+      "start": 25.0,
+      "end": 30.0,
+      "text": "8分",
+      "tokens": [
+        50365,
+        23,
+        6627,
+        50615
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 7,
+      "seek": 2500,
+      "start": 30.0,
+      "end": 36.0,
+      "text": "9分",
+      "tokens": [
+        50615,
+        24,
+        6627,
+        50915
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 8,
+      "seek": 2500,
+      "start": 36.0,
+      "end": 39.0,
+      "text": "10分",
+      "tokens": [
+        50915,
+        3279,
+        6627,
+        51065
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 9,
+      "seek": 2500,
+      "start": 39.0,
+      "end": 42.0,
+      "text": "11分",
+      "tokens": [
+        51065,
+        5348,
+        6627,
+        51215
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 10,
+      "seek": 2500,
+      "start": 42.0,
+      "end": 48.0,
+      "text": "12分",
+      "tokens": [
+        51215,
+        4762,
+        6627,
+        51515
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 11,
+      "seek": 2500,
+      "start": 48.0,
+      "end": 52.0,
+      "text": "13分",
+      "tokens": [
+        51515,
+        7668,
+        6627,
+        51715
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 12,
+      "seek": 2500,
+      "start": 52.0,
+      "end": 54.0,
+      "text": "14分",
+      "tokens": [
+        51715,
+        7271,
+        6627,
+        51815
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 13,
+      "seek": 2500,
+      "start": 54.0,
+      "end": 55.0,
+      "text": "3分",
+      "tokens": [
+        51815,
+        18,
+        6627,
+        51865
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3903499950062145,
+      "compression_ratio": 1.2333333333333334,
+      "no_speech_prob": 0.16738387942314148
+    },
+    {
+      "id": 14,
+      "seek": 5500,
+      "start": 55.0,
+      "end": 57.0,
+      "text": "5分",
+      "tokens": [
+        50365,
+        20,
+        6627,
+        50465
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 15,
+      "seek": 5500,
+      "start": 57.0,
+      "end": 59.0,
+      "text": "6分",
+      "tokens": [
+        50465,
+        21,
+        6627,
+        50565
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 16,
+      "seek": 5500,
+      "start": 59.0,
+      "end": 61.0,
+      "text": "7分",
+      "tokens": [
+        50565,
+        22,
+        6627,
+        50665
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 17,
+      "seek": 5500,
+      "start": 61.0,
+      "end": 63.0,
+      "text": "8分",
+      "tokens": [
+        50665,
+        23,
+        6627,
+        50765
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 18,
+      "seek": 5500,
+      "start": 63.0,
+      "end": 65.0,
+      "text": "9分",
+      "tokens": [
+        50765,
+        24,
+        6627,
+        50865
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 19,
+      "seek": 5500,
+      "start": 65.0,
+      "end": 67.0,
+      "text": "10分",
+      "tokens": [
+        50865,
+        3279,
+        6627,
+        50965
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 20,
+      "seek": 5500,
+      "start": 67.0,
+      "end": 69.0,
+      "text": "11分",
+      "tokens": [
+        50965,
+        5348,
+        6627,
+        51065
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 21,
+      "seek": 5500,
+      "start": 69.0,
+      "end": 71.0,
+      "text": "12分",
+      "tokens": [
+        51065,
+        4762,
+        6627,
+        51165
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 22,
+      "seek": 5500,
+      "start": 71.0,
+      "end": 73.0,
+      "text": "13分",
+      "tokens": [
+        51165,
+        7668,
+        6627,
+        51265
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 23,
+      "seek": 5500,
+      "start": 73.0,
+      "end": 75.0,
+      "text": "14分",
+      "tokens": [
+        51265,
+        7271,
+        6627,
+        51365
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 24,
+      "seek": 5500,
+      "start": 75.0,
+      "end": 77.0,
+      "text": "13分",
+      "tokens": [
+        51365,
+        7668,
+        6627,
+        51465
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 25,
+      "seek": 5500,
+      "start": 77.0,
+      "end": 79.0,
+      "text": "14分",
+      "tokens": [
+        51465,
+        7271,
+        6627,
+        51565
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 26,
+      "seek": 5500,
+      "start": 79.0,
+      "end": 81.0,
+      "text": "15分",
+      "tokens": [
+        51565,
+        5211,
+        6627,
+        51665
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 27,
+      "seek": 5500,
+      "start": 81.0,
+      "end": 83.0,
+      "text": "16分",
+      "tokens": [
+        51665,
+        6866,
+        6627,
+        51765
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 28,
+      "seek": 5500,
+      "start": 83.0,
+      "end": 84.0,
+      "text": "17分",
+      "tokens": [
+        51765,
+        7773,
+        6627,
+        51815
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 29,
+      "seek": 5500,
+      "start": 84.0,
+      "end": 85.0,
+      "text": "18分",
+      "tokens": [
+        51815,
+        6494,
+        6627,
+        51865
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.3635321103609525,
+      "compression_ratio": 1.5957446808510638,
+      "no_speech_prob": 0.031481172889471054
+    },
+    {
+      "id": 30,
+      "seek": 8500,
+      "start": 85.0,
+      "end": 86.0,
+      "text": "13分",
+      "tokens": [
+        50365,
+        7668,
+        6627,
+        50415
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 31,
+      "seek": 8500,
+      "start": 86.0,
+      "end": 87.0,
+      "text": "13分",
+      "tokens": [
+        50415,
+        7668,
+        6627,
+        50465
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 32,
+      "seek": 8500,
+      "start": 87.0,
+      "end": 88.0,
+      "text": "14分",
+      "tokens": [
+        50465,
+        7271,
+        6627,
+        50515
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 33,
+      "seek": 8500,
+      "start": 88.0,
+      "end": 89.0,
+      "text": "13分",
+      "tokens": [
+        50515,
+        7668,
+        6627,
+        50565
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 34,
+      "seek": 8500,
+      "start": 89.0,
+      "end": 90.0,
+      "text": "14分",
+      "tokens": [
+        50565,
+        7271,
+        6627,
+        50615
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 35,
+      "seek": 8500,
+      "start": 90.0,
+      "end": 91.0,
+      "text": "13分",
+      "tokens": [
+        50615,
+        7668,
+        6627,
+        50665
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 36,
+      "seek": 8500,
+      "start": 91.0,
+      "end": 93.0,
+      "text": "14分",
+      "tokens": [
+        50665,
+        7271,
+        6627,
+        50765
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 37,
+      "seek": 8500,
+      "start": 93.0,
+      "end": 94.0,
+      "text": "13分",
+      "tokens": [
+        50765,
+        7668,
+        6627,
+        50815
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 38,
+      "seek": 8500,
+      "start": 94.0,
+      "end": 96.0,
+      "text": "14分",
+      "tokens": [
+        50815,
+        7271,
+        6627,
+        50915
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 39,
+      "seek": 8500,
+      "start": 96.0,
+      "end": 97.0,
+      "text": "13分",
+      "tokens": [
+        50915,
+        7668,
+        6627,
+        50965
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 40,
+      "seek": 8500,
+      "start": 97.0,
+      "end": 99.0,
+      "text": "13分",
+      "tokens": [
+        50965,
+        7668,
+        6627,
+        51065
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 41,
+      "seek": 8500,
+      "start": 99.0,
+      "end": 101.0,
+      "text": "13分",
+      "tokens": [
+        51065,
+        7668,
+        6627,
+        51165
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 42,
+      "seek": 8500,
+      "start": 101.0,
+      "end": 102.0,
+      "text": "13分",
+      "tokens": [
+        51165,
+        7668,
+        6627,
+        51215
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 43,
+      "seek": 8500,
+      "start": 102.0,
+      "end": 103.0,
+      "text": "13分",
+      "tokens": [
+        51215,
+        7668,
+        6627,
+        51265
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 44,
+      "seek": 8500,
+      "start": 103.0,
+      "end": 104.0,
+      "text": "13分",
+      "tokens": [
+        51265,
+        7668,
+        6627,
+        51315
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 45,
+      "seek": 8500,
+      "start": 104.0,
+      "end": 105.0,
+      "text": "13分",
+      "tokens": [
+        51315,
+        7668,
+        6627,
+        51365
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 46,
+      "seek": 8500,
+      "start": 105.0,
+      "end": 106.0,
+      "text": "13分",
+      "tokens": [
+        51365,
+        7668,
+        6627,
+        51415
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 47,
+      "seek": 8500,
+      "start": 106.0,
+      "end": 107.0,
+      "text": "13分",
+      "tokens": [
+        51415,
+        7668,
+        6627,
+        51465
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 48,
+      "seek": 8500,
+      "start": 107.0,
+      "end": 108.0,
+      "text": "13分",
+      "tokens": [
+        51465,
+        7668,
+        6627,
+        51515
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 49,
+      "seek": 8500,
+      "start": 108.0,
+      "end": 109.0,
+      "text": "13分",
+      "tokens": [
+        51515,
+        7668,
+        6627,
+        51565
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 50,
+      "seek": 8500,
+      "start": 109.0,
+      "end": 110.0,
+      "text": "13分",
+      "tokens": [
+        51565,
+        7668,
+        6627,
+        51615
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 51,
+      "seek": 8500,
+      "start": 110.0,
+      "end": 111.0,
+      "text": "13分",
+      "tokens": [
+        51615,
+        7668,
+        6627,
+        51665
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 52,
+      "seek": 8500,
+      "start": 111.0,
+      "end": 112.0,
+      "text": "13分",
+      "tokens": [
+        51665,
+        7668,
+        6627,
+        51715
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 53,
+      "seek": 8500,
+      "start": 112.0,
+      "end": 113.0,
+      "text": "13分",
+      "tokens": [
+        51715,
+        7668,
+        6627,
+        51765
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 54,
+      "seek": 8500,
+      "start": 113.0,
+      "end": 114.0,
+      "text": "13分",
+      "tokens": [
+        51765,
+        7668,
+        6627,
+        51815
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -0.315035202923943,
+      "compression_ratio": 5.9523809523809526,
+      "no_speech_prob": 0.03995548188686371
+    },
+    {
+      "id": 55,
+      "seek": 11400,
+      "start": 114.0,
+      "end": 116.0,
+      "text": "好",
+      "tokens": [
+        50365,
+        2131,
+        50465
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 56,
+      "seek": 11400,
+      "start": 116.0,
+      "end": 117.0,
+      "text": "先",
+      "tokens": [
+        50465,
+        10108,
+        50515
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 57,
+      "seek": 11400,
+      "start": 121.0,
+      "end": 122.0,
+      "text": "响了响了",
+      "tokens": [
+        50715,
+        3858,
+        235,
+        2289,
+        3858,
+        235,
+        2289,
+        50765
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 58,
+      "seek": 11400,
+      "start": 122.0,
+      "end": 123.0,
+      "text": "这球是不能响",
+      "tokens": [
+        50765,
+        5562,
+        28533,
+        1541,
+        28590,
+        3858,
+        235,
+        50815
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 59,
+      "seek": 11400,
+      "start": 123.0,
+      "end": 125.0,
+      "text": "就是两万",
+      "tokens": [
+        50815,
+        5620,
+        36257,
+        23570,
+        50915
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 60,
+      "seek": 11400,
+      "start": 126.0,
+      "end": 128.0,
+      "text": "有机会反锋",
+      "tokens": [
+        50965,
+        2412,
+        37960,
+        12949,
+        22138,
+        23049,
+        233,
+        51065
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 61,
+      "seek": 11400,
+      "start": 128.0,
+      "end": 130.0,
+      "text": "出招",
+      "tokens": [
+        51065,
+        7781,
+        6852,
+        249,
+        51165
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 62,
+      "seek": 11400,
+      "start": 134.0,
+      "end": 135.0,
+      "text": "打平了",
+      "tokens": [
+        51365,
+        12467,
+        16716,
+        2289,
+        51415
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 63,
+      "seek": 11400,
+      "start": 135.0,
+      "end": 136.0,
+      "text": "现在打平",
+      "tokens": [
+        51415,
+        25040,
+        12467,
+        16716,
+        51465
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.6092780186579778,
+      "compression_ratio": 1.0,
+      "no_speech_prob": 0.2904147505760193
+    },
+    {
+      "id": 64,
+      "seek": 13600,
+      "start": 136.0,
+      "end": 138.0,
+      "text": " gettin good",
+      "tokens": [
+        50365,
+        34568,
+        665,
+        50465
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 65,
+      "seek": 13600,
+      "start": 138.0,
+      "end": 139.0,
+      "text": " gettin good",
+      "tokens": [
+        50465,
+        34568,
+        665,
+        50515
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 66,
+      "seek": 13600,
+      "start": 139.0,
+      "end": 140.0,
+      "text": " gettin good",
+      "tokens": [
+        50515,
+        34568,
+        665,
+        50565
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 67,
+      "seek": 13600,
+      "start": 140.0,
+      "end": 141.0,
+      "text": " gettin good",
+      "tokens": [
+        50565,
+        34568,
+        665,
+        50615
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 68,
+      "seek": 13600,
+      "start": 144.0,
+      "end": 145.0,
+      "text": " gettin good",
+      "tokens": [
+        50765,
+        34568,
+        665,
+        50815
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 69,
+      "seek": 13600,
+      "start": 145.0,
+      "end": 146.0,
+      "text": " gettin good",
+      "tokens": [
+        50815,
+        34568,
+        665,
+        50865
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 70,
+      "seek": 13600,
+      "start": 150.0,
+      "end": 152.0,
+      "text": " gettin good",
+      "tokens": [
+        51065,
+        34568,
+        665,
+        51165
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 71,
+      "seek": 13600,
+      "start": 152.0,
+      "end": 154.0,
+      "text": " gettin good",
+      "tokens": [
+        51165,
+        34568,
+        665,
+        51265
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 72,
+      "seek": 13600,
+      "start": 154.0,
+      "end": 155.0,
+      "text": " gettin good",
+      "tokens": [
+        51265,
+        34568,
+        665,
+        51315
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 73,
+      "seek": 13600,
+      "start": 155.0,
+      "end": 156.0,
+      "text": " gettin good",
+      "tokens": [
+        51315,
+        34568,
+        665,
+        51365
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 74,
+      "seek": 13600,
+      "start": 156.0,
+      "end": 157.0,
+      "text": " gettin good",
+      "tokens": [
+        51365,
+        34568,
+        665,
+        51415
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 75,
+      "seek": 13600,
+      "start": 157.0,
+      "end": 158.0,
+      "text": " gettin good",
+      "tokens": [
+        51415,
+        34568,
+        665,
+        51465
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 76,
+      "seek": 13600,
+      "start": 158.0,
+      "end": 159.0,
+      "text": " gettin good",
+      "tokens": [
+        51465,
+        34568,
+        665,
+        51515
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 77,
+      "seek": 13600,
+      "start": 159.0,
+      "end": 160.0,
+      "text": " gettin good",
+      "tokens": [
+        51515,
+        34568,
+        665,
+        51565
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 78,
+      "seek": 13600,
+      "start": 160.0,
+      "end": 161.0,
+      "text": " gettin good",
+      "tokens": [
+        51565,
+        34568,
+        665,
+        51615
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 79,
+      "seek": 13600,
+      "start": 161.0,
+      "end": 162.0,
+      "text": " gettin good",
+      "tokens": [
+        51615,
+        34568,
+        665,
+        51665
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 80,
+      "seek": 13600,
+      "start": 162.0,
+      "end": 163.0,
+      "text": " gettin good",
+      "tokens": [
+        51665,
+        34568,
+        665,
+        51715
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 81,
+      "seek": 13600,
+      "start": 163.0,
+      "end": 164.0,
+      "text": " gettin good",
+      "tokens": [
+        51715,
+        34568,
+        665,
+        51765
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 82,
+      "seek": 13600,
+      "start": 164.0,
+      "end": 165.0,
+      "text": " gettin good",
+      "tokens": [
+        51765,
+        34568,
+        665,
+        51815
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 83,
+      "seek": 13600,
+      "start": 165.0,
+      "end": 166.0,
+      "text": " gettin good",
+      "tokens": [
+        51815,
+        34568,
+        665,
+        51865
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -2.040340659059124,
+      "compression_ratio": 10.391304347826088,
+      "no_speech_prob": 0.02000994235277176
+    },
+    {
+      "id": 84,
+      "seek": 16600,
+      "start": 166.0,
+      "end": 195.18,
+      "text": "下一other",
+      "tokens": [
+        50365,
+        45271,
+        802,
+        51824
+      ],
+      "temperature": 1.0,
+      "avg_logprob": -4.297860463460286,
+      "compression_ratio": 0.5789473684210527,
+      "no_speech_prob": 0.30267736315727234
+    }
+  ]
+}
