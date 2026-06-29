@@ -1,0 +1,31 @@
+{
+  "name": "@arc-lab/coach-platform",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:contract": "node ../../scripts/arc-lab-next-platform-smoke.mjs",
+    "smoke:runtime": "node ../../scripts/arc-lab-next-platform-runtime-smoke.mjs",
+    "smoke:browser": "node ../../scripts/arc-lab-next-platform-browser-smoke.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  }
+}

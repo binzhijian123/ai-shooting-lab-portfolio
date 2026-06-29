@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f2e28" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Arc Lab" />
+    <title>Arc Lab 教练工作台</title>
+    <link rel="manifest" href="/arc-lab.webmanifest" />
+    <link rel="stylesheet" href="/arc-lab.css" />
+  </head>
+  <body class="portal-mode">
+
+    <main class="shell">
+      <section class="poster-stage arc-poster" id="posterStage" aria-label="Arc Lab 海报入口">
+        <div class="poster-frame" id="posterFrame" aria-hidden="true">
+          <div class="mono-backdrop" id="monoBackdrop" aria-hidden="true"></div>
+          <div class="mono-backdrop mono-backdrop-next" id="monoBackdropNext" aria-hidden="true"></div>
+          <div class="grain" aria-hidden="true"></div>
+          <div class="court-lines" aria-hidden="true"></div>
+
+          <div class="poster-copy" aria-hidden="true">
+            <p id="posterDate">Today</p>
+            <h1><span>ARC</span><span>LAB</span></h1>
+          </div>
+
+          <div class="athlete-layer" id="athleteLayer" aria-hidden="true">
+            <img id="athleteImage" alt="" />
+          </div>
+          <div class="athlete-layer athlete-layer-next" id="athleteLayerNext" aria-hidden="true">
+            <img id="athleteImageNext" alt="" />
+          </div>
+        </div>
+
+        <div class="poster-lockup">
+          <a class="brand-link" href="#coach" aria-label="进入 Arc Lab 教练端">
+            <span class="brand-mark">A</span>
+            <span>Arc Lab</span>
+          </a>
+          <div class="slide-meta">
+            <span id="slideKicker">Release Study</span>
+            <strong id="slideTitle">Curry Corner Three</strong>
+          </div>
+        </div>
+
+        <div class="poster-controls" aria-label="海报控制">
+          <button class="control-button" id="prevSlide" type="button" aria-label="上一张海报">‹</button>
+          <button class="control-button control-button-primary" id="togglePlay" type="button" aria-label="暂停轮播">Pause</button>
+          <button class="control-button" id="nextSlide" type="button" aria-label="下一张海报">›</button>
+        </div>
+
+        <div class="lab-transition" id="labTransition" aria-hidden="true">
+          <div class="lab-transition-card">
+            <div class="lab-transition-preview">
+              <img id="transitionAthlete" alt="" />
+            </div>
+            <div class="lab-transition-data">
+              <span>Coach OS</span>
+              <strong>Review Film</strong>
+              <div><em></em><p>证据</p><b>AI</b></div>
+              <div><em></em><p>教练确认</p><b>OK</b></div>
+              <div><em></em><p>复测</p><b>↻</b></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="poster-actions" aria-label="选择 Arc Lab 入口">
+          <a class="poster-cta" href="#coach" aria-label="进入 Arc Lab 教练端">教练端</a>
+          <a class="poster-cta poster-cta-secondary" href="#student" aria-label="进入 Arc Lab 学生端">学生端</a>
+        </div>
+      </section>
+
+      <section id="coach" class="grid-section app-screen" aria-labelledby="coach-title">
+        <div class="section-heading" data-tabs="home review students">
+          <p class="eyebrow">教练端</p>
+          <h2 id="coach-title">复盘队列和草稿箱</h2>
+        </div>
+        <div class="panel identity-panel" data-tabs="home students">
+          <h3>本地身份与邀请</h3>
+          <form id="coachLoginForm" class="form-stack">
+            <label>
+              教练手机号
+              <input name="phone" inputmode="tel" autocomplete="tel" value="13800000000" />
+            </label>
+            <button type="submit">登录教练</button>
+          </form>
+          <form id="athleteForm" class="form-stack">
+            <label>
+              学生姓名
+              <input name="display_name" autocomplete="name" value="小明" />
+            </label>
+            <button type="submit">添加学生并生成邀请</button>
+          </form>
+          <button id="priorityAthleteButton" type="button" disabled>设为优先学生</button>
+          <div id="identityStatus" class="identity-status"></div>
+        </div>
+        <div class="panel analysis-lab-panel" data-tabs="review">
+          <div class="analysis-lab-header">
+            <div>
+              <h3>课堂视频复盘</h3>
+              <p>完整复用原 AI 投篮实验室：上传主视角/补充视角、本地播放、MediaPipe 预览、证据包、教练报告、关键帧和本地标注帧导出。</p>
+            </div>
+            <a href="/?embedded=arc-lab-review" target="_blank" rel="noreferrer">全屏打开</a>
+          </div>
+          <iframe
+            class="analysis-lab-frame"
+            title="AI 投篮实验室完整复盘工作台"
+            src="/?embedded=arc-lab-review"
+            loading="eager"
+          ></iframe>
+        </div>
+        <div class="arc-legacy-review-flow" hidden>
+          <div id="coachReview" class="review-surface"></div>
+        </div>
+        <div class="panel identity-panel arc-legacy-review-flow" data-tabs="review" hidden>
+          <h3>上传线下课视频</h3>
+          <form id="lessonUploadForm" class="form-stack">
+            <label>
+              学生 ID
+              <input name="athlete_id" autocomplete="off" placeholder="添加学生后自动填入" />
+            </label>
+            <label>
+              初始问题标签
+              <select name="initial_problem_tag_id"></select>
+            </label>
+            <label>
+              拍摄视角
+              <select name="camera_view"></select>
+            </label>
+            <label>
+              投篮类型
+              <select name="shot_type"></select>
+            </label>
+            <label>
+              本地视频文件名
+              <input name="file_name" autocomplete="off" value="lesson-side-spot-up.mp4" />
+            </label>
+            <label>
+              课堂视频文件（可选）
+              <input name="video_file" type="file" accept="video/mp4,video/quicktime,video/webm" />
+            </label>
+            <input name="trend_metric_value" type="hidden" value="120" />
+            <button type="submit">创建课视频证据包</button>
+          </form>
+          <div id="lessonUploadStatus" class="identity-status"></div>
+        </div>
+        <div class="panel identity-panel" data-tabs="review">
+          <h3>确认并发布反馈</h3>
+          <form id="reviewPublishForm" class="form-stack">
+            <label>
+              Session ID
+              <input name="session_id" autocomplete="off" placeholder="上传课视频后自动填入" />
+            </label>
+            <label>
+              主问题
+              <select name="primary_problem_tag_id"></select>
+            </label>
+            <label>
+              次问题
+              <select name="secondary_problem_tag_ids" multiple size="3"></select>
+            </label>
+            <label>
+              教练反馈
+              <textarea name="coach_feedback_text" rows="3">主问题是起球早于下肢启动，本周先重建脚带手顺序。</textarea>
+            </label>
+            <button type="submit">发布 3 步训练计划</button>
+          </form>
+          <div id="reviewPublishStatus" class="identity-status"></div>
+        </div>
+        <div class="panel identity-panel" data-tabs="review">
+          <h3>复盘作业与训练效果</h3>
+          <form id="homeworkReviewForm" class="form-stack">
+            <label>
+              作业 Session ID
+              <input name="session_id" autocomplete="off" placeholder="学生上传后自动填入" />
+            </label>
+            <label>
+              纠正训练效果
+              <select name="correction_status">
+                <option value="effective">有效</option>
+                <option value="ineffective">无效</option>
+                <option value="watching">继续观察</option>
+                <option value="unrated">暂不评价</option>
+              </select>
+            </label>
+            <label>
+              迁移训练效果
+              <select name="transfer_status">
+                <option value="watching">继续观察</option>
+                <option value="effective">有效</option>
+                <option value="ineffective">无效</option>
+                <option value="unrated">暂不评价</option>
+              </select>
+            </label>
+            <label>
+              教练复盘备注
+              <textarea name="coach_note" rows="3">继续观察动作能否稳定迁移到真实投篮节奏。</textarea>
+            </label>
+            <button type="submit">发布作业复盘</button>
+          </form>
+          <div id="homeworkReviewStatus" class="identity-status"></div>
+        </div>
+        <div class="panel identity-panel" data-tabs="trend">
+          <h3>确认学生趋势说明</h3>
+          <form id="trendExplanationForm" class="form-stack">
+            <label>
+              学生 ID
+              <input name="athlete_id" autocomplete="off" placeholder="添加学生后自动填入" />
+            </label>
+            <label>
+              当前趋势轨道
+              <input name="trend_key" autocomplete="off" readonly placeholder="先生成趋势记录" />
+            </label>
+            <label>
+              面向学生的趋势说明
+              <textarea name="text" rows="3">教练确认后，这里才会在学生端显示。</textarea>
+            </label>
+            <button type="submit">确认并发布趋势说明</button>
+          </form>
+          <div id="trendExplanationStatus" class="identity-status"></div>
+        </div>
+        <div class="panel identity-panel" data-tabs="students">
+          <h3>删除审计</h3>
+          <form id="videoDeleteForm" class="form-stack">
+            <label>
+              Video Asset ID
+              <input name="video_asset_id" autocomplete="off" placeholder="课堂视频创建后自动填入" />
+            </label>
+            <button type="submit">删除视频资产</button>
+          </form>
+          <form id="sessionDeleteForm" class="form-stack">
+            <label>
+              Session ID
+              <input name="session_id" autocomplete="off" placeholder="课堂视频创建后自动填入" />
+            </label>
+            <button type="submit">删除 Session</button>
+          </form>
+          <form id="athleteDataDeleteForm" class="form-stack">
+            <label>
+              学生 ID
+              <input name="athlete_id" autocomplete="off" placeholder="添加学生后自动填入" />
+            </label>
+            <button type="submit">删除学生数据</button>
+          </form>
+          <div id="auditedDeleteStatus" class="identity-status"></div>
+        </div>
+        <div class="panel" data-tabs="home">
+          <h3>待复盘队列</h3>
+          <div id="reviewQueue" class="stack"></div>
+        </div>
+        <div class="panel" data-tabs="home">
+          <h3>教练通知</h3>
+          <div id="coachNotifications" class="stack"></div>
+        </div>
+        <div class="panel" data-tabs="home">
+          <h3>发布门禁</h3>
+          <dl id="publishGate" class="fact-list"></dl>
+        </div>
+      </section>
+
+      <section id="student" class="grid-section app-screen" aria-labelledby="student-title">
+        <div class="section-heading" data-tabs="home training knowledge">
+          <p class="eyebrow">学生端</p>
+          <h2 id="student-title">反馈、作业和知识库</h2>
+        </div>
+        <div class="panel identity-panel" data-tabs="home">
+          <h3>邀请入口绑定</h3>
+          <form id="studentBindForm" class="form-stack">
+            <label>
+              邀请 token
+              <input name="token" autocomplete="off" />
+            </label>
+            <label>
+              学生手机号
+              <input name="phone" inputmode="tel" autocomplete="tel" value="13900000000" />
+            </label>
+            <button type="submit">绑定手机号</button>
+          </form>
+          <div id="studentBindStatus" class="identity-status"></div>
+        </div>
+        <div class="panel identity-panel" data-tabs="home">
+          <h3>查看教练反馈</h3>
+          <form id="studentResultForm" class="form-stack">
+            <label>
+              邀请 token
+              <input name="token" autocomplete="off" />
+            </label>
+            <button type="submit">查看已发布结果</button>
+          </form>
+          <div id="studentResultStatus" class="identity-status"></div>
+        </div>
+        <div class="panel analysis-lab-panel" data-tabs="home">
+          <div class="analysis-lab-header">
+            <div>
+              <h3>已发布课堂视频</h3>
+              <p>完整复用原 AI 投篮实验室：本地播放、MediaPipe 预览、关键帧、证据包和标注帧导出保持与投篮实验室一致。</p>
+            </div>
+            <a href="/?embedded=arc-lab-review" target="_blank" rel="noreferrer">全屏打开</a>
+          </div>
+          <iframe
+            class="analysis-lab-frame"
+            title="AI 投篮实验室学生课堂复盘"
+            src="/?embedded=arc-lab-review"
+            loading="eager"
+          ></iframe>
+        </div>
+        <div class="arc-legacy-review-flow" hidden>
+          <div id="studentReview" class="review-surface"></div>
+        </div>
+        <div class="panel analysis-lab-panel" data-tabs="training">
+          <div class="analysis-lab-header">
+            <div>
+              <h3>上传作业/复测视频</h3>
+              <p>完整复用原 AI 投篮实验室：主视角/补充视角上传、本地播放、证据包、教练报告、关键帧和本地标注帧导出保持一致。</p>
+            </div>
+            <a href="/?embedded=arc-lab-review" target="_blank" rel="noreferrer">全屏打开</a>
+          </div>
+          <iframe
+            class="analysis-lab-frame"
+            title="AI 投篮实验室学生复测上传"
+            src="/?embedded=arc-lab-review"
+            loading="eager"
+          ></iframe>
+        </div>
+        <div class="panel identity-panel arc-legacy-review-flow" data-tabs="training" hidden>
+          <h3>上传作业/复测视频</h3>
+          <form id="studentHomeworkForm" class="form-stack">
+            <label>
+              邀请 token
+              <input name="token" autocomplete="off" />
+            </label>
+            <label>
+              训练任务 ID
+              <input name="training_task_id" autocomplete="off" placeholder="查看反馈后自动填入" />
+            </label>
+            <label>
+              实际拍摄视角
+              <select name="camera_view"></select>
+            </label>
+            <label>
+              投篮类型
+              <select name="shot_type"></select>
+            </label>
+            <label>
+              本地视频文件名
+              <input name="file_name" autocomplete="off" value="homework-side-spot-up.mp4" />
+            </label>
+            <label>
+              复测视频文件（可选）
+              <input name="video_file" type="file" accept="video/mp4,video/quicktime,video/webm" />
+            </label>
+            <input name="trend_metric_value" type="hidden" value="95" />
+            <label class="check-row">
+              <input name="self_reported_complete" type="checkbox" checked />
+              本次训练已完成
+            </label>
+            <button type="submit">上传复测视频</button>
+          </form>
+          <div id="studentHomeworkStatus" class="identity-status"></div>
+        </div>
+        <div class="panel" data-tabs="training">
+          <h3>三步训练计划</h3>
+          <div id="trainingPlan" class="step-list"></div>
+        </div>
+        <div class="panel knowledge-search-panel" id="knowledgeAssistantPanel" data-tabs="knowledge">
+          <h3>本地大模型搜索</h3>
+          <form id="knowledgeAssistantForm" class="form-stack">
+            <label>
+              训练问题
+              <input name="question" autocomplete="off" value="低位到高位起球怎么做？" />
+            </label>
+            <button type="submit">搜索</button>
+          </form>
+          <div id="knowledgeAssistantStatus" class="identity-status"></div>
+          <div id="knowledgeAssistant" class="stack"></div>
+        </div>
+        <div class="panel knowledge-reference-panel" id="knowledgeDirectoryPanel" data-tabs="knowledge">
+          <h3>检索引用</h3>
+          <div id="knowledgeDirectoryStatus" class="identity-status"></div>
+          <div id="knowledgeDirectory" class="stack"></div>
+        </div>
+      </section>
+
+      <section id="trend" class="grid-section app-screen" aria-labelledby="trend-title">
+        <div class="section-heading">
+          <p class="eyebrow">趋势</p>
+          <h2 id="trend-title">线下课和作业分轨追踪</h2>
+        </div>
+        <div class="panel wide" data-trend-role="student">
+          <h3>学生简化进步趋势</h3>
+          <div id="studentTrend" class="trend-grid"></div>
+        </div>
+        <div class="panel wide" data-trend-role="coach">
+          <h3>教练趋势轨道</h3>
+          <div id="coachTrend" class="trend-grid"></div>
+        </div>
+        <div class="panel backend-panel" hidden>
+          <h3>产品边界</h3>
+          <ul id="boundaries" class="boundary-list"></ul>
+        </div>
+        <div class="panel backend-panel" hidden>
+          <h3>生产化边界</h3>
+          <div id="productionBoundary" class="stack"></div>
+        </div>
+      </section>
+
+      <nav class="app-tabbar" data-role="coach" aria-label="教练端栏目">
+        <button type="button" data-tab="home">首页</button>
+        <button type="button" data-tab="review">复盘</button>
+        <button type="button" data-tab="students">学生</button>
+        <button type="button" data-tab="trend">趋势</button>
+      </nav>
+      <nav class="app-tabbar" data-role="student" aria-label="学生端栏目">
+        <button type="button" data-tab="home">首页</button>
+        <button type="button" data-tab="training">训练</button>
+        <button type="button" data-tab="knowledge">知识</button>
+        <button type="button" data-tab="progress">进步</button>
+      </nav>
+    </main>
+
+    <script type="module" src="/poster.js"></script>
+    <script type="module" src="/arc-lab.js"></script>
+  </body>
+</html>

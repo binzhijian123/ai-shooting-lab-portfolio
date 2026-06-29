@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 投篮实验室</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' fill='%23ffffff' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" />
+    <script>
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("intro") === "1" || sessionStorage.getItem("arcLabIntroPending") === "1") {
+          document.documentElement.classList.add("lab-entry-pending");
+        }
+        if (params.get("embedded") === "arc-lab-review") {
+          document.documentElement.classList.add("lab-embedded");
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/lab.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark">A</div>
+          <div>
+            <h1>AI 投篮实验室</h1>
+            <span>AI SHOOTING LAB</span>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-item active" data-section="workbench">诊断工作台</button>
+          <button class="nav-item" data-section="logs">实验室日志</button>
+          <button class="nav-item" data-section="memory">训练记忆</button>
+        </nav>
+        <div class="profile">
+          <span class="status-dot"></span>
+          <span>Coach Mode</span>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="lab-masthead" id="dockedPoster" aria-label="ArcLab analysis lab" role="button" tabindex="0">
+          <div class="lab-masthead-title">
+            <p>AI Shooting Laboratory</p>
+            <h2><span>ARC</span><span>LAB</span></h2>
+          </div>
+          <img class="lab-masthead-athlete lab-masthead-athlete-current" id="mastheadAthlete" src="/assets/poster/subjects/centered-new-set/IMG_6368-subject.png" alt="" aria-hidden="true" />
+          <img class="lab-masthead-athlete lab-masthead-athlete-next" id="mastheadAthleteNext" src="/assets/poster/subjects/centered-new-set/IMG_6351-subject.png" alt="" aria-hidden="true" />
+          <div class="lab-masthead-copy">
+            <strong>Upload film. Build evidence. Get the coach report.</strong>
+            <span>本地视频进入证据包流水线，报告、姿态切片、记忆库在同一工作台完成。</span>
+          </div>
+        </section>
+        <section class="hero-panel view-panel workbench-panel" id="workbench">
+          <div class="session-bar">
+            <div>
+              <strong id="sessionTitle">2026-06-13 训练 - 定点三分</strong>
+              <span id="sessionMeta">视角：侧面 / 60fps / DeepSeek 证据包</span>
+            </div>
+            <div class="sync">● 已同步知识库</div>
+          </div>
+
+          <div class="workbench-grid">
+            <section class="upload-card core-input-card" id="upload">
+              <div class="section-title">输入 <span>本地视频</span></div>
+              <div class="video-input-pair">
+                <div class="video-input-slot">
+                  <label class="file-drop">
+                    <input id="videoInput" type="file" accept="video/mp4,video/quicktime,video/*" />
+                    <strong>主视角视频</strong>
+                    <span>选择 MP4 / MOV，本地播放后生成结构化证据包。</span>
+                  </label>
+                  <div id="fileInfo" class="file-info">尚未选择视频。未选择时会使用 sample evidence contract。</div>
+                </div>
+
+                <div class="video-input-slot">
+                  <label class="file-drop secondary-upload">
+                    <input id="pairedVideoInput" type="file" accept="video/mp4,video/quicktime,video/*" />
+                    <strong>补充视角</strong>
+                    <span>可选，用于同一 session 的 front + side evidence merge。</span>
+                  </label>
+                  <div id="pairedFileInfo" class="file-info">尚未选择补充视角。</div>
+                </div>
+              </div>
+
+              <div class="form-grid core-form">
+                <label>视角<select id="cameraView"><option value="unknown">未确认</option><option value="side">侧面</option><option value="front">正面</option><option value="rear_oblique">后方偏侧</option><option value="side_back_candidate">侧后方候选</option></select></label>
+                <label>补充视角<select id="pairedCameraView"><option value="front">正面</option><option value="side">侧面</option><option value="rear_oblique">后方偏侧</option><option value="side_back_candidate">侧后方候选</option></select></label>
+                <label>投篮手<select id="dominantHand"><option value="right">右手</option><option value="left">左手</option></select></label>
+                <label>训练目标<input id="trainingGoal" value="提升三分稳定性" /></label>
+                <label>记忆策略<select id="memoryStatus"><option value="long_term">写入长期记忆</option><option value="short_term_review">仅短期复核</option></select></label>
+              </div>
+              <div id="inputContractWarnings" class="report-body input-contract-warnings">
+                <p class="muted">上传后会按视角、帧率、时长和尺寸提示本次输入会如何降级。</p>
+              </div>
+              <button class="primary" id="analyzeButton">生成证据包 + 教练报告</button>
+            </section>
+
+            <div class="video-panel replay-panel">
+              <div class="section-title">视频复盘 <span>浏览器本地播放</span></div>
+              <div class="video-stage">
+                <video id="shotVideo" controls muted playsinline></video>
+                <canvas id="poseCanvas" class="pose-canvas" aria-hidden="true"></canvas>
+                <div id="emptyVideo" class="empty-video">
+                  <span>上传一段投篮视频</span>
+                  <small>骨架只在浏览器端 MediaPipe 检测到人体后绘制；未检测到时只生成结构化证据包。</small>
+                </div>
+                <div id="poseStatus" class="pose-status">等待上传视频；不会显示静态假骨架。</div>
+              </div>
+              <div class="transport">
+                <button id="playButton">播放/暂停</button>
+                <button id="exportFrameButton" type="button" disabled>导出标注帧</button>
+                <div class="progress"><span></span></div>
+                <span id="timeReadout">00:00.00 / 00:00.00</span>
+              </div>
+              <div id="frameExportStatus" class="frame-export-status">本地 PNG 导出只保存当前视频帧和当前 overlay；不导出视频，不上传云端。</div>
+              <div id="annotatedFrameReview" class="annotated-frame-review" aria-live="polite">
+                <p class="muted">导出后会在本机浏览器内显示最近 3 张标注帧预览；不会写入服务器、导出视频或上传云端。</p>
+              </div>
+              <div class="keyframes" id="keyframes"></div>
+            </div>
+          </div>
+
+          <div class="diagnosis-grid" id="analysis">
+            <aside class="evidence-panel">
+              <section class="diagnosis-card">
+                <div class="score-ring"><span id="confidenceScore">--</span></div>
+                <div>
+                  <p>证据等级</p>
+                  <h2 id="diagnosisTitle">等待分析</h2>
+                  <span id="diagnosisCopy">上传视频并生成 evidence packet 后再输出报告。</span>
+                </div>
+              </section>
+
+              <section class="metric-list" id="metricList"></section>
+              <section class="coach-reasons" id="coachReasons"></section>
+            </aside>
+
+            <section class="coach-report">
+              <div class="section-title">诊断摘要 <span id="reportMode">local mock</span></div>
+              <div id="coachReport" class="report-body"></div>
+            </section>
+
+            <section class="evidence-summary-card">
+              <div class="section-title">证据摘要 <span id="qualityBadge">待分析</span></div>
+              <div class="chart-strip" id="chartStrip"></div>
+              <div class="evidence-summary-grid">
+                <section class="release-motion-card">
+                  <div class="section-title">出手姿态 / 发力切片 <span id="releaseMotionStatus">not run</span></div>
+                  <div id="releaseMotionCard" class="report-body">
+                    <p class="muted">等待分析。该切片只看起球到出手瞬间的人体姿态和手腕路径，不追踪空中球路。human_pose_motion_slice_only_no_airborne_ball_tracking</p>
+                  </div>
+                </section>
+
+                <section class="multi-angle-card">
+                  <div class="section-title">多角度证据 <span id="multiAngleStatus">单视角</span></div>
+                  <div id="multiAngleCard" class="report-body">
+                    <p class="muted">上传补充视角后，会生成 front + side 合并证据。</p>
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <section class="feedback-card">
+              <div class="section-title">反馈 / 记忆 <span>训练闭环</span></div>
+              <div class="feedback-grid">
+                <label>结果<select id="shotFeedback"><option value="unknown">未记录</option><option value="made">命中</option><option value="missed">未中</option></select></label>
+                <label>体感<select id="coachFeedback"><option value="unknown">未记录</option><option value="helpful">建议有帮助</option><option value="unclear">不确定</option><option value="wrong">感觉不准</option></select></label>
+                <label>备注<input id="feedbackNote" placeholder="训练反馈" /></label>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="lab-panel view-panel logs-panel" id="logs" hidden>
+          <div class="section-title">实验室日志 <span>高级工具</span></div>
+          <div class="advanced-grid">
+            <section class="pipeline-card" id="lab">
+              <div class="section-title">模型流水线 <span>调用状态</span></div>
+              <div id="pipelineStatus" class="pipeline-status"></div>
+              <div id="missingEvidence" class="missing-evidence"></div>
+            </section>
+
+            <section class="rule-list">
+              <div class="section-title">信号库 <span>知识库匹配</span></div>
+              <div id="ruleMatches"></div>
+            </section>
+
+            <section class="overlay-diagnostics-card">
+              <div class="section-title">Overlay Diagnostics / 画面叠加诊断 <span id="overlayDiagnosticsStatus">待运行</span></div>
+              <div id="overlayDiagnostics" class="report-body">
+                <p class="muted">等待视频帧或 evidence。该区域只解释当前 overlay 来源，不代表真实样例可读性。</p>
+              </div>
+            </section>
+
+            <section class="upload-ops-card">
+              <div class="section-title">受控上传 / 样例 <span>advanced</span></div>
+              <div class="advanced-actions">
+                <button class="secondary-action" id="deleteUploadButton" type="button" disabled>删除当前上传原始文件</button>
+                <button class="secondary-action" id="deletePairedUploadButton" type="button" disabled>删除补充视角原始文件</button>
+              </div>
+              <label class="advanced-field">检测帧率<input id="videoFps" type="number" min="1" max="240" step="0.01" placeholder="上传后自动识别" readonly /></label>
+              <div class="sample-loader">
+                <div>
+                  <strong>授权样例</strong>
+                  <span id="sampleStatus">正在读取本地样例清单。</span>
+                </div>
+                <select id="sampleSelect" disabled></select>
+                <button class="secondary-action" id="loadSampleButton" type="button" disabled>加载授权样例</button>
+              </div>
+              <div class="sample-readiness-card">
+                <div class="section-title">样例授权门禁 <span id="sampleReadinessStatus">checking</span></div>
+                <div id="sampleReadiness" class="report-body">
+                  <p class="muted">正在读取真实/代表性样例 metadata-only readiness gate。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="alpha-test-card">
+              <div class="section-title">Alpha 授权测试 <span id="alphaTestStatus">local only</span></div>
+              <p class="muted">复用当前本地上传做授权 Alpha 流程验收；结果只进 short_term_review，不作为真实球员诊断。</p>
+              <label>授权记录 ID<input id="alphaAgreementId" value="alpha-local-review" /></label>
+              <label class="checkbox-line"><input id="alphaLocalAuthorization" type="checkbox" /> 我确认仅本地分析/本地验收，禁止公开展示、外部分发、云端保存或训练模型。</label>
+              <button class="secondary-action" id="runAlphaTestButton" type="button">运行 Alpha 授权分析</button>
+              <div id="alphaTestResult" class="cleanup-result"></div>
+            </section>
+
+            <section class="privacy-card">
+              <div class="section-title">隐私边界 / 清理 <span id="privacyStatus">local</span></div>
+              <div id="privacyBoundary" class="report-body">
+                <p class="muted">正在读取本地隐私边界。</p>
+              </div>
+            </section>
+
+            <section class="knowledge-card" id="knowledge">
+              <div class="section-title">知识实验室 <span id="kbVersion">loading</span></div>
+              <div id="knowledgeSummary"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-panel memory-view" id="memory" hidden>
+          <div class="section-title">训练记忆 <span id="memoryCount">SQLite</span></div>
+          <div class="memory-mode-grid">
+            <div>
+              <strong>长期记忆</strong>
+              <span>用于建立个人投篮基线和长期趋势。</span>
+            </div>
+            <div>
+              <strong>短期复核</strong>
+              <span>用于临时验证，不进入长期训练画像。</span>
+            </div>
+          </div>
+          <section class="memory-card">
+            <div class="memory-chart" id="memoryChart"></div>
+            <p id="memorySummary">暂无长期记忆，完成一次高置信分析后建立个人基线。</p>
+            <div id="memoryDetails" class="memory-details"></div>
+            <div id="sessionList" class="session-list"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

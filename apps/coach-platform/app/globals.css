@@ -1,0 +1,203 @@
+:root {
+  color-scheme: light;
+  --bg: oklch(0.97 0.005 245);
+  --surface: oklch(1 0 0);
+  --surface-muted: oklch(0.94 0.01 250);
+  --ink: oklch(0.23 0.025 255);
+  --muted: oklch(0.45 0.025 255);
+  --line: oklch(0.86 0.018 250);
+  --accent: oklch(0.54 0.16 235);
+  --accent-soft: oklch(0.92 0.045 235);
+  --danger-soft: oklch(0.94 0.04 25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.workspace {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0 24px;
+}
+
+.kicker {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.open-local {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 10px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.panel-title span {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.queue-list,
+.plan-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.queue-list {
+  list-style: none;
+}
+
+.queue-list li,
+.plan-list li {
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--surface-muted);
+}
+
+.queue-list li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 10px;
+}
+
+.queue-list span {
+  justify-self: end;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.queue-list p {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.plan-list {
+  padding-left: 20px;
+}
+
+.note {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.boundary-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.boundary-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.boundary-list div:last-child {
+  border-bottom: 0;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+  font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .workspace {
+    padding: 16px;
+  }
+
+  .topbar,
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .open-local {
+    text-align: center;
+  }
+}

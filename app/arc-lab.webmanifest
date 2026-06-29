@@ -1,0 +1,19 @@
+{
+  "name": "Arc Lab Coach OS",
+  "short_name": "Arc Lab",
+  "description": "Coach-led basketball shooting feedback, homework, and trend tracking.",
+  "start_url": "/arc-lab.html",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f6f2",
+  "theme_color": "#0f2e28",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/arc-lab-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

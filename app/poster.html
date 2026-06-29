@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArcLab Poster Wall</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050505'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' fill='%23ff4e45' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E" />
+    <link rel="prefetch" href="/index.html" />
+    <link rel="prefetch" href="/styles.css" />
+    <link rel="prefetch" href="/lab.css" />
+    <link rel="modulepreload" href="/main.js" />
+    <link rel="stylesheet" href="/poster.css" />
+  </head>
+  <body>
+    <main class="poster-shell" aria-label="ArcLab basketball poster carousel">
+      <section class="poster-stage" id="posterStage">
+        <div class="poster-frame" id="posterFrame" aria-hidden="true">
+          <div class="mono-backdrop" id="monoBackdrop" aria-hidden="true"></div>
+          <div class="mono-backdrop mono-backdrop-next" id="monoBackdropNext" aria-hidden="true"></div>
+          <div class="grain" aria-hidden="true"></div>
+          <div class="court-lines" aria-hidden="true"></div>
+
+          <div class="poster-copy" aria-hidden="true">
+            <p id="posterDate">Today</p>
+            <h1><span>ARC</span><span>LAB</span></h1>
+          </div>
+
+          <div class="athlete-layer" id="athleteLayer" aria-hidden="true">
+            <img id="athleteImage" alt="" />
+          </div>
+          <div class="athlete-layer athlete-layer-next" id="athleteLayerNext" aria-hidden="true">
+            <img id="athleteImageNext" alt="" />
+          </div>
+        </div>
+
+        <div class="lab-dock-preview" aria-hidden="true">
+          <div class="lab-preview-session"></div>
+          <div class="lab-preview-grid">
+            <div class="lab-preview-card lab-preview-input"></div>
+            <div class="lab-preview-card lab-preview-replay"></div>
+            <div class="lab-preview-card lab-preview-evidence"></div>
+            <div class="lab-preview-card lab-preview-report"></div>
+          </div>
+        </div>
+
+        <div class="poster-lockup">
+          <a class="brand-link" href="/" aria-label="Back to AI Shooting Lab">
+            <span class="brand-mark">A</span>
+            <span>ArcLab</span>
+          </a>
+          <div class="slide-meta">
+            <span id="slideKicker">Release Study</span>
+            <strong id="slideTitle">Curry Corner Three</strong>
+          </div>
+        </div>
+
+        <div class="poster-controls" aria-label="Poster controls">
+          <button class="control-button" id="prevSlide" type="button" aria-label="Previous image">‹</button>
+          <button class="control-button control-button-primary" id="togglePlay" type="button" aria-label="Pause carousel">Pause</button>
+          <button class="control-button" id="nextSlide" type="button" aria-label="Next image">›</button>
+        </div>
+
+        <div class="lab-transition" id="labTransition" aria-hidden="true">
+          <div class="lab-transition-card">
+            <div class="lab-transition-preview">
+              <img id="transitionAthlete" alt="" />
+            </div>
+            <div class="lab-transition-data">
+              <span>Shot Lab</span>
+              <strong>Upload Film</strong>
+              <div><em></em><p>Release</p><b>82</b></div>
+              <div><em></em><p>Balance</p><b>76</b></div>
+              <div><em></em><p>Timing</p><b>88</b></div>
+            </div>
+          </div>
+        </div>
+
+        <a class="poster-cta" href="/index.html#workbench" aria-label="Enter the ArcLab analysis lab">
+          Start Your Shot Analysis
+        </a>
+      </section>
+    </main>
+    <script type="module" src="/poster.js"></script>
+  </body>
+</html>

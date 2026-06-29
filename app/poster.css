@@ -1,0 +1,887 @@
+:root {
+  color-scheme: dark;
+  --ink: #fff8ef;
+  --muted: rgba(255, 248, 239, 0.68);
+  --red: #ff4e45;
+  --red-soft: rgba(255, 78, 69, 0.32);
+  --black: #050505;
+  --panel: rgba(10, 10, 10, 0.62);
+  --line: rgba(255, 255, 255, 0.18);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--ink);
+}
+
+button {
+  font: inherit;
+}
+
+.poster-shell {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  background: #050505;
+  overflow: hidden;
+}
+
+.poster-stage {
+  position: relative;
+  isolation: isolate;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.poster-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  contain: paint;
+  pointer-events: none;
+  background: transparent;
+  clip-path: inset(0 0 0 0 round 0);
+  transform: translateZ(0);
+  will-change: clip-path, filter;
+}
+
+.poster-frame::after {
+  content: "";
+  position: fixed;
+  inset:
+    var(--dock-frame-top, 0)
+    var(--dock-frame-right, 0)
+    var(--dock-frame-bottom, 0)
+    var(--dock-frame-left, 0);
+  z-index: 8;
+  border: 1px solid rgba(255, 248, 239, 0.18);
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 78, 69, 0.08),
+    0 26px 80px rgba(0, 0, 0, 0.42);
+}
+
+.lab-dock-preview {
+  position: absolute;
+  left: var(--dock-frame-left, 18px);
+  right: var(--dock-frame-right, 18px);
+  top: calc(100svh - var(--dock-frame-bottom, 544px) + 18px);
+  z-index: 2;
+  display: grid;
+  gap: 14px;
+  max-height: calc(var(--dock-frame-bottom, 544px) - 38px);
+  overflow: hidden;
+  opacity: 0;
+  filter: blur(2px);
+  transform: translateY(46px);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+}
+
+.lab-preview-session,
+.lab-preview-card {
+  border: 1px solid rgba(255, 248, 239, 0.13);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 78, 69, 0.08), transparent 34%),
+    rgba(8, 8, 8, 0.76);
+}
+
+.lab-preview-session {
+  height: 70px;
+  opacity: 0;
+  transform: translateY(18px);
+  position: relative;
+  overflow: hidden;
+}
+
+.lab-preview-grid {
+  display: grid;
+  grid-template-columns: minmax(290px, 0.9fr) minmax(420px, 1.6fr);
+  gap: 14px;
+}
+
+.lab-preview-card {
+  min-height: 190px;
+  opacity: 0;
+  transform: translateY(22px);
+  position: relative;
+  overflow: hidden;
+}
+
+.lab-preview-input,
+.lab-preview-replay {
+  min-height: min(34svh, 330px);
+}
+
+.lab-preview-evidence,
+.lab-preview-report {
+  min-height: 120px;
+}
+
+.lab-preview-card::before,
+.lab-preview-card::after,
+.lab-preview-session::before,
+.lab-preview-session::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: rgba(255, 248, 239, 0.1);
+}
+
+.lab-preview-session::before {
+  top: 24px;
+  width: min(320px, 44%);
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255, 248, 239, 0.2);
+}
+
+.lab-preview-session::after {
+  top: 46px;
+  width: min(220px, 32%);
+}
+
+.lab-preview-card::before {
+  top: 22px;
+  width: min(260px, 52%);
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 78, 69, 0.2);
+}
+
+.lab-preview-card::after {
+  top: 58px;
+}
+
+.mono-backdrop,
+.mono-backdrop-next {
+  position: absolute;
+  inset: -6vh -6vw;
+  z-index: -5;
+  background-image: var(--image);
+  background-size: cover;
+  background-position: var(--bg-position, center);
+  filter: grayscale(1) contrast(1.18) brightness(0.62) blur(14px);
+  transform: scale(1.08);
+  transform-origin: left top;
+  transition: opacity 720ms cubic-bezier(0.16, 1, 0.3, 1), transform 720ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mono-backdrop::after,
+.mono-backdrop-next::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--focus-x, 52%) var(--focus-y, 48%), rgba(255, 78, 69, 0.1), transparent 18%),
+    radial-gradient(circle at center, transparent 0 34%, rgba(0, 0, 0, 0.72) 78%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.12) 38%, rgba(0, 0, 0, 0.72));
+}
+
+.mono-backdrop-next {
+  opacity: 0;
+  transform: scale(1.16);
+}
+
+.poster-stage.is-transitioning .mono-backdrop-next {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  opacity: 0.24;
+  mix-blend-mode: overlay;
+  background-image:
+    linear-gradient(0deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+}
+
+.court-lines {
+  position: absolute;
+  inset: auto -12vw -40vh;
+  z-index: -2;
+  height: 70vh;
+  opacity: 0.38;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+
+.court-lines::before,
+.court-lines::after {
+  content: "";
+  position: absolute;
+  border: 2px solid rgba(255, 78, 69, 0.36);
+  border-radius: 50%;
+}
+
+.court-lines::before {
+  width: 34vw;
+  height: 34vw;
+  left: 15vw;
+  top: -8vw;
+}
+
+.court-lines::after {
+  width: 58vw;
+  height: 58vw;
+  right: 2vw;
+  top: -16vw;
+}
+
+.poster-copy {
+  position: absolute;
+  inset: 7svh 6vw auto;
+  z-index: 2;
+  pointer-events: none;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  text-align: center;
+  mix-blend-mode: screen;
+}
+
+.poster-copy p {
+  margin: 0 0 -0.15em;
+  color: var(--red);
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.poster-copy h1 {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  color: var(--red);
+  font-size: 22vw;
+  line-height: 0.74;
+  letter-spacing: -0.035em;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.poster-copy h1 span {
+  display: block;
+}
+
+.athlete-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  opacity: 1;
+  transition:
+    opacity 560ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 560ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.athlete-layer img {
+  width: min(var(--subject-width, 64vw), 1180px);
+  height: min(var(--subject-height, 86svh), 1120px);
+  object-fit: contain;
+  object-position: var(--subject-position, center);
+  filter: saturate(1.24) contrast(1.08) brightness(1.03) drop-shadow(0 24px 28px rgba(0, 0, 0, 0.44));
+  transform: translate(var(--subject-x, 0), var(--subject-y, 0)) scale(var(--subject-zoom, 1));
+  transition: transform 740ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.athlete-layer-next {
+  opacity: 0;
+  filter: blur(20px);
+}
+
+.poster-stage.is-transitioning .athlete-layer {
+  opacity: 0;
+  filter: blur(28px);
+}
+
+.poster-stage.is-transitioning .athlete-layer-next {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.poster-lockup {
+  position: absolute;
+  left: 28px;
+  top: 24px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.brand-link {
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 5px 11px 5px 5px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(14px);
+  border-radius: 999px;
+  font-weight: 850;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #140302;
+  background: var(--red);
+  font-weight: 950;
+}
+
+.slide-meta {
+  display: grid;
+  gap: 3px;
+  padding: 8px 0;
+}
+
+.slide-meta span {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.slide-meta strong {
+  font-size: 18px;
+  text-wrap: balance;
+}
+
+.poster-controls {
+  position: absolute;
+  right: 28px;
+  top: 24px;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-button {
+  min-width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+}
+
+.control-button:hover,
+.control-button:focus-visible,
+.poster-cta:hover,
+.poster-cta:focus-visible {
+  outline: 2px solid var(--red-soft);
+  outline-offset: 2px;
+}
+
+.control-button-primary {
+  min-width: 82px;
+  padding-inline: 16px;
+  color: #160302;
+  background: var(--red);
+  border-color: transparent;
+  font-weight: 900;
+}
+
+.poster-cta {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  z-index: 7;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: #160302;
+  background: var(--red);
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.lab-transition {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0);
+  transition:
+    opacity 220ms ease,
+    background 760ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lab-transition-card {
+  width: min(1040px, calc(100vw - 48px));
+  height: min(620px, calc(100svh - 120px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 248, 239, 0.16);
+  border-radius: 8px;
+  background: rgba(6, 6, 6, 0.88);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.52);
+  transform: translateY(22vh) scale(1.18);
+  filter: blur(22px);
+  opacity: 0;
+  transform-origin: 50% 85%;
+  transition:
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 780ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 420ms ease;
+}
+
+.lab-transition-preview,
+.lab-transition-data {
+  min-width: 0;
+  border: 1px solid rgba(255, 248, 239, 0.14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255, 78, 69, 0.18), transparent 17rem),
+    #050505;
+  overflow: hidden;
+}
+
+.lab-transition-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.lab-transition-preview::after {
+  content: "";
+  position: absolute;
+  inset: auto -18% -44%;
+  height: 70%;
+  border-top: 2px solid rgba(255, 248, 239, 0.16);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+}
+
+.lab-transition-preview img {
+  width: var(--transition-player-start-width, min(58vw, 620px));
+  max-height: 92%;
+  object-fit: contain;
+  filter: saturate(1.2) contrast(1.08) drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
+  transform: translateY(var(--transition-player-start-y, 0)) scale(1);
+  transition:
+    width 920ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lab-transition-data {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  padding: 22px;
+}
+
+.lab-transition-data > span {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lab-transition-data > strong {
+  color: var(--ink);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.lab-transition-data div {
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 58px;
+  padding: 12px;
+  border: 1px solid rgba(255, 248, 239, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.lab-transition-data em {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: conic-gradient(var(--red) 0 78%, rgba(255, 248, 239, 0.12) 78% 100%);
+}
+
+.lab-transition-data p {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.lab-transition-data b {
+  color: var(--red);
+  font-size: 24px;
+}
+
+.poster-stage.is-entering-lab .lab-transition {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.poster-stage.is-entering-lab .lab-transition-card {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(0.82);
+}
+
+.poster-stage.is-entering-lab .lab-transition-preview img {
+  width: var(--transition-player-end-width, min(58vw, 620px));
+  transform: translateY(0) scale(1);
+}
+
+.poster-stage.is-entering-lab .poster-copy,
+.poster-stage.is-entering-lab .poster-lockup,
+.poster-stage.is-entering-lab .poster-controls,
+.poster-stage.is-entering-lab .poster-cta {
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.poster-stage.is-entering-lab .athlete-layer {
+  opacity: 0.08;
+  filter: blur(22px);
+  transform: scale(0.82);
+  transform-origin: center 70%;
+  transition:
+    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 920ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-stage.is-navigating-lab .poster-cta {
+  transform: translateX(-50%) scale(0.985);
+  filter: brightness(1.08);
+  transition:
+    transform 90ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 90ms ease;
+}
+
+.poster-stage.is-navigating-lab .poster-controls,
+.poster-stage.is-navigating-lab .poster-lockup {
+  opacity: 0.72;
+  transition: opacity 90ms ease;
+}
+
+.poster-stage.is-docking-lab .poster-frame {
+  clip-path:
+    inset(
+      var(--dock-frame-top, 0)
+      var(--dock-frame-right, 0)
+      var(--dock-frame-bottom, 0)
+      var(--dock-frame-left, 0)
+      round 8px
+    );
+  filter: blur(0.4px);
+  transition:
+    clip-path 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-stage.is-docking-lab .poster-frame::after {
+  opacity: 1;
+  transition: opacity 220ms ease 280ms;
+}
+
+.poster-stage.is-docking-lab .lab-dock-preview {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+  transition:
+    transform 540ms cubic-bezier(0.16, 1, 0.3, 1) 90ms,
+    filter 420ms cubic-bezier(0.16, 1, 0.3, 1) 120ms,
+    opacity 380ms ease 100ms;
+}
+
+.poster-stage.is-docking-lab .lab-preview-session,
+.poster-stage.is-docking-lab .lab-preview-card {
+  opacity: 0.62;
+  transform: translateY(0);
+  transition:
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 420ms ease;
+}
+
+.poster-stage.is-docking-lab .lab-preview-session {
+  transition-delay: 120ms;
+}
+
+.poster-stage.is-docking-lab .lab-preview-input {
+  transition-delay: 180ms;
+}
+
+.poster-stage.is-docking-lab .lab-preview-replay {
+  transition-delay: 230ms;
+}
+
+.poster-stage.is-docking-lab .lab-preview-evidence {
+  transition-delay: 290ms;
+}
+
+.poster-stage.is-docking-lab .lab-preview-report {
+  transition-delay: 340ms;
+}
+
+.poster-stage.is-docking-lab .mono-backdrop,
+.poster-stage.is-docking-lab .mono-backdrop-next {
+  filter: grayscale(1) contrast(1.12) brightness(0.58) blur(4px);
+  transform:
+    translate(var(--dock-backdrop-x, 0), var(--dock-backdrop-y, 0))
+    scale(var(--dock-backdrop-scale-x, 1), var(--dock-backdrop-scale-y, 1));
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 300ms ease;
+}
+
+.poster-stage.is-docking-lab .poster-copy {
+  transform:
+    translate(var(--dock-title-x, 0), var(--dock-title-y, 0))
+    scale(var(--dock-title-scale, 0.38));
+  transform-origin: left top;
+  filter: blur(2px);
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 360ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 180ms ease;
+}
+
+.poster-stage.is-docking-lab .athlete-layer img {
+  transform:
+    translate(var(--dock-player-x, 0), var(--dock-player-y, 0))
+    scale(var(--dock-player-scale, 0.36));
+  filter: grayscale(1) contrast(1.12) brightness(0.68) blur(2px) drop-shadow(0 18px 26px rgba(0, 0, 0, 0.44));
+  transition:
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 360ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-stage.is-docking-lab .athlete-layer {
+  transition:
+    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 520ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.poster-stage.is-docking-lab .poster-lockup,
+.poster-stage.is-docking-lab .poster-controls,
+.poster-stage.is-docking-lab .poster-cta {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.poster-stage.is-docking-lab .court-lines {
+  opacity: 0.24;
+  transform: rotate(-6deg) scale(0.92);
+  transition:
+    opacity 360ms ease,
+    transform 620ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (orientation: portrait) {
+  .poster-copy {
+    inset: 10svh 3vw auto;
+  }
+
+  .poster-copy p {
+    font-size: 2.2rem;
+  }
+
+  .poster-copy h1 {
+    font-size: 34vw;
+    line-height: 0.78;
+  }
+
+  .athlete-layer img {
+    width: min(var(--subject-width-mobile, 112vw), 900px);
+    height: min(var(--subject-height-mobile, 78svh), 1100px);
+  }
+}
+
+@media (max-width: 720px) {
+  .poster-lockup {
+    left: 14px;
+    top: 14px;
+    gap: 10px;
+  }
+
+  .slide-meta strong {
+    max-width: 170px;
+    font-size: 14px;
+  }
+
+  .slide-meta {
+    display: none;
+  }
+
+  .poster-controls {
+    right: 14px;
+    top: 14px;
+  }
+
+  .control-button {
+    min-width: 38px;
+    height: 38px;
+  }
+
+  .control-button-primary {
+    min-width: 62px;
+    padding-inline: 10px;
+    font-size: 12px;
+  }
+
+  .poster-cta {
+    bottom: 18px;
+    min-height: 46px;
+    width: min(330px, calc(100vw - 28px));
+    font-size: 15px;
+  }
+
+  .lab-dock-preview {
+    left: var(--dock-frame-left, 10px);
+    right: var(--dock-frame-right, 10px);
+    top: calc(100svh - var(--dock-frame-bottom, 180px) + 12px);
+    gap: 10px;
+    transform: translateY(30px);
+  }
+
+  .lab-preview-session {
+    height: 54px;
+  }
+
+  .lab-preview-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lab-preview-card {
+    min-height: 82px;
+  }
+
+  .lab-preview-input,
+  .lab-preview-replay {
+    min-height: 104px;
+  }
+
+  .lab-preview-evidence,
+  .lab-preview-report {
+    display: none;
+  }
+
+  .lab-transition-card {
+    height: min(680px, calc(100svh - 96px));
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    transform: translateY(20vh) scale(1.06);
+  }
+
+  .lab-transition-data {
+    padding: 14px;
+    gap: 8px;
+  }
+
+  .lab-transition-data > strong {
+    font-size: 2rem;
+  }
+
+  .lab-transition-data div {
+    min-height: 48px;
+    padding: 8px;
+  }
+
+  .lab-transition-data em {
+    width: 34px;
+    height: 34px;
+  }
+
+  .poster-stage.is-entering-lab .lab-transition-card {
+    transform: translateY(0) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-dock-preview,
+  .poster-stage.is-docking-lab .lab-dock-preview {
+    display: none;
+  }
+
+  .poster-stage.is-docking-lab .poster-frame,
+  .poster-stage.is-docking-lab .poster-copy,
+  .poster-stage.is-docking-lab .athlete-layer img,
+  .poster-stage.is-docking-lab .mono-backdrop,
+  .poster-stage.is-docking-lab .mono-backdrop-next,
+  .poster-stage.is-docking-lab .court-lines {
+    transition-duration: 1ms !important;
+    filter: none;
+  }
+
+  .poster-stage.is-docking-lab .poster-frame {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mono-backdrop,
+  .mono-backdrop-next,
+  .athlete-layer,
+  .athlete-layer-next,
+  .lab-transition,
+  .lab-transition-card {
+    transition: none;
+  }
+}

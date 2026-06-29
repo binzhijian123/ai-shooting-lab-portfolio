@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Arc Lab">
+  <rect width="512" height="512" rx="96" fill="#0f2e28"/>
+  <path d="M112 312c38-98 103-147 194-147 41 0 73 11 94 34" fill="none" stroke="#f4c95d" stroke-width="34" stroke-linecap="round"/>
+  <circle cx="206" cy="304" r="72" fill="#f26b4f"/>
+  <path d="M147 304h118M206 245v118M158 257c33 23 64 23 96 0M158 351c33-23 64-23 96 0" fill="none" stroke="#0f2e28" stroke-width="12" stroke-linecap="round"/>
+  <path d="M318 283h86M361 240v86" stroke="#e8efe8" stroke-width="22" stroke-linecap="round"/>
+</svg>
