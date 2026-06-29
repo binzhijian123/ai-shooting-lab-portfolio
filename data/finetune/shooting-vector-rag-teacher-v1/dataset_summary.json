@@ -1,0 +1,29 @@
+{
+  "schema_version": "deepseek_teacher_vector_rag_sft_dataset.v1",
+  "source_contract": "deepseek_teacher_generates_rag_grounded_answers_after_vector_rag_retrieval",
+  "dry_run": false,
+  "model": "deepseek-v4-flash",
+  "output_dir": "data/finetune/shooting-vector-rag-teacher-v1",
+  "golden_standard": {
+    "enabled": true,
+    "path": "data/finetune/golden-rag-standard-20/standard_qa.jsonl",
+    "total_valid_examples": 20,
+    "prompt_examples": 8
+  },
+  "requested_count": 300,
+  "generated_questions": 357,
+  "accepted": 278,
+  "rejected": 79,
+  "split_counts": {
+    "train": 239,
+    "valid": 19,
+    "test": 20
+  },
+  "validation_policy": [
+    "json_parse_required",
+    "answer_required",
+    "cited_slugs_must_come_from_rag_references",
+    "confidence_must_be_low_medium_or_high",
+    "boundary_must_be_known"
+  ]
+}

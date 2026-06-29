@@ -1,0 +1,32 @@
+{
+  "schema_version": "deepseek_teacher_rag_sft_dataset.v1",
+  "accepted": 169,
+  "rejected": 31,
+  "split_counts": {
+    "train": 145,
+    "valid": 11,
+    "test": 13
+  },
+  "first_accepted_example": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是 AI 投篮实验室的本地小模型知识助手。\n只能依据用户提供的 RAG 知识卡回答，不能补充知识卡之外的事实。\n只回答通用训练知识，不根据个人视频或个人动作做最终诊断。\n必须输出 JSON，字段为 answer、cited_slugs、confidence、boundary。\ncited_slugs 只能引用输入知识卡中的 slug；证据不足时 cited_slugs 为空。"
+      },
+      {
+        "role": "user",
+        "content": "问题：如果 用户报告投篮动作缺乏动力或热情，应该怎么调整投篮动作？\nRAG 知识卡：\n[\n  {\n    \"slug\": \"kb-douyin_6794996847220935944\",\n    \"title\": \"3.6万 #阿隆戈登 你还记得儿时的梦想吗？\",\n    \"summary\": \"视频通过阿隆戈登的投篮画面，唤起观众对童年篮球梦想的回忆，未直接解决具体投篮技术问题。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"progress_review\",\n      \"shooting\",\n      \"shoulder\",\n      \"timing\",\n      \"wrist\"\n    ]\n  },\n  {\n    \"slug\": \"kb-douyin_7257753964618304822\",\n    \"title\": \"1079 如何利用脚趾投篮！从理论到实操帮助状元快速进化 #投篮教学 #投篮矫正 #waveball\",\n    \"summary\": \"如何通过脚趾（特别是大脚趾）内旋踩地并快速弹起，来提升投篮发力的效率和弹性。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\",\n      \"rotation\",\n      \"shooting\",\n      \"shoulder\",\n      \"timing\",\n      \"training_repair\"\n    ]\n  },\n  {\n    \"slug\": \"kb-douyin_7210004973231377722\",\n    \"title\": \"共创 4287 【投篮技术专访】一段式是两段式投篮的基础，埃文·戈登谈中美投篮教学的差异！ #投篮教学 #投篮训练\",\n    \"summary\": \"一段式（one-motion）投篮是两段式（two-motion）投篮的基础，尤其适合年轻球员和现代快节奏比赛；中美投篮教学差异在于训练方式（比赛模拟 vs. 静态定点）。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\",\n      \"pull_up_stop\",\n      \"shooting\",\n      \"shoulder\",\n      \"timing\",\n      \"training_repair\"\n    ]\n  }\n]\n请只依据这些知识卡输出JSON。"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"answer\":\"针对投篮动作缺乏动力的问题，可以参考利用脚趾发力的技术：通过大脚趾内旋踩地并快速弹起，可以提升投篮发力的效率和弹性，从而改善动力不足的问题。\",\"cited_slugs\":[\"kb-douyin_7257753964618304822\"],\"confidence\":\"medium\",\"boundary\":\"general_training_only\"}"
+      }
+    ],
+    "metadata": {
+      "source": "deepseek_teacher_answer",
+      "cited_slugs": [
+        "kb-douyin_7257753964618304822"
+      ]
+    }
+  }
+}

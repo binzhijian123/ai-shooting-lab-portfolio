@@ -1,0 +1,46 @@
+{
+  "schema_version": "deepseek_teacher_rag_sft_dataset.v1",
+  "source_contract": "deepseek_teacher_generates_rag_grounded_answers_after_local_retrieval",
+  "dry_run": true,
+  "model": "dry_run",
+  "output_dir": "data/finetune/shooting-rag-deepseek-teacher",
+  "requested_count": 12,
+  "generated_questions": 12,
+  "accepted": 10,
+  "rejected": 2,
+  "split_counts": {
+    "train": 8,
+    "valid": 0,
+    "test": 2
+  },
+  "first_accepted_example": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是 AI 投篮实验室的本地小模型知识助手。\n只能依据用户提供的 RAG 知识卡回答，不能补充知识卡之外的事实。\n只回答通用训练知识，不根据个人视频或个人动作做最终诊断。\n必须输出 JSON，字段为 answer、cited_slugs、confidence、boundary。\ncited_slugs 只能引用输入知识卡中的 slug；证据不足时 cited_slugs 为空。"
+      },
+      {
+        "role": "user",
+        "content": "问题：低位到高位起球怎么做？\nRAG 知识卡：\n[\n  {\n    \"slug\": \"kb-douyin_7349396087804841279\",\n    \"title\": \"3661 重置版|揭秘张伟丽与库里相同的发力模式，本人亲测适用普通人！ #库里 #张伟丽 #投篮教学\",\n    \"summary\": \"本视频介绍一种基于筋膜主导发力模式的训练方法，帮助普通人在投篮时实现下肢快速爆发与核心稳定，模仿库里和张伟丽的发力模式。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\",\n      \"shooting\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"用户投篮时脚跟完全贴地，前脚掌未抬起。\",\n        \"then\": \"用户未采用前脚掌发力模式，可能缺乏爆发力。\",\n        \"check\": \"检查脚踝角度和脚跟离地高度。\",\n        \"repair\": \"进行前脚掌踩地站立练习，逐步增加脚踝锁定意识。\"\n      },\n      {\n        \"if\": \"用户发力时只有小腿紧张，臀部无参与感。\",\n        \"then\": \"发力链中断，未链接到臀部。\",\n        \"check\": \"观察髋关节是否伸展、臀部是否收缩。\",\n        \"repair\": \"进行横向双脚跳训练，专注于从脚底到臀部的发力感知。\"\n      }\n    ],\n    \"repair_actions\": []\n  },\n  {\n    \"slug\": \"kb-douyin_7031380362534096160\",\n    \"title\": \"2.9万 投篮无力？压腕脱手？ #特雷杨 最值得普通人学习的投篮模板 #篮球教学 #waveball\",\n    \"summary\": \"解决三分投篮无力（发力困难）和压腕脱手（出手时球提前滑落）两个问题，以特雷杨的一段式投篮为模板。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"ball_pickup\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"用户报告投三分吃力，且侧面视频显示抬球点时肘部高于肩部。\",\n        \"then\": \"诊断为高肘部投篮，上肢发力为主，下肢力量传导不畅。\",\n        \"check\": \"检测大臂与躯干夹角是否>90°；检测顶肘向量与起跳向量夹角是否>15°。\",\n        \"repair\": \"练习低肘部抬球（肘低于肩），先无球模拟，再持球近距离投篮。\"\n      },\n      {\n        \"if\": \"用户报告出手时球脱手、旋转弱，且正面视频显示辅助手未向投篮手方向加压。\",\n        \"then\": \"诊断为辅助手技术不当，导致投篮手未紧贴篮球，压腕不稳定。\",\n        \"check\": \"检测辅助手与球的接触位置（是否在球侧面）；检测出手前投篮手手腕角度变化是否平稳。\",\n        \"repair\": \"练习辅助手加压举球（辅助手发力，投篮手放松），先无球模拟，再持球近距离投篮。\"\n      }\n    ],\n    \"repair_actions\": []\n  },\n  {\n    \"slug\": \"kb-douyin_7490627475781733683\",\n    \"title\": \"976 胡明轩投篮问题浅析！主视眼强势导致上肢力线扭曲，发力卡顿。\",\n    \"summary\": \"主视眼与投篮手异侧（或主视眼过于强势）导致的上肢力线扭曲、发力卡顿问题。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"dominant_eye\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"- 用户投篮手为左手，且主视眼为右眼（异侧）。 - 正面视频显示投篮手臂向内撇，肩肘腕不在一条直线。 - 背后视频显示头部明显左偏，视线从左手外侧看向篮筐。\",\n        \"then\": \"- 诊断为“主视眼强势导致的上肢力线扭曲”。\",\n        \"check\": \"- 确认用户主视眼测试结果。 - 计算肩-肘-腕连线与垂直线的夹角。 - 计算头部中心与躯干中轴线的偏移量。\",\n        \"repair\": \"- 进行主视眼适应训练（如闭眼投篮、调整瞄准点）。 - 进行头部位置矫正训练（如对镜投篮，保持头部中立）。 - 进行直线发力训练（如单手投篮，强调肩肘腕直线）。\"\n      }\n    ],\n    \"repair_actions\": []\n  }\n]\n请只依据这些知识卡输出 JSON。"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"answer\":\"根据检索到的知识卡，3661 重置版|揭秘张伟丽与库里相同的发力模式，本人亲测适用普通人！ #库里 #张伟丽 #投篮教学：本视频介绍一种基于筋膜主导发力模式的训练方法，帮助普通人在投篮时实现下肢快速爆发与核心稳定，模仿库里和张伟丽的发力模式。；2.9万 投篮无力？压腕脱手？ #特雷杨 最值得普通人学习的投篮模板 #篮球教学 #waveball：解决三分投篮无力（发力困难）和压腕脱手（出手时球提前滑落）两个问题，以特雷杨的一段式投篮为模板。。这是通用训练解释，不构成个人视频诊断。\",\"cited_slugs\":[\"kb-douyin_7349396087804841279\",\"kb-douyin_7031380362534096160\"],\"confidence\":\"medium\",\"boundary\":\"general_training_only\"}"
+      }
+    ],
+    "metadata": {
+      "source": "dry_run_teacher_answer",
+      "cited_slugs": [
+        "kb-douyin_7349396087804841279",
+        "kb-douyin_7031380362534096160"
+      ]
+    }
+  },
+  "validation_policy": [
+    "json_parse_required",
+    "answer_required",
+    "cited_slugs_must_come_from_rag_references",
+    "confidence_must_be_low_medium_or_high",
+    "boundary_must_be_known"
+  ]
+}

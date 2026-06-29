@@ -1,0 +1,34 @@
+{
+  "schema_version": "shooting_lab_rag_sft_dataset.v1",
+  "source_contract": "rag_context_to_json_answer_behavior_tuning",
+  "output_dir": "data/finetune/shooting-rag-json",
+  "examples": 170,
+  "split_counts": {
+    "train": 146,
+    "valid": 11,
+    "test": 13
+  },
+  "first_train_example": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是 AI 投篮实验室的本地小模型知识助手。\n只能依据用户提供的 RAG 知识卡回答，不能补充知识卡之外的事实。\n只回答通用训练知识，不根据个人视频或个人动作做最终诊断。\n必须输出 JSON，字段为 answer、cited_slugs、confidence、boundary。\ncited_slugs 只能引用输入知识卡中的 slug；证据不足时 cited_slugs 为空。"
+      },
+      {
+        "role": "user",
+        "content": "问题：如果出现 用户报告投篮动作缺乏动力或热情，可以怎么调整？\nRAG 知识卡：\n[\n  {\n    \"slug\": \"kb-douyin_6794996847220935944\",\n    \"title\": \"3.6万 #阿隆戈登 你还记得儿时的梦想吗？\",\n    \"summary\": \"视频通过阿隆戈登的投篮画面，唤起观众对童年篮球梦想的回忆，未直接解决具体投篮技术问题。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"progress_review\",\n      \"shooting\",\n      \"shoulder\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"用户报告投篮动作缺乏动力或热情\",\n        \"then\": \"建议观看此视频以激发情感共鸣\",\n        \"check\": \"用户是否对阿隆戈登有认同感\",\n        \"repair\": \"结合其他技术视频进行训练\"\n      }\n    ],\n    \"repair_actions\": []\n  },\n  {\n    \"slug\": \"kb-douyin_7160653082777505037\",\n    \"title\": \"6.4万 回应某博主质疑！Coach Fui“压弹” 用筋膜弹性投篮！ #筋膜训练 #waveball #投篮教学\",\n    \"summary\": \"解决投篮发力时如何利用筋膜弹性（而非单纯肌肉力量）进行“压弹”发力，提升力量传递效率和身体稳定性。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\",\n      \"shooting\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"投篮时膝关节角度变化早于踝关节角度变化（即大腿先发力）。\",\n        \"then\": \"用户可能在使用大腿肌肉发力，而非脚踝筋膜弹性。\",\n        \"check\": \"对比踝关节和膝关节的角速度曲线，确认踝关节是否滞后。\",\n        \"repair\": \"进行“脚踝压弹”专项训练：站立，前掌踩地，主动压脚腕，感受脚踝张力，然后释放弹起，保持膝盖微屈不主动发力。\"\n      },\n      {\n        \"if\": \"投篮过程中躯干倾斜角度变化超过5度（身体晃动）。\",\n        \"then\": \"核心可能未锁死，力量传递效率低。\",\n        \"check\": \"检测髋部与肩部的相对位置变化，以及腰腹区域的肌电信号（如有）。\",\n        \"repair\": \"进行“核心锁死”训练：在脚踝压弹训练中，用手触摸腰腹，感受其收紧状态，保持躯干笔直。\"\n      }\n    ],\n    \"repair_actions\": []\n  },\n  {\n    \"slug\": \"kb-douyin_7063051650348485920\",\n    \"title\": \"1.3万 库里也会“手快脚慢”？揭露投篮手快脚慢的真相 #库里 #投篮教学 #waveball\",\n    \"summary\": \"定义和诊断投篮中“手快脚慢”（发力脱节）的问题，并纠正传统判断误区，提供正确的发力节奏。\",\n    \"tags\": [\n      \"ankle/foot\",\n      \"ball path\",\n      \"ball_pickup\",\n      \"elbow\",\n      \"hip\",\n      \"knee\",\n      \"lower_body_power\",\n      \"power_chain\"\n    ],\n    \"diagnosis_rules\": [\n      {\n        \"if\": \"视频中检测到膝盖开始伸展的同时，肘部也开始上升（伸膝与顶肘同步）。\",\n        \"then\": \"诊断为“手快脚慢”模式一（降重心同时起球）。\",\n        \"check\": \"确认沉球是否与降重心同步；检测手腕是否在举球过程中过早紧张。\",\n        \"repair\": \"练习“沉球-降重心-停顿”分解动作，强调先降重心再举球。\"\n      },\n      {\n        \"if\": \"视频中检测到沉球与降重心同步，但肘部上升速度明显快于膝盖伸展速度（上肢主动发力）。\",\n        \"then\": \"诊断为“手快脚慢”模式二（起球阶段上肢主动发力）。\",\n        \"check\": \"检测手腕是否在举球过程中过早紧张；检测下肢伸展是否缓慢或不连贯。\",\n        \"repair\": \"练习“被动举球”训练，专注于用下肢力量带动上肢。\"\n      }\n    ],\n    \"repair_actions\": []\n  }\n]\n请只依据这些知识卡输出 JSON。"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"answer\":\"针对“如果出现 用户报告投篮动作缺乏动力或热情，可以怎么调整？”，知识库最相关的依据是：3.6万 #阿隆戈登 你还记得儿时的梦想吗？：视频通过阿隆戈登的投篮画面，唤起观众对童年篮球梦想的回忆，未直接解决具体投篮技术问题。 建议提示：结合其他技术视频进行训练；6.4万 回应某博主质疑！Coach Fui“压弹” 用筋膜弹性投篮！ #筋膜训练 #waveball #投篮教学：解决投篮发力时如何利用筋膜弹性（而非单纯肌肉力量）进行“压弹”发力，提升力量传递效率和身体稳定性。 建议提示：进行“脚踝压弹”专项训练：站立，前掌踩地，主动压脚腕，感受脚踝张力，然后释放弹起，保持膝盖微屈不主动发力。。这属于通用训练知识，不构成对个人视频的最终诊断。\",\"cited_slugs\":[\"kb-douyin_6794996847220935944\",\"kb-douyin_7160653082777505037\"],\"confidence\":\"medium\",\"boundary\":\"general_training_only\"}"
+      }
+    ],
+    "metadata": {
+      "source": "grounded_rag_answer",
+      "cited_slugs": [
+        "kb-douyin_6794996847220935944",
+        "kb-douyin_7160653082777505037"
+      ]
+    }
+  }
+}
